@@ -21,9 +21,9 @@ Auto-update: `/plugin` > Marketplaces > notambourine > Enable auto-update.
 
 ```bash
 codex plugin marketplace add notambourine/agent-plugins
-for plugin in nt-brand nt-dev nt-pm nt-voice; do
-  codex plugin add "$plugin@notambourine"
-done
+codex plugin list --json --available -m notambourine |
+  jq -r '.available[].pluginId' |
+  while read -r plugin; do codex plugin add "$plugin"; done
 ```
 
 Start a new Codex thread after installation. These packages use portable Agent
