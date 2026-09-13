@@ -36,6 +36,32 @@ jobs:
       - name: Validate plugin + marketplace schema
         run: claude plugin validate .
 
+      - name: Validate portable marketplace
+        run: |
+          jq -e '
+            .name == "notambourine" and
+            all(.plugins[];
+              .source.source == "local" and
+              (.source.path | startswith("./plugins/")) and
+              (.policy.installation | IN("AVAILABLE", "INSTALLED_BY_DEFAULT", "NOT_AVAILABLE")) and
+              (.policy.authentication | IN("ON_INSTALL", "ON_USE")) and
+              (.category | type == "string" and length > 0)
+            )
+          ' .agents/plugins/marketplace.json
+          while read -r src; do
+            manifest="$src/plugin.json"
+            test -f "$manifest" || {
+              echo "::error::portable manifest missing: $manifest"
+              exit 1
+            }
+            jq -e --arg name "$(basename "$src")" '
+              ."$schema" == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json" and
+              .name == $name and
+              (.version | test("^[0-9]+\\.[0-9]+\\.[0-9]+([+-].*)?$")) and
+              (.description | type == "string" and length > 0)
+            ' "$manifest"
+          done < <(jq -r '.plugins[].source.path' .agents/plugins/marketplace.json)
+
       # Remote rows are exempt: an outside user finds one by what it does, not our prefix.
       - name: Check nt- prefix on local plugins
         run: |

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nt-pm",
+  "version": "0.1.0",
+  "description": "Creates plain-English project and release updates for non-technical audiences.",
+  "author": {
+    "name": "NoTambourine LLC",
+    "url": "https://notambourine.com"
+  },
+  "repository": "https://github.com/notambourine/claude",
+  "license": "MIT",
+  "keywords": ["project-management", "release-notes", "status"]
+}

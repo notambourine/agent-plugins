@@ -4,7 +4,6 @@ description: Remove comments that restate code and shorten comments that preserv
 effort: high
 allowed-tools: Bash, Read, Edit, Glob, Grep, AskUserQuestion
 argument-hint: "[path-or-glob | --repo]"
-disable-model-invocation: true
 ---
 
 # Trim comments
