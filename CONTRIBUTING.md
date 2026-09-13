@@ -16,17 +16,19 @@
 - One hook per plugin audience.
 - Merge skills when one must load the other.
 
-## Local plugin
+## Shared plugin
 
 ```text
 plugins/nt-<name>/
-  .claude-plugin/plugin.json
+  plugin.json
   skills/<skill>/SKILL.md
   hooks/hooks.json
   output-styles/<name>.md
 ```
 
-Add its marketplace row. Copy the manifest description exactly.
+Use the Agent Plugins schema in root `plugin.json`. Add local-source rows to both
+marketplaces. Put host-specific metadata and hook policy under the host's extension.
+Increment the portable manifest version when distributed behavior changes.
 
 External source:
 

@@ -1,8 +1,10 @@
 # notambourine/claude
 
-NoTambourine Claude Code plugins.
+NoTambourine plugins for Claude Code and Codex.
 
 ## Install
+
+### Claude Code
 
 ```bash
 claude plugin marketplace add notambourine/claude
@@ -15,16 +17,33 @@ Update: `claude plugin marketplace update notambourine`
 
 Auto-update: `/plugin` > Marketplaces > notambourine > Enable auto-update.
 
+### Codex
+
+```bash
+codex plugin marketplace add notambourine/claude
+for plugin in nt-brand nt-dev nt-pm nt-voice; do
+  codex plugin add "$plugin@notambourine"
+done
+```
+
+Start a new Codex thread after installation. These packages use portable Agent
+Plugins manifests and shared Agent Skills. Claude-specific hooks remain available
+only through Claude Code.
+
+Portable packages: `nt-brand`, `nt-dev`, `nt-pm`, and `nt-voice`.
+`nt-seo-spider`, `nt-shopify`, and `nt-vendor` remain Claude-only until their
+MCP, hook, or vendored skill metadata is adapted.
+
 ## Plugins
 
-| Plugin | Commands / purpose |
+| Plugin | Purpose |
 | --- | --- |
-| `nt-brand` | `/nt-brand:system`: brand tokens, CSS, decks, voice, audit |
-| `nt-dev` | `/nt-dev:pr`, `issue`, `cleanup`, `recall`, `eod-update`, `commit`, `figma-build`, `trim-comments` |
-| `nt-pm` | `/nt-pm:shipped`, `/nt-pm:weekly-recap` |
+| `nt-brand` | Brand tokens, CSS, decks, voice, and audits |
+| `nt-dev` | PRs, issues, cleanup, recall, commits, and development workflows |
+| `nt-pm` | Shipped updates and weekly recaps |
 | `nt-seo-spider` | Screaming Frog MCP, 29 tools, SEO Spider 24+ |
 | `nt-shopify` | Blocks live-store writes |
-| `nt-voice` | `/nt-voice:human-voice`: surgical edit or rewrite |
+| `nt-voice` | Surgical prose edits and structural rewrites |
 | `nt-vendor` | `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5` |
 | `nt-share` | `/nt-share:share`: branded unguessable URL; token required |
 | `wormhook` | Blocks npm/PyPI supply-chain malware |

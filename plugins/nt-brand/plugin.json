@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nt-brand",
+  "version": "0.1.0",
+  "description": "Defines NoTambourine's brand system for surfaces, decks, and copy.",
+  "author": {
+    "name": "NoTambourine LLC",
+    "url": "https://notambourine.com"
+  },
+  "repository": "https://github.com/notambourine/claude",
+  "license": "MIT",
+  "keywords": ["brand", "design", "writing"]
+}

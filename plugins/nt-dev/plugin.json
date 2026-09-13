@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nt-dev",
+  "version": "0.1.0",
+  "description": "Standardizes everyday development work and house conventions.",
+  "author": {
+    "name": "NoTambourine LLC",
+    "url": "https://notambourine.com"
+  },
+  "repository": "https://github.com/notambourine/claude",
+  "license": "MIT",
+  "keywords": ["development", "github", "workflow"],
+  "extensions": {
+    "com.openai": {
+      "hooks": [],
+      "interface": {
+        "displayName": "NoTambourine Development",
+        "shortDescription": "Development workflows and house conventions.",
+        "longDescription": "Creates pull requests, issues, commits, code cleanups, recalls, and end-of-day updates using NoTambourine conventions.",
+        "developerName": "NoTambourine LLC",
+        "category": "Developer Tools",
+        "capabilities": ["Write"],
+        "defaultPrompt": [
+          "Create a draft pull request for my current branch.",
+          "Clean up the code I changed without altering behavior.",
+          "Recall the context behind this repository change."
+        ]
+      }
+    }
+  }
+}
