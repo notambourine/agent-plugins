@@ -1,4 +1,4 @@
-# notambourine/claude
+# notambourine/agent-plugins
 
 NoTambourine plugins for Claude Code and Codex.
 
@@ -7,7 +7,7 @@ NoTambourine plugins for Claude Code and Codex.
 ### Claude Code
 
 ```bash
-claude plugin marketplace add notambourine/claude
+claude plugin marketplace add notambourine/agent-plugins
 claude plugin list --available --json |
   jq -r '.available[] | select(.marketplaceName == "notambourine") | .pluginId' |
   while read -r plugin; do claude plugin install "$plugin" --scope user; done
@@ -20,7 +20,7 @@ Auto-update: `/plugin` > Marketplaces > notambourine > Enable auto-update.
 ### Codex
 
 ```bash
-codex plugin marketplace add notambourine/claude
+codex plugin marketplace add notambourine/agent-plugins
 for plugin in nt-brand nt-dev nt-pm nt-voice; do
   codex plugin add "$plugin@notambourine"
 done
