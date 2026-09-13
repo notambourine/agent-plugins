@@ -21,14 +21,13 @@
 ```text
 plugins/nt-<name>/
   plugin.json
-  .claude-plugin/plugin.json
   skills/<skill>/SKILL.md
   hooks/hooks.json
   output-styles/<name>.md
 ```
 
 Use the Agent Plugins schema in root `plugin.json`. Add local-source rows to both
-marketplaces. Keep Claude-only hooks out of the portable manifest until adapted.
+marketplaces. Put host-specific metadata and hook policy under the host's extension.
 Increment the portable manifest version when distributed behavior changes.
 
 External source:

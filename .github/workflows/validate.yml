@@ -71,27 +71,24 @@ jobs:
           [ -z "$bad" ] || { echo "::error::local plugin missing nt- prefix: $bad"; exit 1; }
           echo "all local plugins are nt-prefixed"
 
-      # claude plugin validate does not compare these two fields; drift is silent.
-      - name: Check description parity (plugin.json <-> marketplace.json)
+      # Host catalogs have different metadata; only local package identity is shared.
+      - name: Check portable marketplace parity
         run: |
-          fail=0
-          while read -r name src; do
-            case "$src" in ./*) ;; *) continue ;; esac
-            plugin_desc=$(jq -r '.description' "$src/.claude-plugin/plugin.json")
-            market_desc=$(jq -r --arg n "$name" \
-              '.plugins[] | select(.name == $n) | .description' \
-              .claude-plugin/marketplace.json)
-            if [ "$plugin_desc" != "$market_desc" ]; then
-              echo "::error::description drift for $name"
-              echo "  $src/.claude-plugin/plugin.json: $plugin_desc"
-              echo "  marketplace.json:                $market_desc"
-              fail=1
-            else
-              echo "$name: descriptions match"
-            fi
-          done < <(jq -r '.plugins[] | select(.source | type == "string")
-                          | "\(.name) \(.source)"' .claude-plugin/marketplace.json)
-          exit $fail
+          portable=$(jq -c '
+            [.plugins[] | {name, source: .source.path}]
+            | sort_by(.name)
+          ' .agents/plugins/marketplace.json)
+          claude=$(jq -c --argjson portable "$portable" '
+            [.plugins[] | select(.source | type == "string") | {name, source}]
+            | map(select(.name as $name | $portable | any(.name == $name)))
+            | sort_by(.name)
+          ' .claude-plugin/marketplace.json)
+          [ "$claude" = "$portable" ] || {
+            echo "::error::portable plugin names or sources differ between marketplaces"
+            echo "Claude:  $claude"
+            echo "Portable: $portable"
+            exit 1
+          }
 
   # Every script below is node and git only; a step that shells out needs an OS carve-out.
   portable:
