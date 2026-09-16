@@ -1,7 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nt-dev",
-  "version": "0.1.0",
   "description": "Standardizes everyday development work and house conventions.",
   "author": {
     "name": "NoTambourine LLC",

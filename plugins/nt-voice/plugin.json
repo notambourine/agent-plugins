@@ -1,7 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nt-voice",
-  "version": "0.1.0",
   "description": "Applies surgical or structural editing to make prose sound human.",
   "author": {
     "name": "NoTambourine LLC",
