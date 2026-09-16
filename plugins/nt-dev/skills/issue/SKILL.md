@@ -37,5 +37,9 @@ rediscover. At most one table or diagram. Name prerequisites and open questions.
 No delivery plan, tutorial, speculative solution, recap, or fake hierarchy. Use child issues
 and real parent links.
 
+Write the body to an absolute path in the session scratchpad, never $TMPDIR. gh runs outside
+the Bash sandbox, so $TMPDIR names a different shared directory there and --body-file
+silently reads another session's leftovers.
+
 Set only used milestone, labels, fields, status, parent. Align duplicated metadata. Revisions
 integrate facts in place; comments only for dated decisions or results.

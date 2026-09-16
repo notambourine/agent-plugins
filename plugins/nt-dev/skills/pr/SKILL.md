@@ -27,4 +27,8 @@ Visible changes: add useful named before/after captures; recording for motion or
 Upload as GitHub user attachments. Read
 [references/github-attachments.md](references/github-attachments.md).
 
+Write the body to an absolute path in the session scratchpad, never $TMPDIR. gh runs outside
+the Bash sandbox, so $TMPDIR names a different shared directory there and --body-file
+silently reads another session's leftovers.
+
 Submit with `gh pr create` or `gh pr edit`, preserving formatting.
