@@ -3,7 +3,7 @@
 Shared by `shipped` and `weekly-recap`. Each skill supplies its own header line, section
 names, and section emoji; everything below is fixed.
 
-Draft only. Never post.
+Draft only. Never post it yourself; hand it to the user.
 
 ## Slack markup, not markdown
 
