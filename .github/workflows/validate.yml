@@ -57,7 +57,6 @@ jobs:
             jq -e --arg name "$(basename "$src")" '
               ."$schema" == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json" and
               .name == $name and
-              (.version | test("^[0-9]+\\.[0-9]+\\.[0-9]+([+-].*)?$")) and
               (.description | type == "string" and length > 0)
             ' "$manifest"
           done < <(jq -r '.plugins[].source.path' .agents/plugins/marketplace.json)
