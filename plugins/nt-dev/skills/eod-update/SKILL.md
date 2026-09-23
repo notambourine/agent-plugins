@@ -1,6 +1,6 @@
 ---
 name: eod-update
-description: Draft a Slack end-of-day update.
+description: Draft a Slack end-of-day update. Use when the user asks for an EOD, end-of-day, or daily status note.
 allowed-tools:
   - Bash(gh pr list:*)
   - Bash(gh pr view:*)

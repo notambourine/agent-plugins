@@ -1,6 +1,6 @@
 ---
 name: recall
-description: Recover context from prior sessions in this repo.
+description: Recover context from prior sessions in this repo. Use when the user points at earlier work, asks what happened last time, or resumes an unfinished task.
 allowed-tools:
   - Bash
   - Read

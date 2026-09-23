@@ -35,8 +35,8 @@ names, in the order it names them.
 
 ## Compression
 
-One bullet per theme, never per commit or PR. Merge until every bullet earns its line. Whole
-block under 200 words. Skip bots, imports, dependency bumps, and immaterial docs.
+One bullet per theme, never per commit or PR. Merge until every bullet earns its line. The
+whole block reads in one Slack screen. Skip bots, imports, dependency bumps, and immaterial docs.
 
 ## Vocabulary
 

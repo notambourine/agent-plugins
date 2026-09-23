@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Write and create focused git commits.
+description: Write and create focused git commits. Use when the user asks to commit or finished work needs committing.
 allowed-tools:
   - Bash(git status:*)
   - Bash(git diff:*)

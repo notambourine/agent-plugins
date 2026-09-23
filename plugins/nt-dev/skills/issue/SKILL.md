@@ -18,8 +18,12 @@ Plain register: concrete nouns, no inflated adjectives, no `not just X but Y` fr
 closing flourish.
 
 Hard caps, whichever template you use: 80 characters per bullet, 200 per paragraph. Over the
-cap, cut a claim; never split it across lines or move it into a bullet. Count before
-submitting and again after any revision.
+cap, cut a claim; never split it across lines or move it into a bullet. Before submitting and
+after any revision, check the body file; every printed line is over its cap:
+
+```sh
+awk '(/^[[:space:]]*[-*] / && length > 80) || length > 200 {print NR": "length}' <body-file>
+```
 
 Title: outcome, not activity or mechanism. Body: problem, scope, constraints, context,
 observable acceptance. User behavior and business rules first. Implementation only when
