@@ -47,7 +47,6 @@ MCP, hook, or vendored skill metadata is adapted.
 | `nt-vendor` | `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5` |
 | `nt-share` | `/nt-share:share`: branded unguessable URL; token required |
 | `wormhook` | Blocks npm/PyPI supply-chain malware |
-| `qrspi` | `/qrspi:query` through `/qrspi:implement` |
 
 Enable repo-local plugins:
 
@@ -71,8 +70,8 @@ environment writes, and unknown verbs. Run intentionally blocked commands yourse
 Per-machine control:
 
 ```bash
-claude plugin install qrspi@notambourine --scope user
-claude plugin disable qrspi@notambourine
+claude plugin install wormhook@notambourine --scope user
+claude plugin disable wormhook@notambourine
 ```
 
 Committed repo control:
