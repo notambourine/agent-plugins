@@ -1,6 +1,6 @@
 ---
 name: cleanup
-description: Audit checked-in repo context and Claude config.
+description: Audit checked-in repo context and Claude config. Use when memory files, rules, skills, settings, or hooks may be stale, duplicated, or drifting from code.
 effort: high
 allowed-tools: Bash, Read, Edit, Write, Glob, Grep, Agent, AskUserQuestion
 argument-hint: "[--dry-run] [path-or-glob]"
