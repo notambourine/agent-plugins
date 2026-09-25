@@ -51,14 +51,6 @@
       "description": "Blocks npm/PyPI supply-chain malware and agent-hijack persistence at the Claude Code hook — before it can run."
     },
     {
-      "name": "qrspi",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/notambourine/qrspi.git"
-      },
-      "description": "GitHub-native structured feature development: Query, Research, Spec, Plan, Implement."
-    },
-    {
       "name": "nt-share",
       "source": {
         "source": "url",
