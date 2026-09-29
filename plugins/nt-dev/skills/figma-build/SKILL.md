@@ -35,7 +35,7 @@ Follow the repo's server/client split. Keep interactive state in small leaves. C
 
 At every breakpoint, compare rendered values and behavior with the extracted spec. Verify probe preconditions such as image loading and animation state before trusting failures. Typecheck and lint each commit; prove checks aimed at a specific failure can fail.
 
-Before shipping, remove scaffolding comments and consolidate only proven duplication: identical shells, repeated design values, components differing on one axis, shared patterns used by multiple surfaces, and duplicated data shapes. Re-run the same QA after refactoring.
+Before shipping, remove scaffolding comments and consolidate only proven duplication. Re-run the same QA after refactoring.
 
 ## Ship
 

@@ -12,7 +12,7 @@ allowed-tools:
 
 # Weekly recap
 
-Draft only. Whole team. Output obeys [../../recap-format.md](../../recap-format.md). Use
+Whole team. Output obeys [../../recap-format.md](../../recap-format.md). Use
 named window; otherwise ask 1-4 weeks. Compute inclusive dates with available BSD/GNU
 `date` syntax.
 
