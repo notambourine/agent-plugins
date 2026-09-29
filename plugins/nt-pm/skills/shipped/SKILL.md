@@ -25,7 +25,7 @@ allowed-tools:
 
 # Deploy updates
 
-Draft only. Never deploy or post. Output obeys
+Never deploy. Output obeys
 [../../recap-format.md](../../recap-format.md).
 
 Mode:
