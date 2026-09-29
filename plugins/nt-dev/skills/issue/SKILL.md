@@ -17,14 +17,6 @@ or `.github/issue_template.md`, and follow its headings exactly. Without one, us
 Plain register: concrete nouns, no inflated adjectives, no `not just X but Y` framing, no
 closing flourish.
 
-Hard caps, whichever template you use: 80 characters per bullet, 200 per paragraph. Over the
-cap, cut a claim; never split it across lines or move it into a bullet. Before submitting and
-after any revision, check the body file; every printed line is over its cap:
-
-```sh
-awk '(/^[[:space:]]*[-*] / && length > 80) || length > 200 {print NR": "length}' <body-file>
-```
-
 Title: outcome, not activity or mechanism. Body: problem, scope, constraints, context,
 observable acceptance. User behavior and business rules first. Implementation only when
 decided or costly to rediscover. Link decisions; do not repeat them.
