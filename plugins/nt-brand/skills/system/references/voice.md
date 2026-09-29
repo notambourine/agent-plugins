@@ -1,81 +1,81 @@
 # Voice and copy audit
 
-Lead public-facing pages and introductions with this core framing:
+Lead public pages and introductions with:
 
-> Build the systems and ways of working your business needs next.
+> Ship the systems your business needs next.
 
-For a supporting headline about existing systems, use:
+For existing systems, use:
 
-> Make your systems work harder for your business.
+> Improve the systems that run your business.
 
-Follow each headline with the work we will deliver and its business value. Write
-concisely, warmly, then playfully, in that order.
+Follow with what we will deliver and what the client can do once it ships. Write
+plainly and warmly. Use humor only when it makes the point clearer.
 
 ## Positioning and offers
 
-Position NoTambourine as senior engineers who work inside the client's team and
-take responsibility for delivery. Lead with the client's business goal and the
-engineering work needed to reach it. Connect technical infrastructure with the
-processes it supports. Show how better systems let a team handle more work
-without adding manual steps. AI at the keyboard explains small-team economics;
-it is not the offer.
+Position NoTambourine as senior engineers who join the client's team, use AI
+throughout delivery, and own the work from business goal to shipped system. Name
+the software, data, or infrastructure needed to reach that goal. Keep the time
+between a decision and working software short.
 
-Define fit by the intended result and the responsibility taken on. Mention
-private-equity experience when relevant; keep general positioning open to any
-ownership structure. The name means no padding.
+Treat AI as a working capability. Explain where it speeds up delivery, automates
+work, improves a product, or helps a team use its information. Name the result,
+not the novelty. Do not make broad claims about transformation or intelligence.
 
-Help referred readers confirm fit and explain the agency to colleagues. Keep the
-signature beside a concrete explanation. Use this introduction:
+Show engineers working with product managers, operators, designers, and domain
+experts. Credit clear priorities, sound decisions, and close coordination for
+delivery speed. Never claim that eliminating a role, planning, documentation, or
+meetings makes a team fast.
 
-> Build the systems and ways of working your business needs next. NoTambourine
-> brings senior engineers into your team to lead delivery.
+Define fit by the result and the responsibility we will take. Mention
+private-equity experience when relevant, but keep general positioning open to
+any ownership structure. The name means no padding.
+
+Use this introduction:
+
+> Ship the systems your business needs next. NoTambourine brings senior
+> engineers into your team to own delivery and build with AI.
 
 For a meta description or short directory listing, use:
 
-> Senior engineers working inside your team to build the systems and ways of
-> working your business needs next.
+> Senior engineers using AI inside your team to ship the systems your business
+> needs next.
 
-Give recognizable reasons to call: upgrading core systems, automating routine
-work, or connecting systems so teams can act on current information. Connect
-each to the work we can deliver. Describe infrastructure improvements through
-the change in daily work: files arrive automatically, orders move between
-systems, or a team can release updates more easily. Use examples that match the
-engagement. Support claims of growth, time saved, or reliability with client
+Give clear reasons to call: launching a product, improving a core system,
+automating routine work, or connecting systems and data. Describe the shipped
+change in daily terms. A file arrives automatically. An order moves between
+systems. A team releases an update. A customer gets a useful answer. Support
+claims about growth, time saved, reliability, or delivery speed with client
 evidence.
 
-Keep public positioning open to ambition as well as an existing constraint. In
-discovery, ask what they want to accomplish, why now, and what successful
-delivery would change. Name constraints once the client has described them or
-the evidence establishes them. In a proposal, connect that specific constraint
-to its business consequence and the work required.
+Keep public positioning open to a new ambition or an existing constraint. Ask
+what the client wants to accomplish, why now, and what will change after it
+ships. In proposals, connect each constraint to its business consequence and the
+work required.
 
-Use these offer names and lead with outcomes:
+Use these offer names:
 
-- **Assessment:** Decide what to build or change first. Review the technology
-  and working processes against your business priorities and choose the next
-  investment.
-- **Embedded:** Put senior engineers inside your team to lead delivery. Build
-  the systems and ways of working your business needs next.
+- **Assessment:** Choose what to build or change next. Review the systems,
+  workflows, and priorities, then set the delivery plan.
+- **Embedded:** Add senior engineers who build with AI to your team. We own
+  delivery and ship the systems your business needs next.
 
 Use "Start a conversation" for the primary invitation. Ask what the reader wants
-to accomplish and when. Discuss fit before asking them to choose an engagement.
+to ship and when. Discuss fit before asking them to choose an engagement.
 
 ## Register and evidence
 
 - Address marketing readers as "you". In client deliverables, use "we" for the
   client's organization with us inside it. Name the parties in proposals and
   SOWs. Never use "I" as the author's voice.
-- Do not sell in client deliverables: no logo wall, team slide, or methodology.
-  Explain their system back to them.
-- Show the client's objective, what changed, and what they can now do. Use their
-  numbers when available, otherwise a verifiable before and after. Connect
-  delivered work to commercial and operational results when supported. Share
+- Keep sales material out of client deliverables. Explain the client's system,
+  the decisions to make, and the work to ship.
+- Show the objective, what shipped, and what the client can now do. Use client
+  numbers when available. Otherwise use a verifiable before and after. Share
   client evidence only with permission.
-- Name who joins and takes responsibility for delivery. Express values as
-  commitments: direct access to the responsible person and covering our
-  estimating mistakes within agreed scope.
-- Describe constraints without blaming the people who built the system. Explain
-  coordination without jokes about ceremony.
+- Name who joins and owns delivery. Promise direct access to that person. Cover
+  our estimating mistakes within the agreed scope.
+- Describe constraints without blaming the people who built the system.
 
 ## Names and mechanics
 
@@ -90,24 +90,23 @@ slide, sign-off, or footer. The instrument is lowercase. This is the only
 permitted spaced form.
 
 Use sentence case for headlines, buttons, navigation, and labels. Reserve
-uppercase for pink eyebrows; decks also use that treatment for sublabels. Follow
-deck guidance for lowercase display headlines. Keep sentences short without
-forcing a uniform rhythm. No throat-clearing, superlatives, or exclamation marks
-in body copy.
+uppercase for pink eyebrows; decks also use it for sublabels. Follow deck
+guidance for lowercase display headlines. Vary sentence length. Cut
+throat-clearing, superlatives, exclamation marks, and clever phrasing that
+delays the point.
 
-Use ASCII punctuation: hyphens and straight quotes/apostrophes. No em/en dashes,
-curly quotes, or single-character ellipses. Permit the interpunct as a
-separator, as in `Tom Fuertes · Principal · NoTambourine`.
+Use ASCII punctuation: hyphens and straight quotes/apostrophes. Do not use em/en
+dashes, curly quotes, or single-character ellipses. The interpunct may separate
+a name, role, and company: `Tom Fuertes · Principal · NoTambourine`.
 
 ## Audit before shipping
 
 Audit anything clients or strangers see: pages, email, decks, proposals, SOWs,
-READMEs, and release notes. Search for candidates, then judge them in context:
+READMEs, and release notes. Search for candidates, then judge them in context.
 
-Check the opening first. It should name work the reader wants done and explain
-our responsibility. Remove assumed pain, unearned urgency, and claims that could
-describe any agency. Keep technical constraints where they explain a specific
-decision or result.
+The opening should name the work and our responsibility. Remove assumed pain,
+unearned urgency, decorative language, and claims that could describe any
+agency. Keep technical constraints when they explain a decision or result.
 
 ```sh
 rg -n 'notambourine|Notambourine|No\s+Tambourine|NoTambourine LLC' <file>
@@ -119,19 +118,18 @@ rg -n '!(\s|$)|\bI\b' <file>
 ```
 
 Check legal-name occurrences against the contract limit. Ignore technical slugs
-and code when judging wordmark hits; searches do not understand Markdown fences
-or backticks. Ignore literal technical uses such as "a robust error path" and
-`I` in quotations, identifiers, or names.
+and code when judging wordmark hits. Ignore literal technical uses such as "a
+robust error path" and `I` in quotations, identifiers, or names.
 
-Cut puffery and keep evidence. Replace importance-flagging with the consequence.
-Cut participle tails at the comma. Read manually for grandiose scope and
-three-item adjective lists; narrow claims to something a client can hold us to.
-If cutting words leaves the claim intact, remove them.
+Cut puffery and keep evidence. Replace claims of importance with the
+consequence. Cut participle tails at the comma. Narrow grand claims to something
+a client can verify. If a sentence keeps its meaning after a phrase is cut, cut
+the phrase.
 
-Preserve three fixtures even when they resemble padding: the signature, factual
-three-item lines such as "Two engineers, six weeks, one shipped feature", and a
-headline's single pink `<em>`. Typographic emphasis is not a boldface tic.
+Keep three fixtures even when they match a search flag: the signature, factual
+lines such as "Two engineers, six weeks, one shipped feature", and one pink
+`<em>` in a headline.
 
-Format source documents with Prettier before sharing or exporting, including
-Markdown. Use the repository's pinned version and configuration. Review the
-rendered document after formatting, especially slide breaks and tables.
+Format source documents with the repository's pinned Prettier before sharing or
+exporting them. Review the rendered document, especially slide breaks and
+tables.

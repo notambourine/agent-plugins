@@ -62,7 +62,7 @@ pre-deploy.
 
 Keep every label and sentence neutral. Name the surface with a generic noun and state what it
 now does. Never imply the prior behavior was wrong or that anyone erred: no comparatives or
-corrective framing (`Smarter Search`, `Right Order`, `Finally`, `No Longer Broken`) — use
+corrective framing (`Smarter Search`, `Right Order`, `Finally`, `No Longer Broken`). Use
 `Search`, `Sort Order`.
 
 Sections in this order, only those needed: ✨ Features, 🛠️ Fixes, ⚡ Performance,
