@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
   "name": "notambourine",
-  "description": "Claude Code plugins for the NoTambourine consulting practice.",
+  "description": "Claude Code and Codex plugins NoTambourine engineers use to ship client work.",
   "owner": {
     "name": "NoTambourine LLC",
     "url": "https://notambourine.com"
@@ -48,7 +48,7 @@
         "source": "url",
         "url": "https://github.com/notambourine/wormhook.git"
       },
-      "description": "Blocks npm/PyPI supply-chain malware and agent-hijack persistence at the Claude Code hook — before it can run."
+      "description": "Blocks npm/PyPI supply-chain malware and agent-hijack persistence at the Claude Code hook before it runs."
     },
     {
       "name": "nt-share",

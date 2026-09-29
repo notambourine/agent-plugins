@@ -1,7 +1,7 @@
 {
   "name": "notambourine-agent-plugins",
   "private": true,
-  "description": "Claude Code and Codex plugin marketplace for the NoTambourine consulting practice.",
+  "description": "Claude Code and Codex plugins NoTambourine engineers use to ship client work.",
   "license": "MIT",
   "type": "module",
   "scripts": {
