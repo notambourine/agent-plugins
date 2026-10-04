@@ -10,22 +10,26 @@
     {
       "name": "nt-brand",
       "source": "./plugins/nt-brand",
-      "description": "Defines NoTambourine's brand system, including tokens, components, fonts, voice, and copy auditing."
+      "description": "Defines NoTambourine's brand system, including tokens, components, fonts, voice, and copy auditing.",
+      "strict": false
     },
     {
       "name": "nt-dev",
       "source": "./plugins/nt-dev",
-      "description": "Standardizes everyday development work and house conventions. Never posts end-of-day updates; hooks guide GitHub usage and identify Unicode dash violations."
+      "description": "Standardizes everyday development work and house conventions. Never posts end-of-day updates; hooks guide GitHub usage and identify Unicode dash violations.",
+      "strict": false
     },
     {
       "name": "nt-pm",
       "source": "./plugins/nt-pm",
-      "description": "Creates plain-English status updates for non-technical audiences from repository and team activity. Never posts or deploys."
+      "description": "Creates plain-English status updates for non-technical audiences from repository and team activity. Never posts or deploys.",
+      "strict": false
     },
     {
       "name": "nt-voice",
       "source": "./plugins/nt-voice",
-      "description": "Applies the appropriate prose voice pass for humanization and editorial requests. Requires nt-vendor."
+      "description": "Applies the appropriate prose voice pass for humanization and editorial requests. Requires nt-vendor.",
+      "strict": false
     },
     {
       "name": "nt-seo-spider",
