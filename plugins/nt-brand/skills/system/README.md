@@ -4,15 +4,15 @@ NoTambourine brand assets and guidance for design, decks, and copy. Use the
 stylesheets, fonts, and logo together. Read `SKILL.md` for the relevant
 guidance.
 
-Correct a brand value here. Every other copy is downstream.
-
-| Link this        | To get                                                             |
-| ---------------- | ------------------------------------------------------------------ |
-| `tokens.css`     | The whole system: the faces, every value, and styled bare HTML.    |
-| `vars.css`       | The values alone, for a surface with its own faces and base layer. |
-| `components.css` | `.nt-btn`, `.nt-card`, `.nt-nav`, and the rest, all `var()`-based. |
-| `deck.css`       | The Marpit slide theme, 1280x720. Load `vars.css` on the page too. |
-| `logo/`          | The mark, the lockup, the icons, and the rasters cut from them.    |
+| Link this        | To get                                                                     |
+| ---------------- | -------------------------------------------------------------------------- |
+| `tokens.css`     | The whole system: the faces, every value, and styled bare HTML.            |
+| `vars.css`       | The values alone, for a surface with its own faces and base layer.         |
+| `components.css` | `.nt-btn`, `.nt-card`, `.nt-nav`, and the rest, all `var()`-based.         |
+| `deck.css`       | The Marpit slide theme, 1280x720. Load `tokens.css` on the page too.       |
+| `prose.css`      | `.nt-prose` for rendered markdown, on screen and on paper.                 |
+| `logo/`          | The mark, the lockup, the icons, and the rasters cut from them.            |
+| `doctrine/`      | What the firm believes and how the team works, as the site publishes them. |
 
 ## Logo
 
@@ -29,46 +29,19 @@ The raster half shells out to `rsvg-convert`, which ships in librsvg:
 `brew install librsvg` on macOS or Linux, the GTK runtime on Windows. The vector
 half runs without it.
 
-### Vector
+### Pick a file
 
-| File                                               | Use                                                                                                                       |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `logo/lockup.svg`                                  | Default. Mark plus wordmark, outlined, so it needs no font.                                                               |
-| `logo/lockup-white.svg`                            | On dark, on pink, on a photo.                                                                                             |
-| `logo/lockup-ink.svg`                              | One-color print or light backgrounds where pink lacks contrast.                                                           |
-| `logo/lockup-text.svg`                             | The wordmark as live `<text>` over an inlined ten-glyph Nunito subset. Open this one to edit the type; ship `lockup.svg`. |
-| `logo/monogram.svg`                                | Mark with `no` nested in the crescent, transparent, square. The short form: avatar, app icon, stamp.                      |
-| `logo/monogram-white.svg`, `logo/monogram-ink.svg` | The same two reversals.                                                                                                   |
-| `logo/mark.svg`                                    | Mark alone, no letters. Watermarks, a bullet, anywhere `no` would be read as a word.                                      |
-| `logo/mark-white.svg`, `logo/mark-ink.svg`         | The same two reversals.                                                                                                   |
-| `logo/favicon.svg`                                 | Browser tab: monogram on the dark tile, cut tight so 16px survives.                                                       |
-| `logo/icon.svg`                                    | App tile, rounded corners, opaque.                                                                                        |
-| `logo/icon-square.svg`                             | App tile, square edges, for iOS and anything else that masks the icon itself.                                             |
-| `logo/icon-maskable.svg`                           | Android maskable: full bleed, monogram inside the 80% safe circle.                                                        |
-
-The monogram uses the lockup's first two letters with the same face, size, and
-position. The letters lose detail at 16px; use `favicon.svg` for browser
-scaling.
-
-`lockup-text.svg` overruns its viewBox in librsvg and resvg, which apply
-`letter-spacing` differently than a browser does. That is why the outlined
-`lockup.svg` is the default and the source of every raster.
-
-### Raster
-
-Everything in `logo/export/` is cut from the SVGs above, so treat it as output:
-regenerate it, never retouch it.
-
-| File                                                                                  | Cut from                             |
-| ------------------------------------------------------------------------------------- | ------------------------------------ |
-| `favicon.ico` (16, 32, 48)                                                            | `favicon.svg`                        |
-| `favicon-16x16.png`, `favicon-32x32.png`, `favicon-48x48.png`                         | `favicon.svg`                        |
-| `apple-touch-icon.png` (180)                                                          | `icon-square.svg`                    |
-| `icon-192.png`, `icon-512.png`                                                        | `icon.svg`                           |
-| `icon-maskable-512.png`                                                               | `icon-maskable.svg`                  |
-| `monogram-256.png`, `monogram-512.png`, `monogram-1024.png`, `monogram-white-512.png` | `monogram.svg`, `monogram-white.svg` |
-| `mark-256.png`, `mark-512.png`, `mark-1024.png`, `mark-white-512.png`                 | `mark.svg`, `mark-white.svg`         |
-| `lockup-1024.png`, `lockup-2048.png`, `lockup-white-1024.png`, `lockup-ink-1024.png`  | the three lockups                    |
+- `lockup.svg` is the default: mark plus outlined wordmark, no font needed.
+  `-white` goes on dark, pink, or a photo; `-ink` on one-color print or light
+  backgrounds where pink lacks contrast.
+- `monogram*` is the short form (avatar, app icon, stamp). `mark*` drops the
+  letters for watermarks or anywhere `no` would read as a word.
+- `favicon.svg` and `icon*.svg` cover browser tabs and app tiles, including iOS
+  square and Android maskable. Use `favicon.svg` at 16px; the monogram's letters
+  lose detail there.
+- `lockup-text.svg` is for editing the type only. librsvg and resvg overrun its
+  viewBox, so ship and rasterize `lockup.svg`.
+- `logo/export/` is generated output: regenerate it, never retouch it.
 
 ### Wire it up
 
@@ -137,18 +110,8 @@ into a layer StyleX orders itself against:
 @import "@notambourine/brand-kit/tokens.css" layer(base);
 ```
 
-The package ships the stylesheets, `fonts/`, `logo/`, and `SKILL.md`. The logo
-build script and `hello-world.html` stay in the repo. Pin an exact version and
-bump it on purpose; a caret range moves the brand under a consumer with no diff
-to review.
-
-Consumers today:
-
-|                                 |                                                                                        |
-| ------------------------------- | -------------------------------------------------------------------------------------- |
-| `notambourine/claude`           | Ships it as the `/nt-brand:system` skill.                                              |
-| `notambourine/share`            | Serves `tokens.css` and `deck.css` from its own origin; a self-only CSP forbids a CDN. |
-| `notambourine/notambourine.com` | The site's stylesheet.                                                                 |
+Pin an exact version and bump it on purpose; a caret range moves the brand under
+a consumer with no diff to review.
 
 ## Gate a consumer
 
@@ -157,12 +120,6 @@ fallback and the page still renders, so a bump can go wrong quietly. Check three
 things in the consumer's CI: the font bytes hash against `fonts/`, every color
 is one this kit defines, and every `var()` reads a property it still declares.
 `notambourine/share`'s `npm run brand` is the reference implementation.
-
-## Format documents
-
-Install dependencies with `npm ci`. Run `npm run format` before sharing
-documents or exporting them. Markdown and MDX are included, along with HTML and
-JSON/YAML. Review rendered output after formatting.
 
 ## Release
 

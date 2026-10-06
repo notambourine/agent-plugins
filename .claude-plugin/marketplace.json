@@ -10,7 +10,7 @@
     {
       "name": "nt-brand",
       "source": "./plugins/nt-brand",
-      "description": "Defines NoTambourine's brand system, including tokens, components, fonts, voice, and copy auditing.",
+      "description": "Defines NoTambourine's brand system, including tokens, components, fonts, voice, and doctrine. Copy audits require nt-voice.",
       "strict": false
     },
     {

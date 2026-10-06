@@ -25,5 +25,6 @@ not mistake a deck that renders for one whose assets loaded.
 
 Keep the supplied lockup so an exported PDF identifies itself without the share
 page. Marpit's `![bg]` slides hide corner furniture, including that lockup;
-account for the loss when choosing that layout. Use the logo data URI variables
-for offline output, never retype the brand name in display type.
+account for the loss when choosing that layout. A PDF or offline snapshot has no
+origin to fetch artwork from, so use the logo data URI variables; never retype
+the brand name in display type.
