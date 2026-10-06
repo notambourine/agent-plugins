@@ -17,45 +17,53 @@ ship. Settle scope and ownership before writing any finding.
 
 ## Match the crawl's weight to the task
 
-Every run, headless or MCP, inherits the desktop app's saved config, including JavaScript rendering
-and any connected PageSpeed API. A run without `--use-pagespeed` still runs local Lighthouse if the
-GUI has PageSpeed connected. Cost runs from seconds and near-zero CPU to an hour of a hot laptop, so
-pick the lightest mode that answers the question and pass its config explicitly:
+Two switches set a run's cost, and neither shows in the command line:
 
-| Task | Seed | Config | Cost |
+- **PageSpeed auto-connect** is an app setting, `PSI.auto_connect` in
+  `~/.ScreamingFrogSEOSpider/spider.config`. When it is `true`, every run, headless or MCP, queues
+  every HTML URL for local Lighthouse at about 3s each, `--use-pagespeed` or not. No
+  `.seospiderconfig` overrides it.
+- **Rendering mode** is spider config. The default is Text Only (`mCrawlerMode=STANDARD` in the
+  log). `JAVASCRIPT` drives headless Chromium per page. `mCrawlJavaScript=true` only fetches JS files
+  and costs nothing extra.
+
+Pick the lightest mode that answers the question:
+
+| Task | Seed | Mode | Cost |
 | --- | --- | --- | --- |
-| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | `light`: Text Only, PageSpeed disconnected, 2 threads | ~1 min |
-| Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `light` + Extraction on, if the JSON-LD is server-rendered | ~1 min |
-| Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render`: JavaScript, PageSpeed disconnected | ~5-10 min |
-| Core Web Vitals | `--crawl-sitemap` of **one** section, never the site | `psi`: Text Only + PageSpeed LOCAL | ~3s per URL |
+| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | defaults, PageSpeed off | ~1 min |
+| Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `schema.seospiderconfig`, PageSpeed off | ~1 min |
+| Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render.seospiderconfig`, PageSpeed off | ~5-10 min |
+| Core Web Vitals | `--crawl-sitemap` of **one** section, never the site | defaults + `--use-pagespeed` | ~3s per URL |
 
-Keep the three as saved `.seospiderconfig` files in `~/screaming-frog/configs/`. Pass one with
-`--config` on the CLI or `config_path` on `sf_crawl`. Never change the GUI default to make one task
-work, because the next task inherits it. If the file for the mode you need is missing, stop and ask
-the user to save it from the GUI. Don't run on whatever the default happens to be.
+**Before launching**, grep `spider.config` for `PSI.auto_connect`. If it's `true` and the task isn't
+Core Web Vitals, stop and ask the user to disconnect PageSpeed under Configuration -> API Access and
+untick its connect-on-start option. `--use-pagespeed` connects it for the runs that need it.
 
-Before a `render` or `psi` run over 200 URLs, state the URL count and estimated time and get a go-ahead.
+Before a render or PageSpeed run over 200 URLs, state the URL count and estimated time and get a go-ahead.
 
-**Preflight every run.** About ten seconds in, grep `run.log` for `mCrawlJavaScript` and
-`connected APIs`. If either is on and the mode doesn't need it, kill the run and fix the config. Don't
-wait it out. A redirect crawl that renders JavaScript and queues 1,000 URLs for Lighthouse will run
-for nearly an hour to answer a one-minute question.
+**About ten seconds in**, grep `run.log` for `mCrawlerMode=` and `Connected to PageSpeed`. If either
+is heavier than the mode needs, kill the run. Don't wait it out: exports are written only after the
+PageSpeed queue drains, so a killed or abandoned run leaves no CSVs.
 
 **Done means the CSVs exist in the output folder.** It doesn't mean the spider hit 100%. A PSI run
 then spends most of its time in `SpiderActiveAwaitingApiState`.
 
-### Building the mode configs
+### Saved configs
 
-`sf_crawl` takes only url, name, project, and config_path. Without `config_path` a crawl inherits
-whatever the GUI last had. Every mode config shares these settings:
+`sf_crawl` takes only url, name, project, and config_path. Without a config, a run uses the user's
+saved default, or factory defaults if there is none (`No user default config` in the log). Never
+change the default to suit one task, because the next task inherits it. Keep non-default modes as
+`.seospiderconfig` files in `~/screaming-frog/configs/`, passed with `--config` or `config_path`. If
+the one you need is missing, stop and ask the user to save it from the GUI with File -> Config ->
+Save As:
 
-1. Configuration -> Spider -> Limits -> uncheck **Limit Search Depth**
-2. Configuration -> Spider -> Crawl -> check **Crawl Linked XML Sitemaps**
-3. Configuration -> Spider -> Rendering -> **Text Only**, or **JavaScript** for `render` only
-4. Configuration -> API Access -> PageSpeed -> connected for `psi` only
-5. Configuration -> Spider -> Extraction -> JSON-LD + Schema.org + Google rich results, or
-   `structured_data_all.csv` comes back with zero types on every row
-6. File -> Config -> Save As the mode's `.seospiderconfig`. Don't use Save Default.
+- `schema`: Configuration -> Spider -> Extraction -> JSON-LD + Schema.org + Google rich results.
+  Without it, `structured_data_all.csv` has zero types on every row.
+- `render`: Configuration -> Spider -> Rendering -> JavaScript.
+
+For any spidered run that will be used for coverage, also check Configuration -> Spider -> Crawl ->
+**Crawl Linked XML Sitemaps** and leave **Limit Search Depth** unchecked.
 
 Crawls run with different configs measure different things. Don't compare their numbers.
 
@@ -107,7 +115,7 @@ Windows and Linux it is `ScreamingFrogSEOSpiderCli` in the install directory.
 ```sh
 OUT=~/screaming-frog/<section>-psi-<yyyymmdd>
 mkdir -p "$OUT"
-"$SF_LAUNCHER" --headless --config ~/screaming-frog/configs/psi.seospiderconfig \
+"$SF_LAUNCHER" --headless \
   --crawl-sitemap $SITE/<section-sitemap>.xml --use-pagespeed \
   --project-name <site> --task-name <section>-psi-<yyyymmdd> --save-crawl \
   --output-folder "$OUT" --overwrite --export-format csv \
@@ -194,7 +202,7 @@ short field rather than reused page prose.
 ### Performance
 | Question | Call |
 | --- | --- |
-| How fast is a section, and what's the biggest lever? | headless `psi` run, then `pagespeed_opportunities_summary.csv` |
+| How fast is a section, and what's the biggest lever? | headless `--use-pagespeed` run, then `pagespeed_opportunities_summary.csv` |
 | Why is LCP slow? | `pagespeed_all.csv`, LCP minus FCP, then `LCP Request Discovery` |
 | Which page carries an outsized asset? | `pagespeed_all.csv` sorted by `Improve Image Delivery Savings (Bytes)` |
 | What is the LCP element? | chrome-devtools MCP: a `largest-contentful-paint` PerformanceObserver with `buffered: true` |
