@@ -76,8 +76,7 @@ Saved crawls land in DB storage. Open them from File -> Crawls..., not "Open Rec
 ### Saved configs
 
 `sf_crawl` takes only url, name, project, and config_path. Without a config, a run uses the user's
-saved default, or factory defaults if there is none (`No user default config` in the log). Never
-change the default to suit one task, because the next task inherits it. Pass a mode config with
+saved default, which can hold anything; never edit it. Always pass a mode config with
 `--config` or `config_path` from `${CLAUDE_PLUGIN_ROOT}/skills/crawl/configs/`, or from the directory
 the site supplement names.
 
