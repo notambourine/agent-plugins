@@ -41,7 +41,7 @@ MCP, hook, or vendored skill metadata is adapted.
 | `nt-brand` | Brand tokens, CSS, decks, voice, and audits |
 | `nt-dev` | PRs, issues, cleanup, recall, commits, and development workflows |
 | `nt-pm` | Shipped updates and weekly recaps |
-| `nt-seo-spider` | Screaming Frog MCP, 29 tools, SEO Spider 24+ |
+| `nt-seo-spider` | Screaming Frog MCP and `crawl` skill; site facts in `.claude/refs/nt-seo-spider.md`. SEO Spider 24+ |
 | `nt-shopify` | Blocks live-store writes |
 | `nt-voice` | Surgical prose edits and structural rewrites |
 | `nt-vendor` | `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5` |
