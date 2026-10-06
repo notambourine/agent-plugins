@@ -1,7 +1,7 @@
 {
   "$schema": "https://www.schemastore.org/claude-code-plugin-manifest.json",
   "name": "nt-seo-spider",
-  "description": "Connects to Screaming Frog SEO Spider for crawl analysis. Requires SEO Spider 24+ with MCP running; disabled by default because it provides 29 tools.",
+  "description": "Screaming Frog SEO Spider MCP plus a crawl skill that sizes each run to its task. Requires SEO Spider 24+ with MCP running; disabled by default because it provides 29 tools.",
   "author": {
     "name": "NoTambourine LLC",
     "url": "https://notambourine.com"
