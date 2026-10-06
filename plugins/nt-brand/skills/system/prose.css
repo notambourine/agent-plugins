@@ -1,0 +1,139 @@
+/* =========================================================
+   NoTambourine: long-form documents
+   ---------------------------------------------------------
+   Part of the golden set. Wrap rendered markdown in .nt-prose
+   and load vars.css (or tokens.css) on the page. Every length
+   is em or ch, so the container's font-size and line-height
+   are the only knobs: the golden set's body on screen, about
+   10.5pt and 1.55 on paper.
+   ========================================================= */
+
+.nt-prose {
+  font-family: var(--font-body);
+  color: var(--fg2);
+  line-height: var(--lh-body);
+  letter-spacing: var(--ls-body);
+  max-width: 40em;
+}
+/* elements.css pins p, code, and pre to rem; inside prose they follow the
+   container, or a PDF paragraph prints larger than its own list items. */
+.nt-prose :is(p, li, td, th, blockquote) { font-size: inherit; line-height: inherit; }
+.nt-prose > * { margin: 0; }
+.nt-prose > * + * { margin-top: 1em; }
+
+/* Space above a heading outweighs space below, so it binds to what it opens. */
+.nt-prose :is(h1, h2, h3) {
+  font-family: var(--font-display);
+  color: var(--fg1);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-tight);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.nt-prose h1 { font-size: 2em; line-height: 1.15; }
+.nt-prose h2 { font-size: 1.5em; }
+.nt-prose h3 { font-size: 1.25em; }
+/* At body size a grotesk h4 barely differs from the h3; the mono does. */
+.nt-prose h4 {
+  font-family: var(--font-body);
+  font-size: 1em;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0;
+  color: var(--fg1);
+}
+.nt-prose > * + h2 { margin-top: 1.75em; padding-top: 0.75em; border-top: 1px solid var(--line); }
+.nt-prose > * + h3 { margin-top: 1.6em; }
+.nt-prose > * + h4 { margin-top: 1.75em; }
+.nt-prose > :is(h1, h2, h3, h4) + * { margin-top: 0.5em; }
+/* The line under the title is the document's purpose: brightest, not biggest. */
+.nt-prose > h1 + p { color: var(--fg1); }
+
+/* Markers sit flush with the text column and nested markers land under the
+   parent's text. ch is exact in a mono face, so the indent is the marker. */
+.nt-prose ul { padding-left: 2ch; list-style-type: "\2022  "; }
+.nt-prose ol { padding-left: 3ch; }
+.nt-prose :is(ul, ol) :is(ul, ol) { margin-top: 0.25em; }
+.nt-prose li + li { margin-top: 0.375em; }
+.nt-prose li::marker { color: var(--fg3); font-variant-numeric: tabular-nums; }
+.nt-prose li > p { margin: 0; }
+.nt-prose li > p + p { margin-top: 0.5em; }
+
+/* The box takes the marker's slot, so a checklist aligns with the bullets. */
+.nt-prose li:has(> input[type="checkbox"]) { list-style: none; }
+.nt-prose li > input[type="checkbox"] {
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.1em;
+  margin: 0 calc(2ch - 0.9em) 0 -2ch;
+  accent-color: var(--support);
+}
+.nt-prose li:has(> input:checked) { color: var(--fg3); }
+
+/* Pink is for links alone, and the underline means a link never rests on hue:
+   pink against body grey is about 2:1. */
+.nt-prose a {
+  color: var(--accent-text);
+  border-bottom: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+.nt-prose a:hover { text-decoration-color: currentColor; }
+.nt-prose strong { color: var(--fg1); font-weight: var(--fw-semibold); }
+.nt-prose :is(del, s) { color: var(--fg3); }
+
+/* A file name in a document is reference, not alarm. */
+.nt-prose :not(pre) > code {
+  font-size: 0.875em;
+  color: var(--fg1);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  padding: 0.05em 0.35em;
+}
+/* A renderer that draws a diagram into a `<pre>` (a mermaid fence, say) wants
+   none of the code-block box. */
+.nt-prose pre:not(:has(> svg)) {
+  font-size: 0.8125em;
+  line-height: 1.6;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 0.9em 1.1em;
+  overflow-x: auto;
+}
+.nt-prose pre code { font-size: 1em; background: none; color: var(--fg2); padding: 0; }
+
+.nt-prose blockquote {
+  padding-left: 1em;
+  border-left: 2px solid var(--support);
+  color: var(--fg2);
+}
+
+/* `display: block` lets a wide table scroll itself: the render emits no wrapper
+   to hang the overflow on, and the page must never scroll sideways. */
+.nt-prose table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.875em;
+  font-variant-numeric: tabular-nums;
+}
+.nt-prose :is(th, td) { padding: 0.45em 0.9em; border-bottom: 1px solid var(--line); }
+.nt-prose :is(th, td):first-child { padding-left: 0; }
+/* Only unaligned cells: a stylesheet beats the `align` a `---:` column emits. */
+.nt-prose :is(th, td):not([align]) { text-align: start; }
+.nt-prose th { color: var(--fg1); font-weight: var(--fw-semibold); border-bottom-color: var(--fg3); }
+
+.nt-prose hr { border: 0; border-top: 1px solid var(--line); margin-block: 2em; }
+.nt-prose img { max-width: 100%; border-radius: var(--r-sm); }
+
+@media print {
+  .nt-prose :is(h1, h2, h3, h4) { break-after: avoid; break-inside: avoid; }
+  .nt-prose :is(p, li) { orphans: 2; widows: 2; }
+  .nt-prose :is(pre, table, blockquote, img) { break-inside: avoid; }
+  .nt-prose pre:not(:has(> svg)) { white-space: pre-wrap; word-break: break-word; }
+}

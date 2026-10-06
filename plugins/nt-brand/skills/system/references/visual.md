@@ -1,6 +1,5 @@
 # Visual rules
 
-Keep confident type, one decisive pink, and enough air to make the work clear.
 Read exact values and component behavior from the CSS.
 
 - Default to dark. Use light surfaces deliberately and rarely, such as print,
@@ -26,6 +25,9 @@ Read exact values and component behavior from the CSS.
 - Keep body copy in one column, at most about 640px wide. Use two or three
   columns for card grids, one on mobile, never four. Leave generous space
   between blocks.
+- Wrap long-form documents in `.nt-prose` from `prose.css`. In a document, pink
+  marks links alone, and links carry an underline. Set density on the container:
+  the body tokens on screen, about 10.5pt on paper.
 - Make nav the only sticky element. No sticky CTAs, chat bubbles, or cookie
   banners.
 
@@ -40,11 +42,5 @@ always inline the wordmark subset when using live wordmark text. Otherwise use
 the fallback stacks from `vars.css` knowingly. Email clients and artifact hosts
 may reject font loading even when a page works locally.
 
-Inlining CSS moves relative font resolution to the HTML location. Preserve that
-relationship or embed the faces; copying styles alone is insufficient. Use
-README for normal package integration.
-
-A self-only CSP requires assets served from the consumer's origin or permitted
-embedded data, not a CDN. For a deck theme with no slide element to attach
-artwork to, use the supplied logo data URI variables. A PDF or offline snapshot
-cannot rely on an origin to retrieve artwork.
+A self-only CSP requires assets served from the consumer's origin or embedded as
+data, not a CDN.
