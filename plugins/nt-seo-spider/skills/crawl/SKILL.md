@@ -53,17 +53,20 @@ then spends most of its time in `SpiderActiveAwaitingApiState`.
 
 `sf_crawl` takes only url, name, project, and config_path. Without a config, a run uses the user's
 saved default, or factory defaults if there is none (`No user default config` in the log). Never
-change the default to suit one task, because the next task inherits it. Keep non-default modes as
-`.seospiderconfig` files in `~/screaming-frog/configs/`, passed with `--config` or `config_path`. If
-the one you need is missing, stop and ask the user to save it from the GUI with File -> Config ->
-Save As:
+change the default to suit one task, because the next task inherits it. Pass a mode config with
+`--config` or `config_path` from `${CLAUDE_PLUGIN_ROOT}/skills/crawl/configs/`, or from the directory
+the site supplement names.
+
+A `.seospiderconfig` is a Java-serialized binary, so never write or patch one by hand. Each one is
+made in the GUI from factory defaults (File -> Config -> Clear Default Config), with one change, then
+File -> Config -> Save As. If the one you need is missing, ask the user to make it:
 
 - `schema`: Configuration -> Spider -> Extraction -> JSON-LD + Schema.org + Google rich results.
   Without it, `structured_data_all.csv` has zero types on every row.
 - `render`: Configuration -> Spider -> Rendering -> JavaScript.
 
-For any spidered run that will be used for coverage, also check Configuration -> Spider -> Crawl ->
-**Crawl Linked XML Sitemaps** and leave **Limit Search Depth** unchecked.
+Both also check Configuration -> Spider -> Crawl -> **Crawl Linked XML Sitemaps**, so a spidered
+run's coverage can be audited. A run on factory defaults doesn't read sitemaps.
 
 Crawls run with different configs measure different things. Don't compare their numbers.
 
