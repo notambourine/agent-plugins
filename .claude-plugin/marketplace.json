@@ -61,6 +61,12 @@
         "url": "https://github.com/notambourine/share.git"
       },
       "description": "Share a file, folder, or screenshot as one branded, unguessable link on share.notambourine.com. Browsers get a rendered page, curl and Slack unfurls get raw bytes from the same URL. Needs a NoTambourine-issued token."
+    },
+    {
+      "name": "nt-client",
+      "source": "./plugins/nt-client",
+      "description": "Runs the client call lifecycle: intake, agendas, follow-ups, and a 15-minute calendar loop that never repeats work. Client configs live outside this repo; needs claude.ai connectors (Slack, Google Calendar, plus Granola, Drive, Gmail per client).",
+      "strict": false
     }
   ]
 }

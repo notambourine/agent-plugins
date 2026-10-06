@@ -1,0 +1,12 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "nt-client",
+  "description": "Runs the client call lifecycle: intake, agendas, follow-ups, and a calendar-driven loop that never repeats work.",
+  "author": {
+    "name": "NoTambourine LLC",
+    "url": "https://notambourine.com"
+  },
+  "repository": "https://github.com/notambourine/agent-plugins",
+  "license": "MIT",
+  "keywords": ["client", "meetings", "agenda", "follow-up", "calendar"]
+}
