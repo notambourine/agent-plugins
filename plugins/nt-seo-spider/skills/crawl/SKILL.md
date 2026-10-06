@@ -24,7 +24,7 @@ Two switches set a run's cost, and neither shows in the command line:
   every HTML URL for local Lighthouse at about 3s each, `--use-pagespeed` or not. No
   `.seospiderconfig` overrides it.
 - **Rendering mode** is spider config. The default is Text Only (`mCrawlerMode=STANDARD` in the
-  log). `JAVASCRIPT` drives headless Chromium per page. `mCrawlJavaScript=true` only fetches JS files
+  log). `RENDER` drives headless Chromium per page. `mCrawlJavaScript=true` only fetches JS files
   and costs nothing extra.
 
 Pick the lightest mode that answers the question:
@@ -57,7 +57,7 @@ change the default to suit one task, because the next task inherits it. Pass a m
 `--config` or `config_path` from `${CLAUDE_PLUGIN_ROOT}/skills/crawl/configs/`, or from the directory
 the site supplement names.
 
-A `.seospiderconfig` is a Java-serialized binary, so never write or patch one by hand. Each one is
+A `.seospiderconfig` is a Java-serialized binary, so never write or patch one by hand. To read one, run it headless against `$SITE/robots.txt` and grep the config dump in the log. Each one is
 made in the GUI from factory defaults (Configuration -> Profiles -> Clear Default Config), with one change, then
 Configuration -> Profiles -> Save As. If the one you need is missing, ask the user to make it:
 
