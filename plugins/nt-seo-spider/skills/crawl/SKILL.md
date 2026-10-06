@@ -58,8 +58,8 @@ change the default to suit one task, because the next task inherits it. Pass a m
 the site supplement names.
 
 A `.seospiderconfig` is a Java-serialized binary, so never write or patch one by hand. Each one is
-made in the GUI from factory defaults (File -> Config -> Clear Default Config), with one change, then
-File -> Config -> Save As. If the one you need is missing, ask the user to make it:
+made in the GUI from factory defaults (Configuration -> Profiles -> Clear Default Config), with one change, then
+Configuration -> Profiles -> Save As. If the one you need is missing, ask the user to make it:
 
 - `schema`: Configuration -> Spider -> Extraction -> JSON-LD + Schema.org + Google rich results.
   Without it, `structured_data_all.csv` has zero types on every row.
