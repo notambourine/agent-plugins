@@ -42,7 +42,7 @@ and costs nothing extra.
 
 | Task | Seed | Mode | Cost |
 | --- | --- | --- | --- |
-| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | defaults | ~1 min |
+| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | `links.seospiderconfig` | ~1 min |
 | Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `schema.seospiderconfig` | ~1 min |
 | Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render.seospiderconfig` | ~5-10 min |
 
@@ -88,8 +88,10 @@ Configuration -> Profiles -> Save As. If the one you need is missing, ask the us
 - `schema`: Configuration -> Spider -> Extraction -> JSON-LD + Schema.org + Google rich results.
   Without it, `structured_data_all.csv` has zero types on every row.
 - `render`: Configuration -> Spider -> Rendering -> JavaScript.
+- `links`: Configuration -> Spider -> Crawl -> untick Images, CSS, JavaScript, SWF, and External Links.
+  Status-code questions need only internal HTML.
 
-Both also check Configuration -> Spider -> Crawl -> **Crawl Linked XML Sitemaps**, so a spidered
+All three also check Configuration -> Spider -> Crawl -> **Crawl Linked XML Sitemaps**, so a spidered
 run's coverage can be audited. A run on factory defaults doesn't read sitemaps.
 
 Crawls run with different configs measure different things. Don't compare their numbers.
