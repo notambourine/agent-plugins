@@ -1,6 +1,6 @@
 ---
 name: crawl
-description: Crawl a site with Screaming Frog, using the MCP for reports and the headless CLI for PageSpeed, then turn the output into findings a repo can act on. Sizes each crawl to its task, audits crawl scope before quoting numbers, measures Core Web Vitals across a URL set, and separates the repo's own defects from a third party's. Trigger on "run an SEO crawl", "audit the site", "what's Screaming Frog saying", "check redirects", "run pagespeed on <section>", "check our structured data", "why isn't this page eligible for rich results", or any request that starts from crawl output.
+description: Crawl a site with Screaming Frog and turn the output into findings a repo can act on. Sizes each crawl to its task, keeps PageSpeed off, audits crawl scope before quoting numbers, and separates the repo's own defects from a third party's. Trigger on "run an SEO crawl", "audit the site", "what's Screaming Frog saying", "check redirects", "check our structured data", "why isn't this page eligible for rich results", or any request that starts from crawl output.
 ---
 
 # SEO crawls with Screaming Frog
@@ -15,39 +15,63 @@ Without the supplement, a crawl report fails silently in two ways. The crawl may
 of the site without saying so, and many of the failures may come from a platform this repo doesn't
 ship. Settle scope and ownership before writing any finding.
 
+## Pick the lightest tool
+
+- **Under about 50 URLs**, skip Screaming Frog. A curl loop over the URLs answers status codes,
+  redirect targets, headers, and canonicals faster than the app starts.
+- **If the question sounds like a revisit** ("what did the last crawl say", a follow-up on earlier
+  findings), ask whether to load a saved crawl (`sf_list_crawls`, `sf_load_crawl`) before recrawling.
+
+## Never run PageSpeed
+
+Local PageSpeed opens a headless Chrome per URL to run Lighthouse, about 3s each, and holds every
+export until the queue drains. One redirect crawl queued 1,046 URLs and ran hot for most of an hour
+answering a one-minute question. Never pass `--use-pagespeed`. Performance questions go to the
+chrome-devtools MCP on the specific pages, not to a crawl.
+
+**Before launching**, grep `~/.ScreamingFrogSEOSpider/spider.config` for `PSI.auto_connect`. If it's
+`true`, every run queues Lighthouse regardless of flags, and no `.seospiderconfig` overrides it.
+Stop and ask the user to disconnect PageSpeed under Configuration -> API Access and untick its
+connect-on-start option.
+
 ## Match the crawl's weight to the task
 
-Two switches set a run's cost, and neither shows in the command line:
-
-- **PageSpeed auto-connect** is an app setting, `PSI.auto_connect` in
-  `~/.ScreamingFrogSEOSpider/spider.config`. When it is `true`, every run, headless or MCP, queues
-  every HTML URL for local Lighthouse at about 3s each, `--use-pagespeed` or not. No
-  `.seospiderconfig` overrides it.
-- **Rendering mode** is spider config. The default is Text Only (`mCrawlerMode=STANDARD` in the
-  log). `RENDER` drives headless Chromium per page. `mCrawlJavaScript=true` only fetches JS files
-  and costs nothing extra.
-
-Pick the lightest mode that answers the question:
+Rendering mode is the remaining cost switch. The default is Text Only (`mCrawlerMode=STANDARD` in
+the log). `RENDER` drives headless Chromium per page. `mCrawlJavaScript=true` only fetches JS files
+and costs nothing extra.
 
 | Task | Seed | Mode | Cost |
 | --- | --- | --- | --- |
-| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | defaults, PageSpeed off | ~1 min |
-| Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `schema.seospiderconfig`, PageSpeed off | ~1 min |
-| Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render.seospiderconfig`, PageSpeed off | ~5-10 min |
-| Core Web Vitals | `--crawl-sitemap` of **one** section, never the site | defaults + `--use-pagespeed` | ~3s per URL |
+| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | defaults | ~1 min |
+| Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `schema.seospiderconfig` | ~1 min |
+| Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render.seospiderconfig` | ~5-10 min |
 
-**Before launching**, grep `spider.config` for `PSI.auto_connect`. If it's `true` and the task isn't
-Core Web Vitals, stop and ask the user to disconnect PageSpeed under Configuration -> API Access and
-untick its connect-on-start option. `--use-pagespeed` connects it for the runs that need it.
+Before a render run over 200 URLs, state the URL count and estimated time and get a go-ahead.
 
-Before a render or PageSpeed run over 200 URLs, state the URL count and estimated time and get a go-ahead.
+**About ten seconds in**, grep `run.log` for `mCrawlerMode=` and `Connected to PageSpeed`. If the
+mode is heavier than the task needs, or PageSpeed connected at all, kill the run.
 
-**About ten seconds in**, grep `run.log` for `mCrawlerMode=` and `Connected to PageSpeed`. If either
-is heavier than the mode needs, kill the run. Don't wait it out: exports are written only after the
-PageSpeed queue drains, so a killed or abandoned run leaves no CSVs.
+**Done means the CSVs exist in the output folder.** Exports are written at the very end, so a
+killed run leaves none.
 
-**Done means the CSVs exist in the output folder.** It doesn't mean the spider hit 100%. A PSI run
-then spends most of its time in `SpiderActiveAwaitingApiState`.
+### Running headless
+
+The CLI runs alongside an open GUI, and only the CLI can seed from a sitemap. On macOS the launcher
+is `/Applications/Screaming Frog SEO Spider.app/Contents/MacOS/ScreamingFrogSEOSpiderLauncher`. On
+Windows and Linux it is `ScreamingFrogSEOSpiderCli` in the install directory.
+
+```sh
+OUT=~/screaming-frog/<task>-<yyyymmdd>
+mkdir -p "$OUT"
+"$SF_LAUNCHER" --headless [--config <mode>.seospiderconfig] \
+  --crawl-sitemap $SITE/<section-sitemap>.xml \
+  --project-name <site> --task-name <task>-<yyyymmdd> --save-crawl \
+  --output-folder "$OUT" --overwrite --export-format csv \
+  --export-tabs "Internal:All,Response Codes:All" --save-report "Crawl Overview" \
+  > "$OUT/run.log" 2>&1
+```
+
+Saved crawls land in DB storage. Open them from File -> Crawls..., not "Open Recent".
 
 ### Saved configs
 
@@ -108,55 +132,6 @@ The last one compounds the others. If an index page ships an app shell, its link
 raw HTML, and the crawler can't reach anything behind it at any depth. Check with
 `curl -sL $URL | grep -c 'href="/<segment>/'` before blaming depth.
 
-## Core Web Vitals: the headless CLI, not the MCP
-
-`sf_crawl` can't request PageSpeed. Only the CLI's `--use-pagespeed` can, so a performance question
-needs a second, headless process. It runs alongside an open GUI. On macOS the launcher is
-`/Applications/Screaming Frog SEO Spider.app/Contents/MacOS/ScreamingFrogSEOSpiderLauncher`. On
-Windows and Linux it is `ScreamingFrogSEOSpiderCli` in the install directory.
-
-```sh
-OUT=~/screaming-frog/<section>-psi-<yyyymmdd>
-mkdir -p "$OUT"
-"$SF_LAUNCHER" --headless \
-  --crawl-sitemap $SITE/<section-sitemap>.xml --use-pagespeed \
-  --project-name <site> --task-name <section>-psi-<yyyymmdd> --save-crawl \
-  --output-folder "$OUT" --overwrite --export-format csv \
-  --export-tabs "Internal:All,PageSpeed:All,Response Codes:All,Structured Data:All" \
-  --save-report "Crawl Overview,PageSpeed:PageSpeed Opportunities Summary" \
-  > "$OUT/run.log" 2>&1
-```
-
-- **`PSI.datasource=LOCAL`** in the log means the bundled Lighthouse ran locally, with no API key or
-  quota. Confirm the line. The keyless PSI API quota is routinely exhausted.
-- **Mobile emulation, Slow-4G, 4x CPU throttle.** Every millisecond is that lab profile. A 9s lab
-  LCP can be a 0.5s real one. Say which you are quoting.
-- **`Core Web Vitals Assessment` is blank on every row.** That column is CrUX field data, which
-  LOCAL can't fetch. A blank there means nothing.
-- **Progress.** The `mUrlsResponded=` counter stops updating once the spider completes. Poll for
-  the CSVs.
-- **Saved crawls land in DB storage.** Open them from File -> Crawls..., not "Open Recent".
-
-Start with `pagespeed_opportunities_summary.csv`. In `pagespeed_all.csv` the columns that carry the
-story are `Performance Score`, `Largest Contentful Paint Time (ms)`,
-`First Contentful Paint Time (ms)`, `LCP Request Discovery`, `JavaScript Size (Bytes)`,
-`Third Party Size (Bytes)`, `Reduce Unused JavaScript Savings (Bytes)`, and
-`Improve Image Delivery Savings (Bytes)`.
-
-### Reading an LCP result
-
-Subtract FCP from LCP. A small gap means the whole page is slow and the fix is payload. A large gap
-means the LCP element arrives late and the fix is discovery. Group by page type before quoting a
-median; a site-wide p50 hides each template's behaviour.
-
-`LCP Request Discovery` counts failed checks without naming them. It runs three: the element is in
-the initial HTML, it isn't lazy-loaded, and it has `fetchpriority="high"`. Rule out the first two
-against the served HTML; whichever check is left is the failure.
-
-On Next.js sites, `priority` doesn't set `fetchpriority`. It only preloads and disables lazy
-loading, so pass `fetchPriority="high"` explicitly on any LCP candidate. Two `priority` images for
-one photo, hidden from each other by CSS, cost two downloads: CSS doesn't suppress a preload.
-
 ## The three data shapes
 
 | Tool | What it is | Reach for it when |
@@ -202,17 +177,6 @@ short field rather than reused page prose.
 | Non-indexable pages in the sitemap | bulk `Sitemaps:Non-Indexable URLs in Sitemap Inlinks` |
 | Pages nothing links to | report `Orphan Pages` |
 
-### Performance
-| Question | Call |
-| --- | --- |
-| How fast is a section, and what's the biggest lever? | headless `--use-pagespeed` run, then `pagespeed_opportunities_summary.csv` |
-| Why is LCP slow? | `pagespeed_all.csv`, LCP minus FCP, then `LCP Request Discovery` |
-| Which page carries an outsized asset? | `pagespeed_all.csv` sorted by `Improve Image Delivery Savings (Bytes)` |
-| What is the LCP element? | chrome-devtools MCP: a `largest-contentful-paint` PerformanceObserver with `buffered: true` |
-
-Only the last one names the LCP element. It measures unthrottled desktop, so use it to identify the
-element, not to time it.
-
 ### Content and answerability
 | Question | Call |
 | --- | --- |
@@ -244,5 +208,4 @@ Write findings in three buckets, in order:
 3. **Untriaged report rows.** Straight from `Issues Overview`, labelled as uninvestigated.
 
 Lead every set of counts with the coverage figure ("238 of 727 sitemap URLs, 33%") and call the
-counts lower bounds. A sitemap-seeded run says "117 of 117" and moves on. Label every timing as lab
-or field.
+counts lower bounds. A sitemap-seeded run says "117 of 117" and moves on.
