@@ -1,6 +1,6 @@
 # Output contract
 
-Shared by every `nt-client` skill. Every write carries a ledger key; see [ledger.md](ledger.md).
+Shared by the client skills: `intake`, `agenda`, `follow-up`, `tick`. Every write carries a ledger key; see [ledger.md](ledger.md).
 
 ## Targets
 

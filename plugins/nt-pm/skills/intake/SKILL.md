@@ -1,13 +1,13 @@
 ---
 name: intake
-description: Gather client context, confirm the connectors it needs, and settle the output target before client work. Use when starting any client deliverable, or when another nt-client skill needs context.
+description: Gather client context, confirm the connectors it needs, and settle the output target before client work. Use when starting any client deliverable, or when another client skill needs context.
 ---
 
 # Intake
 
-Every other `nt-client` skill runs this first. Return a context bundle; write nothing.
+Every other client skill runs this first. Return a context bundle; write nothing.
 
-1. Load the client config per [../../config.md](../../config.md). Name the client when more
+1. Load the client config per [../../client-config.md](../../client-config.md). Name the client when more
    than one could match.
 2. Check connectors. Each enabled source in the config needs a connector tool in this
    session: Slack always; Granola, Google Drive, Gmail, Google Calendar, and GitHub when

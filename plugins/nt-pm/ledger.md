@@ -27,7 +27,7 @@ failed: skip and report; a missed run is cheaper than a duplicate client message
 
 ## Local cache
 
-`${XDG_STATE_HOME:-$HOME/.local/state}/nt-client/ledger.jsonl`, one
+`${XDG_STATE_HOME:-$HOME/.local/state}/nt-pm/ledger.jsonl`, one
 `{"key":"...","at":"..."}` per line, appended after a confirmed write. A hit skips the
 destination search. A miss proves nothing; search the destination. Cloud runs have no
 cache.

@@ -30,7 +30,7 @@ Start a new Codex thread after installation. These packages use portable Agent
 Plugins manifests and shared Agent Skills. Claude-specific hooks remain available
 only through Claude Code.
 
-Portable packages: `nt-brand`, `nt-client`, `nt-dev`, `nt-pm`, and `nt-voice`.
+Portable packages: `nt-brand`, `nt-dev`, `nt-pm`, and `nt-voice`.
 `nt-seo-spider`, `nt-shopify`, and `nt-vendor` remain Claude-only until their
 MCP, hook, or vendored skill metadata is adapted.
 
@@ -40,8 +40,7 @@ MCP, hook, or vendored skill metadata is adapted.
 | --- | --- |
 | `nt-brand` | Brand tokens, CSS, decks, voice, and audits |
 | `nt-dev` | PRs, issues, cleanup, recall, commits, and development workflows |
-| `nt-pm` | Shipped updates and weekly recaps |
-| `nt-client` | Client intake, call agendas, follow-ups, and a deduped calendar loop; configs stay outside this repo |
+| `nt-pm` | Shipped updates, weekly recaps, client agendas and follow-ups, and a deduped calendar loop; client configs stay outside this repo |
 | `nt-seo-spider` | Screaming Frog MCP and `crawl` skill; site facts in `.claude/refs/nt-seo-spider.md`. SEO Spider 24+ |
 | `nt-shopify` | Blocks live-store writes |
 | `nt-voice` | Surgical prose edits and structural rewrites |
@@ -63,7 +62,7 @@ Config switches in `.claude/settings.json` `env`:
 | `NT_DEV_SKILL_NUDGE` | unset: block once; `strict`: block until skill read; `off` |
 | `NT_DEV_DASH_GUARD` | unset: block a commit adding Unicode dashes; `strict`: block the write too; `off` |
 | `NT_SHOPIFY_GUARD` | unset: block live writes; `off` |
-| `NT_CLIENT_DIR` | synced folder holding `<client>/nt-client.md`; set in user settings, never committed |
+| `NT_PM_CLIENT_DIR` | synced folder holding `<client>/nt-pm.md`; set in user settings, never committed |
 
 `nt-shopify` allows reads, local app work, theme development, and
 `theme push --development`. It blocks live targeting, mutations, deploys, releases,

@@ -8,15 +8,15 @@ disable-model-invocation: true
 
 Unattended. Never ask questions; report what was skipped and why.
 
-Run it every 15 minutes with `/loop 15m /nt-client:tick` or a desktop scheduled task.
-Cloud routines run at most hourly and have no `gh`, `typst`, or `NT_CLIENT_DIR`, so they
+Run it every 15 minutes with `/loop 15m /nt-pm:tick` or a desktop scheduled task.
+Cloud routines run at most hourly and have no `gh`, `typst`, or `NT_PM_CLIENT_DIR`, so they
 suit an hourly follow-up sweep, not agendas.
 
 Cheapest check first; stop each event at the first miss:
 
 1. Read Google Calendar from 4 hours ago to 2 hours ahead. Drop declined, cancelled, and
    all-day events.
-2. Match each event to a client config in `$NT_CLIENT_DIR` by attendee domain. No match:
+2. Match each event to a client config in `$NT_PM_CLIENT_DIR` by attendee domain. No match:
    skip; that drops internal meetings.
 3. Pick the phase:
    - `agenda`: starts within `timing.agenda-lead`.

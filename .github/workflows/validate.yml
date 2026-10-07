@@ -73,7 +73,7 @@ jobs:
       # Client configs hold client facts; this repo is public.
       - name: Block committed client configs
         run: |
-          bad=$(git ls-files | grep -E '(^|/)nt-client\.md$' || true)
+          bad=$(git ls-files | grep -E '(^|/)nt-pm\.md$' || true)
           [ -z "$bad" ] || { echo "::error::client config committed: $bad"; exit 1; }
 
       # Host catalogs have different metadata; only local package identity is shared.

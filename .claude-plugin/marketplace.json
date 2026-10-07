@@ -22,7 +22,7 @@
     {
       "name": "nt-pm",
       "source": "./plugins/nt-pm",
-      "description": "Creates plain-English status updates for non-technical audiences from repository and team activity. Never posts or deploys.",
+      "description": "Creates plain-English status updates, client call agendas, and follow-ups, plus a calendar loop that never repeats work. Drafts by default; posts only where a client config opts in, and never deploys. Client configs live outside this repo.",
       "strict": false
     },
     {
@@ -61,12 +61,6 @@
         "url": "https://github.com/notambourine/share.git"
       },
       "description": "Share a file, folder, or screenshot as one branded, unguessable link on share.notambourine.com. Browsers get a rendered page, curl and Slack unfurls get raw bytes from the same URL. Needs a NoTambourine-issued token."
-    },
-    {
-      "name": "nt-client",
-      "source": "./plugins/nt-client",
-      "description": "Runs the client call lifecycle: intake, agendas, follow-ups, and a 15-minute calendar loop that never repeats work. Client configs live outside this repo; needs claude.ai connectors (Slack, Google Calendar, plus Granola, Drive, Gmail per client).",
-      "strict": false
     }
   ]
 }

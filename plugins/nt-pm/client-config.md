@@ -1,14 +1,14 @@
 # Client config contract
 
-Shared by every `nt-client` skill. Client facts never live in this plugin or its repo.
+Shared by the client skills: `intake`, `agenda`, `follow-up`, `tick`. Client facts never live in this plugin or its repo.
 
 ## Location
 
 Read the first that exists:
 
-1. `.claude/refs/nt-client.md` in the current repo: one client, repo-scoped work.
-2. `$NT_CLIENT_DIR/<client>/nt-client.md`: every client, used by `tick`. Set
-   `NT_CLIENT_DIR` in user settings `env`, pointing at a synced folder.
+1. `.claude/refs/nt-pm.md` in the current repo: one client, repo-scoped work.
+2. `$NT_PM_CLIENT_DIR/<client>/nt-pm.md`: every client, used by `tick`. Set
+   `NT_PM_CLIENT_DIR` in user settings `env`, pointing at a synced folder.
 
 Neither found: stop and offer to write one from the template below. Never write it inside
 a plugin directory or this marketplace repo.
