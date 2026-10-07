@@ -70,6 +70,12 @@ jobs:
           [ -z "$bad" ] || { echo "::error::local plugin missing nt- prefix: $bad"; exit 1; }
           echo "all local plugins are nt-prefixed"
 
+      # Client configs hold client facts; this repo is public.
+      - name: Block committed client configs
+        run: |
+          bad=$(git ls-files | grep -E '(^|/)nt-pm\.md$' || true)
+          [ -z "$bad" ] || { echo "::error::client config committed: $bad"; exit 1; }
+
       # Host catalogs have different metadata; only local package identity is shared.
       - name: Check portable marketplace parity
         run: |
