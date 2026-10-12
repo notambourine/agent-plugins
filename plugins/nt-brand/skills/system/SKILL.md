@@ -15,11 +15,15 @@ Apply the brand without padding.
   including locked-surface font and logo traps.
 - For writing or auditing anything clients or the public see, read
   [voice and copy audit](references/voice.md) and build from its golden set.
+- For proof points or adding a client result, read
+  [case studies](references/case-studies/README.md); never name the client.
 - For slide authoring or export, read [deck guidance](references/decks.md). Load
   visual or voice guidance only when designing slides or writing/reviewing their
   copy.
 - For a color, type, spacing, or component value, inspect the relevant CSS
   directly. Do not load prose references for a value lookup.
+- For page or component markup, start from the matching file in `examples/` and
+  keep its classes.
 - For installation, asset selection, logo regeneration, or consumer integration,
   read the relevant section of [README.md](README.md).
 

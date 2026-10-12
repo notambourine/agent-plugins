@@ -1,0 +1,61 @@
+/* =========================================================
+   NoTambourine: the kit as a Tailwind v4 theme
+   ---------------------------------------------------------
+   Import this instead of writing a @theme bridge. inline makes
+   each utility read the alias at the element, so .theme-light
+   flips a Tailwind subtree too; static keeps every variable
+   declared for hand-written var(--color-*) reads.
+   Generated from tokens/ by scripts/build-tokens.mjs.
+   ========================================================= */
+
+@import './vars.css';
+
+@theme static inline {
+  --color-paper: var(--nt-paper);
+  --color-ink: var(--bg);
+  --color-surface: var(--bg-card);
+  --color-raised: var(--bg-raised);
+  --color-input: var(--bg-input);
+  --color-fg: var(--fg1);
+  --color-fg-muted: var(--fg2);
+  --color-fg-subtle: var(--fg3);
+  --color-fg-disabled: var(--fg-mute);
+  --color-accent: var(--accent);
+  --color-accent-press: var(--accent-press);
+  --color-accent-soft: var(--accent-soft);
+  --color-support: var(--support);
+  --color-support-soft: var(--support-soft);
+  --color-border: var(--line);
+  --color-border-subtle: var(--line-soft);
+  --font-wordmark: var(--nt-font-nunito);
+  --font-display: var(--nt-font-hanken);
+  --font-accent: var(--nt-font-jetbrains);
+  --font-body: var(--nt-font-jetbrains);
+  --font-mono: var(--nt-font-jetbrains);
+  --text-display: var(--fs-display);
+  --text-h1: var(--fs-h1);
+  --text-h2: var(--fs-h2);
+  --text-h3: var(--fs-h3);
+  --text-h4: var(--fs-h4);
+  --text-lede: var(--fs-lede);
+  --text-small: var(--fs-small);
+  --text-caption: var(--fs-caption);
+  --text-display--line-height: var(--lh-display);
+  --text-h1--line-height: var(--lh-h);
+  --text-h2--line-height: var(--lh-h);
+  --text-h3--line-height: var(--lh-h);
+  --text-lede--line-height: var(--lh-lede);
+  --tracking-display: var(--ls-display);
+  --tracking-tight: var(--ls-tight);
+  --tracking-allcaps: var(--ls-allcaps);
+  --radius-xs: var(--r-xs);
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --shadow-sm: var(--shadow-1);
+  --shadow-md: var(--shadow-2);
+  --shadow-lg: var(--shadow-3);
+  --ease-out: var(--nt-ease-out);
+  --ease-bounce: var(--nt-ease-bounce);
+}
