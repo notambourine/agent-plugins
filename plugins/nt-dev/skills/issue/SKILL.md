@@ -21,6 +21,12 @@ Title: outcome, not activity or mechanism. Body: problem, scope, constraints, co
 observable acceptance. User behavior and business rules first. Implementation only when
 decided or costly to rediscover. Link decisions; do not repeat them.
 
+Moving a ticket from Asana, Jira, Slack, or a meeting: carry only what the source and the user
+state. A gap becomes an open question, never scope, acceptance, settings, or configurability.
+Never link an attachment behind a login (Asana `get_asset`, Jira): download and upload it per
+[../pr/references/github-attachments.md](../pr/references/github-attachments.md), or name it as
+missing.
+
 Design work replaces the default headings with four bold leads: `**Goal:**` the result in one
 sentence, `**Context:**` the design reference plus `Replaces:` and `Figma:` URLs when they
 exist, `**Dev Notes:**` the verified component or token to reuse cited as `path/to/File.tsx`
