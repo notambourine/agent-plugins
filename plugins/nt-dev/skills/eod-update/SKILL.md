@@ -13,14 +13,25 @@ allowed-tools:
 
 # End-of-day update
 
-Draft only. Never post.
+Draft the note. Never post it.
 
-Use today's local commits and authenticated GitHub events: authored, reviewed, commented,
-merged. Verify event timestamps; deduplicate PRs; collapse commits into outcomes. For
-teammate PRs, name the user's action. For authored PRs, name current state. Ask only for
-unrecoverable work, tomorrow, blockers.
+## Gather
 
-Return only:
+Pull today's local commits and the user's authenticated GitHub events: authored, reviewed,
+commented, merged. Confirm each event's timestamp falls today. Count each PR once.
+Collapse commits into the outcome they produced.
+
+For a teammate's PR, state what the user did on it. For the user's own PR, state where it
+stands. Ask only about work the record cannot show, tomorrow's plan, and blockers. With no
+repo context, build the note from the answers.
+
+## Write
+
+Lead each item with the result. Keep items short. Cite PR numbers, never URLs. Name each
+blocker and what it holds up. Write white-labelled: no client names.
+
+Return only this, as bare Slack mrkdwn text, not a fenced block. Slack strips markdown on
+paste, so bold is `*one asterisk*` and bullets are a literal `•`.
 
 ```text
 🌇 *EOD Update DD-MM-YYYY*
@@ -38,8 +49,4 @@ Return only:
 [optional]
 ```
 
-Slack strips markdown on paste, so emit Slack mrkdwn: bold is `*one asterisk*`, bullets are a
-literal `•`, and the block is bare text rather than a fenced code block.
-
-Short items. PR numbers, no URLs. Always Blockers. Omit empty Notes. Missing repo context:
-use answers only.
+Always include Blockers. Drop Notes when empty.

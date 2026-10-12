@@ -6,12 +6,15 @@ paths:
 
 # Portable shell
 
-Target macOS, Linux, Git Bash. Check: `node scripts/check-portable.mjs`.
+Every command runs on macOS, Linux, and Git Bash. Check with
+`node scripts/check-portable.mjs`.
 
-- POSIX/MSYS only; annotate platform-specific lines.
-- No `pbcopy`, `pbpaste`, `osascript`, `brew`, `gtimeout`, `stat`, `sed -i ''`, `readlink -f`.
-- Bare `mktemp`.
-- No machine-absolute paths; derive from `$PWD`, `$HOME`, repo root, or `${CLAUDE_PLUGIN_ROOT}`.
-- Match Claude project dirs by trailing repo name; verify recorded `cwd`.
-- JavaScript manifest keys use `/`, never platform separators.
-- Name every non-shell dependency; `jq` is not universal.
+- Write POSIX/MSYS only. Annotate any platform-specific line.
+- Never use `pbcopy`, `pbpaste`, `osascript`, `brew`, `gtimeout`, `stat`, `sed -i ''`, or
+  `readlink -f`.
+- Call `mktemp` bare.
+- Never hardcode a machine-absolute path. Derive it from `$PWD`, `$HOME`, the repo root,
+  or `${CLAUDE_PLUGIN_ROOT}`.
+- Match Claude project dirs by trailing repo name, then verify the recorded `cwd`.
+- Key JavaScript manifests with `/`, never the platform separator.
+- Name every dependency outside the shell. `jq` is not everywhere.

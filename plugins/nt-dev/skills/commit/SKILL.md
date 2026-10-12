@@ -11,9 +11,11 @@ allowed-tools:
 
 # Commit
 
-Subject: `scope: lowercase imperative description`; repository vocabulary; under 72
-characters; no Conventional Commit type. Nested scope when useful; `a,b` for two scopes;
-split broader work.
+One commit, one coherent scope. Split broader work.
 
-Body only for hidden rationale, traps, or issue closure. Stage touched paths only, never
-`git add -A`. Commit one coherent scope.
+Subject: `scope: lowercase imperative description`, under 72 characters, in the repo's
+vocabulary. No Conventional Commit type. Nest a scope when it helps; join two with `a,b`.
+
+Add a body only for rationale the diff hides, a trap, or an issue it closes.
+
+Stage the paths you touched. Never `git add -A`.

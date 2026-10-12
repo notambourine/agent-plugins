@@ -25,25 +25,31 @@ allowed-tools:
 
 # Deploy updates
 
-Never deploy. Output obeys
-[../../recap-format.md](../../recap-format.md).
+Draft the note. Never deploy. Follow [../../recap-format.md](../../recap-format.md).
 
-Mode:
+## Range
 
-- Pre-deploy default: remote default branch to user branch, first of `dev`, `staging`,
-  `develop`, `release`, else `HEAD`.
-- Retrospective: previous to current observed remote-default reflog tip.
+- Pre-deploy (default): remote default branch to the first of `dev`, `staging`, `develop`,
+  `release`, else `HEAD`.
+- Retrospective: previous to current observed tip in the remote default branch's reflog.
+- An explicit range takes a reflog entry, SHA, tag, or date. A range named in the
+  invocation is final.
 
-Fetch `origin`; stop on failure. Resolve endpoints, short SHAs, dates, count, then write the
-update. Never ask the user to confirm the range; a range the user named in the invocation is
-already the answer.
+Fetch `origin`; stop if it fails. Resolve the endpoints, short SHAs, dates, and commit
+count, then write. Never ask the user to confirm the range.
 
-Zero: nothing pending/shipped. Empty retrospective reflog: request one. No origin: request
-deployment repo. An explicit range accepts reflog entry, SHA, tag, date.
+- Zero commits: say nothing is pending or shipped.
+- Empty retrospective reflog: ask for a range.
+- No `origin`: ask for the deployment repo.
 
-Inspect non-merge commits. Resolve PR by referenced number or SHA; read PR body, then linked
-issues and diff stat as needed. Exclude work ancestral to start. Translate unsupported
-commits cautiously. Collapse related work and routine dependency/CI noise.
+## Read the work
+
+Read non-merge commits. Resolve each PR from its referenced number or SHA. Read the PR
+body first, then linked issues and the diff stat when the body falls short. Drop work
+already ancestral to the start. Word commits with no PR or issue behind them
+conservatively. Fold related work together and collapse routine dependency and CI noise.
+
+## Output
 
 Return only:
 
@@ -57,13 +63,13 @@ Return only:
 • *Label:* Outcome in one short sentence.
 ```
 
-Window names the range in the reader's terms: `Last N Days` retrospective, `Pending`
+The window uses the reader's terms: `Last N Days` for retrospective, `Pending` for
 pre-deploy.
 
-Keep every label and sentence neutral. Name the surface with a generic noun and state what it
-now does. Never imply the prior behavior was wrong or that anyone erred: no comparatives or
-corrective framing (`Smarter Search`, `Right Order`, `Finally`, `No Longer Broken`). Use
-`Search`, `Sort Order`.
+Keep labels and sentences neutral. Name the surface with a generic noun and state what it
+does now. Never imply the old behavior was wrong or that someone erred: no comparatives or
+corrective framing like `Smarter Search`, `Right Order`, `Finally`, or `No Longer Broken`.
+Write `Search`, `Sort Order`.
 
-Sections in this order, only those needed: ✨ Features, 🛠️ Fixes, ⚡ Performance,
-📈 SEO & Marketing, 🗂️ Admin & Internal, ⚙️ Behind the Scenes.
+Use these sections in this order, only the ones with bullets: ✨ Features, 🛠️ Fixes, ⚡
+Performance, 📈 SEO & Marketing, 🗂️ Admin & Internal, ⚙️ Behind the Scenes.

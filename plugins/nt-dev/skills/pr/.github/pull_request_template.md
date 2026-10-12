@@ -1,23 +1,23 @@
-<!-- 150 words max. Remove comments. One physical line per paragraph, bullet, checkbox. Empty: `_none_`; omit Screenshots for non-visual changes. -->
+<!-- 150 words max. Delete comments. One physical line per paragraph, bullet, or checkbox. Empty section: `_none_`. Omit Screenshots for non-visual changes. Never name a client. -->
 
 ## Goal
 
-<!-- Outcome and why. Inline issue link. -->
+<!-- The outcome, its measured impact when known, and why. Link the issue inline. -->
 
 ## Summary
 
-<!-- Bold-lead behavior bullets. One Mermaid diagram only when essential. -->
+<!-- Bold-lead bullets on behavior. One Mermaid diagram only when essential. -->
 
 ## Key Decisions
 
-<!-- Up to three rejected routes, constraints, or owned gaps. -->
+<!-- Up to three: routes rejected, constraints, or gaps we own. -->
 
 ## Screenshots
 
-<!-- Named before/after or flow recording. GitHub attachments only. -->
+<!-- Named before/after, or a flow recording. GitHub attachments only. -->
 
 ## Test Plan
 
-<!-- Manual evidence CI lacks. Checked: done. Unchecked: reason. -->
+<!-- Manual evidence CI does not cover. Checked: done. Unchecked: why not. -->
 
 - [ ]

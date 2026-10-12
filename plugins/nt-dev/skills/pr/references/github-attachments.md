@@ -1,6 +1,7 @@
 # GitHub attachments
 
-Capture stable viewport; relevant state only; no secrets or unrelated chrome.
+Capture a stable viewport showing only the relevant state. Keep secrets, client names, and
+unrelated chrome out of frame.
 
 ```bash
 FILE=shot.png
@@ -12,12 +13,12 @@ URL=$(curl -s -X POST \
   --data-binary "@$FILE" | jq -r .url)
 ```
 
-Embed: `![label]($URL)`.
+Embed it as `![label]($URL)`.
 
-Undocumented endpoint failure (`404`/`422`):
+The endpoint is undocumented. On a `404` or `422`, fall back to a prerelease:
 
 ```bash
 gh release create pr-<n>-shots --prerelease "$FILE"
 ```
 
-Embed asset URL; delete prerelease after merge.
+Embed the asset URL. Delete the prerelease after merge.

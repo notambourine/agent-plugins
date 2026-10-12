@@ -12,14 +12,19 @@ allowed-tools:
 
 # Weekly recap
 
-Whole team. Output obeys [../../recap-format.md](../../recap-format.md). Use
-named window; otherwise ask 1-4 weeks. Compute inclusive dates with available BSD/GNU
-`date` syntax.
+Recap the whole team's work. Follow [../../recap-format.md](../../recap-format.md).
 
-Collect merged PRs since start, all open PRs, recent non-merge commits, recently touched
-branches. Merged PRs define Shipped. Open merge-ready core PRs define In Review. Active
-unmerged branches define In Progress. Represent each merged contributor's work, then remove
-names. Skip empty PRs.
+Use the window the user named. Without one, ask for 1 to 4 weeks. Compute inclusive dates
+with whichever BSD or GNU `date` syntax is available.
+
+Collect merged PRs since the start, all open PRs, recent non-merge commits, and recently
+touched branches.
+
+- Shipped: merged PRs.
+- In Review: open, merge-ready core PRs.
+- In Progress: active unmerged branches.
+
+Cover every merged contributor's work, then strip the names. Skip empty PRs.
 
 Return only:
 
@@ -36,6 +41,6 @@ Return only:
 • *Label:* Outcome in one short sentence.
 ```
 
-Exactly these four emoji, in this order.
+Use exactly these four emoji, in this order.
 
-Missing repo: ask for it. Unclear default branch: ask.
+Ask for the repo when none is given. Ask when the default branch is unclear.

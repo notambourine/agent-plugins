@@ -7,23 +7,31 @@ argument-hint: "[pr-number-to-edit]"
 
 # Pull request
 
-Use the target repo's committed template, searching `.github/`, the repo root, and `docs/`.
-Without one, use this skill's
-[.github/pull_request_template.md](.github/pull_request_template.md). Preserve the chosen
-template's headings and markers.
+Open a draft PR that tells a PM what changed for users and what it moved. Mark it ready
+only on request.
 
-Plain register: concrete nouns, no inflated adjectives, no `not just X but Y` framing, no
-closing flourish.
+## Template
 
-Derive problem, outcome, scope, decisions from issue, source, diff, and commits. Never rely
-on branch or subjects alone. Open on outcome. Explain behavior and decisions, not files.
-Keep proportional. Specific title. Draft unless ready requested.
+Search the target repo's `.github/`, root, and `docs/` for a committed template. Without
+one, use [.github/pull_request_template.md](.github/pull_request_template.md). Keep the
+chosen template's headings and markers.
 
-Visible changes: add useful named before/after captures; recording for motion or flows.
-Upload as GitHub user attachments. Read
+## Body
+
+Build the story from the issue, source, diff, and commits; a branch name or commit
+subjects alone are not enough. Open on the outcome and its measured impact. Explain
+behavior and decisions, not files. Size the body to the change. Give it a specific title.
+
+Write plainly: concrete nouns, no inflated adjectives, no `not just X but Y`, no closing
+flourish. Never name a client; describe them by sector and shape.
+
+For visible changes, add named before/after captures, or a recording for motion and flows.
+Upload them as GitHub user attachments per
 [references/github-attachments.md](references/github-attachments.md).
 
-Write the body file to an absolute session-scratchpad path, never $TMPDIR: gh runs unsandboxed,
-where $TMPDIR is shared and --body-file can read another session's file.
+## Submit
 
-Submit with `gh pr create` or `gh pr edit`, preserving formatting.
+Write the body file to an absolute session-scratchpad path, never `$TMPDIR`. `gh` runs
+unsandboxed, where `$TMPDIR` is shared and `--body-file` can read another session's file.
+
+Submit with `gh pr create` or `gh pr edit`, keeping the formatting intact.

@@ -2,19 +2,18 @@
 
 ## Names
 
-- Internal audience: `nt-<job>`.
-- Public audience: searchable job name.
-- Skill: noun or verb only; never repeat plugin name.
-- Command namespace: plugin `plugin.json`; install ID: marketplace row.
-- Rename before external adoption; renames break installs.
+- Name an internal plugin `nt-<job>`; name a public one for the job people search.
+- Name a skill with one noun or verb. Never repeat the plugin name.
+- `plugin.json` sets the command namespace; the marketplace row sets the install ID.
+- Rename before anyone outside adopts it. A rename breaks installs.
 
 ## Ownership
 
-- Domain plugin: domain repo.
-- Practice-wide plugin: `plugins/`.
-- Promote when build, tests, or hooks justify a repo.
-- One hook per plugin audience.
-- Merge skills when one must load the other.
+- A domain plugin lives in its domain repo.
+- A practice-wide plugin lives in `plugins/`.
+- Promote a plugin to its own repo once its build, tests, or hooks earn one.
+- Give each plugin audience one hook.
+- Merge two skills when one has to load the other.
 
 ## Shared plugin
 
@@ -26,9 +25,9 @@ plugins/nt-<name>/
   output-styles/<name>.md
 ```
 
-Use the Agent Plugins schema in root `plugin.json`. Add local-source rows to both
-marketplaces. Put host-specific metadata and hook policy under the host's extension.
-Increment the portable manifest version when distributed behavior changes.
+Write root `plugin.json` to the Agent Plugins schema. Add each local-source row to both
+marketplaces. Put host-specific metadata and hook policy under that host's extension. Bump
+the portable manifest version whenever distributed behavior changes.
 
 External source:
 
@@ -36,26 +35,27 @@ External source:
 { "source": "url", "url": "https://github.com/OWNER/REPO.git" }
 ```
 
-Use HTTPS. Do not use `github` source forms.
+Use HTTPS. Never use a `github` source form.
 
 ## Hooks
 
-- Node, never Bash.
-- Fail open except deliberate `deny`.
-- Off switch.
-- Adjacent `*.test.mjs`.
+- Write them in Node, never Bash.
+- Fail open. Only a deliberate `deny` blocks.
+- Ship an off switch.
+- Put a `*.test.mjs` beside each hook.
 - Resolve plugin files through `${CLAUDE_PLUGIN_ROOT}`.
 
 ## Output styles
 
-- Frontmatter: `name`, `description`.
-- Default `keep-coding-instructions: true`.
-- Optional, never auto-selected.
-- Keep short; full body stays resident.
+- Frontmatter holds `name` and `description`.
+- Default to `keep-coding-instructions: true`.
+- Keep them opt-in; never auto-select one.
+- Keep them short. The whole body stays resident.
 
 ## Brand mirror
 
-`plugins/nt-brand/skills/system/` mirrors exact `@notambourine/brand-kit` bytes.
+`plugins/nt-brand/skills/system/` holds the exact bytes of the pinned
+`@notambourine/brand-kit`.
 
 ```bash
 npm ci
@@ -63,9 +63,9 @@ npm run brand
 npm run brand:sync
 ```
 
-- Fix upstream, release, exact-pin, sync.
-- Never edit mirror or read it from `node_modules` at runtime.
-- Use semantic `--bg`, `--fg1`, `--accent`, `--sp-*`, `--r-*` tokens.
+- Fix the brand upstream, release it, pin the exact version, then sync.
+- Never edit the mirror. Never read it from `node_modules` at runtime.
+- Style with the semantic `--bg`, `--fg1`, `--accent`, `--sp-*`, and `--r-*` tokens.
 
 ## Vendored skills
 
@@ -76,13 +76,14 @@ node scripts/vendor-skills.mjs pull <name>
 node scripts/vendor-skills.mjs refs
 ```
 
-- Manifest: source, pin, path, license; gist uses `gist`, `owner`, `entry`.
-- Pull one named skill.
+- Give each manifest entry a source, pin, path, and license. A gist uses `gist`, `owner`,
+  and `entry`.
+- Pull one named skill at a time.
 - Vendor whole directories.
-- Review prose diff and every named referrer.
-- `dest` plus `as`: private supporting material.
-- Public calls: `nt-vendor:<name>`.
-- Never infer licenses.
+- Review the prose diff and every referrer the script names.
+- Use `dest` plus `as` for private supporting material.
+- Call public skills as `nt-vendor:<name>`.
+- Never infer a license.
 
 Rules: [.claude/rules/vendored-skills.md](.claude/rules/vendored-skills.md),
 [.claude/rules/portable-shell.md](.claude/rules/portable-shell.md).
