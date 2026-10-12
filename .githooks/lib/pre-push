@@ -1,0 +1,13 @@
+#!/bin/sh
+# Refuses to push any commit that touches a client config; this repo is public.
+while read -r _ local_sha _ _; do
+	[ -n "$local_sha" ] || continue
+	case $local_sha in *[!0]*) ;; *) continue ;; esac
+	bad=$(git log --name-only --format= "$local_sha" --not --remotes | grep -E '(^|/)nt-pm\.md$' | sort -u)
+	if [ -n "$bad" ]; then
+		echo "pre-push: client config in commits being pushed; remove it from history first:" >&2
+		echo "$bad" >&2
+		exit 1
+	fi
+done
+exit 0

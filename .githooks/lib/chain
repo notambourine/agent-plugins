@@ -1,0 +1,18 @@
+#!/bin/sh
+# Runs this repo's check for a hook, then the user's global hook of the same name.
+# A repo core.hooksPath replaces the global one outright, so every hook here must chain.
+hook=$1
+shift
+lib=$(cd "$(dirname "$0")" && pwd -P)
+
+# Both readers of stdin need it, so buffer it once.
+case $hook in pre-push | post-rewrite) input=$(cat) ;; *) input= ;; esac
+
+if [ -x "$lib/$hook" ]; then
+	printf '%s\n' "$input" | "$lib/$hook" "$@" || exit $?
+fi
+
+global=$(git config --global --type=path --get core.hooksPath) || exit 0
+[ -x "$global/$hook" ] || exit 0
+[ "$(cd "$global" && pwd -P)" = "$(cd "$lib/.." && pwd -P)" ] && exit 0
+printf '%s\n' "$input" | exec "$global/$hook" "$@"

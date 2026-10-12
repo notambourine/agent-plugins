@@ -22,7 +22,7 @@
     {
       "name": "nt-pm",
       "source": "./plugins/nt-pm",
-      "description": "Creates plain-English status updates for non-technical audiences from repository and team activity. Never posts or deploys.",
+      "description": "Creates plain-English status updates, client call agendas, and follow-ups, plus a calendar loop that never repeats work. Drafts by default; posts only where a client config opts in, and never deploys. Client configs live outside this repo.",
       "strict": false
     },
     {
