@@ -1,21 +1,21 @@
 # Recap output contract
 
-Shared by `shipped` and `weekly-recap`. Each skill supplies its own header line, section
-names, and section emoji; everything below is fixed.
+`shipped` and `weekly-recap` share this contract. Each skill sets its header line, section
+names, and section emoji. Everything below is fixed.
 
-Draft only. Never post it yourself; hand it to the user.
+Draft only. Hand the draft to the user; never post it.
 
-## Slack markup, not markdown
+## Slack mrkdwn, not markdown
 
-The reader pastes this into Slack, which strips markdown on paste. Emit Slack mrkdwn:
+The reader pastes into Slack, which strips markdown. Write mrkdwn:
 
-- Bold is `*one asterisk*`. Never `**two**`; it pastes as literal asterisks.
-- Italic is `_underscores_`.
-- Bullets are a literal `•` character. Never `-` or `*` at line start.
-- No headings, tables, links, or fenced blocks. Slack drops them.
+- Bold with `*one asterisk*`. `**two**` pastes as literal asterisks.
+- Italicize with `_underscores_`.
+- Start bullets with a literal `•`. Never `-` or `*`.
+- Skip headings, tables, links, and fenced blocks. Slack drops them.
 
-Emit the block as bare text, never wrapped in a fence; a fence makes the reader copy the
-markup instead of the message.
+Return the block as bare text. A fence makes the reader copy markup instead of the
+message.
 
 ## Bullets
 
@@ -23,27 +23,28 @@ markup instead of the message.
 • *Label:* Outcome in one short sentence.
 ```
 
-Label is a bolded one-or-two-word noun for the surface that changed, followed by a colon.
-The sentence names the effect on the reader, not the mechanism.
+The label is a bold one- or two-word noun for the surface that changed, then a colon. The
+sentence states the result for the reader, not the mechanism. When a measured result
+exists, give the metric, the comparison, and the window.
 
 ## Sections
 
-Bold the header line and every section header with single asterisks. Bullets start on the
-line directly under their header, with no blank line between them. One blank line between
-sections, and one under the header line. Omit empty sections. Use exactly the emoji the skill
-names, in the order it names them.
+Bold the header line and each section header with single asterisks. Put bullets on the
+line right under their header. Leave one blank line under the header line and one between
+sections. Drop empty sections. Use exactly the skill's emoji, in the skill's order.
 
 ## Compression
 
-One bullet per theme, never per commit or PR. The whole block reads in one Slack screen. Skip
-bots, imports, dependency bumps, and immaterial docs.
+One bullet per theme, never per commit or PR. The block fits one Slack screen. Skip bots,
+imports, dependency bumps, and docs that change nothing for the reader.
 
 ## Vocabulary
 
-Widely read shorthand is fine (9s, 404, RSS, zip). No PRs, hashes, branches, files,
-functions, database internals, implementation jargon, attribution, names, stock openings,
-inflated adjectives, or rhetorical framing.
+Common shorthand is fine: 9s, 404, RSS, zip. Leave out PRs, hashes, branches, files,
+functions, database internals, implementation jargon, attribution, people's names, stock
+openings, inflated adjectives, and rhetorical framing. White-label clients per the
+nt-brand case-study rules: sector and shape, never a name, domain, or identifying detail.
 
-## Degradation
+## Fallbacks
 
-Missing `gh`: fall back to git and warn. Apply later wording edits to the full block.
+Without `gh`, fall back to git and say so. Apply later wording edits to the whole block.

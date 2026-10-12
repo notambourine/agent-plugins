@@ -5,18 +5,23 @@ description: Turn a finished client call into a documented follow-up with decisi
 
 # Follow-up
 
-Run `intake` for phase `follow-up`. Resolve the event: the one named, else the client's most
-recent ended call. Check the ledger per [../../ledger.md](../../ledger.md); a hit stops here.
+A follow-up writes down what the call decided, who owns each next step, and when the team
+meets next.
 
-Source the call from Granola notes, else notes the user pastes. No notes: stop and say so;
-never reconstruct a call from the agenda.
+Run `intake` for phase `follow-up`. Resolve the event: the one named, else the client's
+most recent ended call. Check the ledger per [../../ledger.md](../../ledger.md); a hit
+ends the run.
+
+Source the call from Granola notes, else from notes the user pastes. No notes: stop and
+say so. Never rebuild a call from its agenda.
 
 Extract only what the notes support:
 
-- Decisions, each with its owner.
-- Action items, each with owner and due date when stated; mark the rest "no date".
+- Decisions, each with an owner.
+- Action items, each with an owner and the due date when one was stated; mark the rest "no
+  date".
 - Open questions.
-- Next meeting, when one was agreed or is implied.
+- The next meeting, when one was agreed or implied.
 
 ```text
 📝 *<Client>: <Event title> (M/D)*
@@ -34,9 +39,9 @@ Extract only what the notes support:
 • Date, or "To schedule".
 ```
 
-Write to every target per [../../outputs.md](../../outputs.md). For `github`, one issue per
-NoTambourine-owned action item; client-owned items stay in the message.
+Write to every target per [../../outputs.md](../../outputs.md). For `github`, open one
+issue per NoTambourine-owned action item; client-owned items stay in the message.
 
-A next meeting "to schedule": propose two or three slots from the user's free/busy in
-working hours, inside the follow-up. With `calendar: hold`, also hold the first slot under
-ledger phase `schedule`.
+When the next meeting is "to schedule", propose two or three slots from the user's
+free/busy in working hours, inside the follow-up. With `calendar: hold`, also hold the
+first slot under ledger phase `schedule`.

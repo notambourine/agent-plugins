@@ -1,0 +1,225 @@
+{
+  "light": {
+    "$description": "Light theme, opt-in: add class=\"theme-light\" to a root or any subtree (print, a press page, an email). Values only, so the vars.css-alone path carries both themes; a surface with its own base layer sets background: var(--bg) itself.",
+    "$type": "color",
+    "bg": {
+      "$value": "{light-neutrals.nt-paper}"
+    },
+    "bg-card": {
+      "$value": "{light-neutrals.nt-white}"
+    },
+    "bg-raised": {
+      "$value": "{light-neutrals.nt-white}"
+    },
+    "bg-input": {
+      "$value": "{light-neutrals.nt-white}"
+    },
+    "bg-inverse": {
+      "$value": "{dark-surfaces.nt-bg}"
+    },
+    "fg1": {
+      "$value": "{brand.nt-ink}"
+    },
+    "fg2": {
+      "$value": "{brand.nt-ink-70}"
+    },
+    "fg3": {
+      "$value": "{light-neutrals.nt-mid}"
+    },
+    "fg-mute": {
+      "$value": "{light-neutrals.nt-mid}"
+    },
+    "line": {
+      "$value": "{light-neutrals.nt-line}"
+    },
+    "line-soft": {
+      "$value": "{light-neutrals.nt-line-soft}"
+    },
+    "line-strong": {
+      "$value": "{brand.nt-ink}"
+    },
+    "accent-text": {
+      "$value": "{brand.nt-pink-deep}"
+    },
+    "accent-fg": {
+      "$value": "{brand.nt-pink-deep}"
+    },
+    "support-fg": {
+      "$value": "{brand.nt-mint-deep}"
+    },
+    "accent-soft": {
+      "$value": "{brand.nt-pink-soft}"
+    },
+    "support-soft": {
+      "$value": "{brand.nt-mint-soft}"
+    },
+    "bg-veil": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9804, 0.9725, 0.9765],
+        "alpha": 0.7,
+        "hex": "#FAF8F9"
+      }
+    },
+    "shadow-1": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.0824, 0.0902],
+            "alpha": 0.08,
+            "hex": "#1A1517"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.0824, 0.0902],
+            "alpha": 0.05,
+            "hex": "#1A1517"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 1,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$type": "shadow",
+      "$description": "Alphas tuned for paper; the dark set reads as smudges here. The rose-black tint keeps the neutrals' hue bias."
+    },
+    "shadow-2": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.0824, 0.0902],
+            "alpha": 0.1,
+            "hex": "#1A1517"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 6,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 18,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.0824, 0.0902],
+            "alpha": 0.07,
+            "hex": "#1A1517"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 6,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$type": "shadow"
+    },
+    "shadow-3": {
+      "$value": [
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.0824, 0.0902],
+            "alpha": 0.16,
+            "hex": "#1A1517"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 20,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 50,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        },
+        {
+          "color": {
+            "colorSpace": "srgb",
+            "components": [0.102, 0.0824, 0.0902],
+            "alpha": 0.08,
+            "hex": "#1A1517"
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 6,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 14,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
+        }
+      ],
+      "$type": "shadow"
+    }
+  }
+}

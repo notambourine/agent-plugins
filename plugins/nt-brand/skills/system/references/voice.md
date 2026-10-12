@@ -10,13 +10,14 @@ where each one lives.
 
 - `NoTambourine · a boutique AI-native engineering agency`, or under the
   wordmark the eyebrow `Boutique AI-native engineering agency`
-- `Engineering you can see in the numbers.`
+- `Engineering measured in results, not hours.`
+- `We earn continued work with results, not dependency.`
 - `Improve the systems that run your business.`
 - `Senior engineers inside your team to lead delivery.`
 - `Platform migrations, redesigns, site speed, and ongoing engineering.`
 - `Launch a product, automate routine work, or connect systems and data.`
 - `We plan each project around the business result it should produce.`
-- `After our most recent redesign launched, traffic rose 20% and conversion rate rose 20% on top of it.`
+- `After our most recent redesign launched, mobile add-to-cart rose 38% and conversion 17%.`
 - `Start a conversation`, linked to https://notambourine.com/tom
 - The headings in `doctrine/SOUL.md`
 
@@ -25,8 +26,10 @@ where each one lives.
 - `Tom Fuertes · Principal · NoTambourine`: 20 years of organizational-change
   experience across more than 250 engagements.
 - Private-equity experience: mention only when relevant.
-- Never publish a client list, case studies, rates, margins, fixed offers, deal
-  terms, or scope guarantees. References and terms come through a conversation.
+- Never publish a client list, a named case study, rates, margins, fixed offers,
+  deal terms, or scope guarantees. References and terms come through a
+  conversation.
+- Draw proof from the white-labelled [case studies](case-studies/README.md).
 
 ## Rules
 

@@ -2,7 +2,8 @@
    NoTambourine: component recipes
    ---------------------------------------------------------
    The ~80% of UI you actually build: button, badge, chip,
-   input, card, nav, switch/check/radio.
+   input, card, switch/check/radio, the page shell, and the
+   layout primitives. examples/ shows each in markup.
 
    Native CSS, no build step, no framework. Every color, radius,
    space, and duration is a var() from tokens.css, so load that
@@ -116,6 +117,7 @@
   border-radius: var(--r-md);
   padding: var(--sp-6);
   box-shadow: var(--shadow-1);
+  text-align: start;
   transition: background var(--dur-2), box-shadow var(--dur-2) var(--ease-out), border-color var(--dur-2);
 }
 /* Hover lifts the shadow. No translate, no scale. */
@@ -124,26 +126,86 @@
 .nt-card--accent  { border-color: var(--accent); }
 .nt-card--support { border-color: var(--support); }
 
-/* --- Nav: frosted, the only sticky element on a page ------- */
-.nt-nav {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-6);
-  padding: var(--sp-4) var(--sp-6);
-  background: var(--bg-veil);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--line);
+/* --- Page shell: skip link, header, footer ------------------ */
+.nt-skip {
+  position: fixed; top: var(--sp-4); left: var(--sp-4); z-index: 100;
+  padding: 0.625rem var(--sp-4); border-radius: var(--r-xs);
+  background: var(--fg1); color: var(--bg); border: 0;
+  translate: 0 -200%;
 }
-/* Nunito 800, and untracked, so the text lockup matches logo.svg glyph
-   for glyph. The only place --font-wordmark is allowed. */
-.nt-nav__brand { display: flex; align-items: center; gap: var(--sp-2); color: var(--accent);
-                 font-family: var(--font-wordmark); font-weight: var(--fw-black); font-size: 17px;
-                 letter-spacing: normal; }
-.nt-nav__links { display: flex; gap: 22px; margin-left: var(--sp-4); }
-.nt-nav__links a { font-family: var(--font-accent); font-size: var(--fs-label); font-weight: var(--fw-medium);
-                   color: var(--fg3); padding: 6px 0; border-bottom: 1.5px solid transparent; }
-.nt-nav__links a:hover        { color: var(--fg1); border-bottom-color: transparent; }
-.nt-nav__links a[aria-current] { color: var(--fg1); border-bottom-color: var(--accent); }
+.nt-skip:focus { translate: 0; }
+
+/* The outlined lockup.svg, never live wordmark text: no font to load and
+   no glyph drift. Size it with --lockup-width. */
+.nt-brand { display: inline-flex; width: var(--lockup-width, 178px); border: 0; }
+.nt-brand img { display: block; width: 100%; height: auto; }
+
+.nt-nav-note { font-family: var(--font-accent); font-size: var(--fs-caption); color: var(--fg3); }
+
+/* Static, not sticky: a page is one screen or an article that ends in its
+   own call to action, so a pinned bar only covers content. */
+.nt-header {
+  --lockup-width: 154px;
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--sp-3) var(--sp-6);
+  min-height: 72px;
+  padding: var(--sp-3) var(--sp-8);
+  border-bottom: 1px solid var(--line-soft);
+}
+.nt-header__links { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-6); margin-left: auto; }
+.nt-header__links a {
+  font-family: var(--font-accent); font-size: var(--fs-caption); font-weight: var(--fw-medium);
+  color: var(--fg3); padding-block: 6px; border-bottom: 1.5px solid transparent;
+  transition: color var(--dur-2) var(--ease-out);
+}
+.nt-header__links a:hover,
+.nt-header__links a[aria-current] { color: var(--fg1); border-bottom-color: transparent; }
+.nt-header__links a[aria-current] { border-bottom-color: var(--accent); }
+
+/* Outlined, not pink: the wordmark and the page's closing button own the
+   pink. Hover fills, press scales; hover never moves an element. */
+.nt-header__cta {
+  font-family: var(--font-accent); font-size: var(--fs-caption); font-weight: var(--fw-semibold);
+  color: var(--fg1); border: 1px solid var(--line); border-radius: var(--r-pill);
+  padding: var(--sp-2) var(--sp-4);
+  transition: color var(--dur-2) var(--ease-out), background var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
+}
+.nt-header__cta:hover { background: var(--fg1); color: var(--bg); }
+.nt-header__cta:active { scale: 0.97; }
+
+.nt-footer {
+  --lockup-width: 148px;
+  display: grid; gap: var(--sp-8);
+  width: min(100% - 3rem, 1100px); margin-inline: auto;
+  padding-block: var(--sp-12) var(--sp-8);
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--font-accent); font-size: var(--fs-caption); color: var(--fg3);
+}
+.nt-footer__groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--sp-8) var(--sp-6); }
+.nt-footer__label { font-size: inherit; font-weight: var(--fw-semibold); color: var(--fg1); margin: 0 0 var(--sp-3); }
+.nt-footer__legal { font-size: inherit; color: inherit; margin: 0; }
+.nt-footer ul { display: grid; gap: var(--sp-2); list-style: none; margin: 0; padding: 0; }
+.nt-footer a { color: inherit; border: 0; transition: color var(--dur-2) var(--ease-out); }
+.nt-footer a:hover,
+.nt-footer a[aria-current] { color: var(--fg1); }
+
+@media (max-width: 720px) {
+  .nt-header { padding-inline: var(--sp-4); }
+  /* Lockup and call to action share the first row; links wrap below. */
+  .nt-header__links { order: 1; width: 100%; margin-left: 0; }
+  .nt-header__cta { margin-left: auto; }
+  .nt-footer { width: min(100% - 2rem, 1100px); }
+}
+
+/* --- Layout: one copy column, two or three card columns ---- */
+.nt-measure { max-width: 640px; margin-inline: auto; }
+.nt-stack   { display: flex; flex-direction: column; gap: var(--gap, var(--sp-6)); }
+.nt-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, var(--sp-3)); }
+/* Never four: the 240px floor caps a 640-1100px column at two or three. */
+.nt-grid    { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--gap, var(--sp-4)); }
+.nt-section { padding: var(--sp-12) var(--sp-8); border-top: 1px solid var(--line-soft); }
+@media (min-width: 640px) { .nt-section { padding-block: var(--sp-16); } }
 
 /* --- Switch / checkbox / radio ------------------------------ */
 .nt-switch {
@@ -183,4 +245,8 @@
   display: flex; align-items: center; gap: 14px;
   padding: var(--sp-3) 14px;
   border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg-raised);
+}
+.nt-sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
 }

@@ -45,8 +45,11 @@
 .nt-prose > * + h3 { margin-top: 1.6em; }
 .nt-prose > * + h4 { margin-top: 1.75em; }
 .nt-prose > :is(h1, h2, h3, h4) + * { margin-top: 0.5em; }
-/* The line under the title is the document's purpose: brightest, not biggest. */
-.nt-prose > h1 + p { color: var(--fg1); }
+/* The line under the title is the document's purpose: a lede, so a reader
+   knows where to start in a column of one face. */
+.nt-prose > h1 + p { color: var(--fg1); font-size: 1.125em; line-height: 1.5; }
+/* One word per headline, as on every other surface. */
+.nt-prose :is(h1, h2) em { color: var(--accent-text); font-style: italic; }
 
 /* Markers sit flush with the text column and nested markers land under the
    parent's text. ch is exact in a mono face, so the indent is the marker. */
@@ -69,7 +72,45 @@
 }
 .nt-prose li:has(> input:checked) { color: var(--fg3); }
 
-/* Pink is for links alone, and the underline means a link never rests on hue:
+/* A figure that ends in a hard break (`- **38%**\`) is a stat, not a term, so
+   a definition list that leads with bold stays a list. :has() cannot nest, so
+   the first and last bullets stand in for every bullet. */
+.nt-prose ul:has(> li:first-child > strong:first-child + br):has(> li:last-child > strong:first-child + br) {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  /* Two across, three for 3, 5, or 6: a row never holds a lone card. */
+  --stat-cols: 2;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, max(12em, (100% - 2em) / var(--stat-cols))), 1fr));
+  gap: 0.75em;
+}
+.nt-prose ul:has(> li:first-child > strong:first-child + br):has(> li:last-child > strong:first-child + br):has(> li:is(:nth-child(3), :nth-child(5), :nth-child(6)):last-child) {
+  --stat-cols: 3;
+}
+/* A hairline alone vanishes on the dark canvas; the fill is what makes a card. */
+.nt-prose ul:has(> li:first-child > strong:first-child + br):has(> li:last-child > strong:first-child + br) > li {
+  margin: 0;
+  padding: 0.9em 1em;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: 0.875em;
+  line-height: 1.45;
+}
+.nt-prose li > strong:first-child:has(+ br) {
+  display: block;
+  margin-bottom: 0.2em;
+  font-family: var(--font-display);
+  font-size: 2.25em;
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  color: var(--fg1);
+}
+.nt-prose li > strong:first-child + br { display: none; }
+
+/* In running text pink is for links alone, and the underline means a link never rests on hue:
    pink against body grey is about 2:1. */
 .nt-prose a {
   color: var(--accent-text);
@@ -105,10 +146,24 @@
 }
 .nt-prose pre code { font-size: 1em; background: none; color: var(--fg2); padding: 0; }
 
+/* A quote is a pull quote: the voice of someone other than the author. A
+   closing italic line under it is the attribution, so a quote's own last
+   paragraph keeps its size. */
 .nt-prose blockquote {
-  padding-left: 1em;
-  border-left: 2px solid var(--support);
-  color: var(--fg2);
+  padding: 1.1em 1.4em;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-family: var(--font-display);
+  font-size: 1.15em;
+  line-height: 1.45;
+  color: var(--fg1);
+}
+.nt-prose blockquote > * + * { margin-top: 0.75em; }
+.nt-prose blockquote > p:last-child:not(:first-child):has(> em:only-child) {
+  font-family: var(--font-body);
+  font-size: 0.75em;
+  color: var(--fg3);
 }
 
 /* `display: block` lets a wide table scroll itself: the render emits no wrapper
@@ -130,10 +185,20 @@
 
 .nt-prose hr { border: 0; border-top: 1px solid var(--line); margin-block: 2em; }
 .nt-prose img { max-width: 100%; border-radius: var(--r-sm); }
+/* An image alone in its paragraph is a figure; a phone shot must not fill the
+   column. An italic line right under it is the caption. */
+.nt-prose p:has(> img:only-child) { text-align: center; }
+.nt-prose p > img:only-child { max-height: 32em; width: auto; }
+.nt-prose p:has(> img:only-child) + p:has(> em:only-child) {
+  margin-top: 0.5em;
+  text-align: center;
+  font-size: 0.85em;
+  color: var(--fg3);
+}
 
 @media print {
   .nt-prose :is(h1, h2, h3, h4) { break-after: avoid; break-inside: avoid; }
   .nt-prose :is(p, li) { orphans: 2; widows: 2; }
-  .nt-prose :is(pre, table, blockquote, img) { break-inside: avoid; }
+  .nt-prose :is(pre, table, blockquote, img, li:has(> strong:first-child + br)) { break-inside: avoid; }
   .nt-prose pre:not(:has(> svg)) { white-space: pre-wrap; word-break: break-word; }
 }

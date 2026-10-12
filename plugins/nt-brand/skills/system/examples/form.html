@@ -1,0 +1,40 @@
+<form class="nt-measure nt-stack" style="margin-inline: 0">
+  <div class="nt-field">
+    <label for="ex-rate">Conversion rate</label>
+    <input class="nt-input" id="ex-rate" inputmode="decimal" value="2.5" />
+    <span class="nt-hint">Percent of sessions that purchase.</span>
+  </div>
+  <div class="nt-field">
+    <label for="ex-email">Email</label>
+    <input
+      class="nt-input"
+      id="ex-email"
+      type="email"
+      aria-invalid="true"
+      value="you@"
+    />
+    <span class="nt-err">Enter a full email address.</span>
+  </div>
+  <div class="nt-grid">
+    <div class="nt-toggle-row">
+      <span style="flex: 1">Email me</span>
+      <button
+        class="nt-switch"
+        type="button"
+        role="switch"
+        aria-checked="true"
+        aria-label="Email me"
+      ></button>
+    </div>
+    <div class="nt-toggle-row">
+      <button
+        class="nt-radio"
+        type="button"
+        role="radio"
+        aria-checked="true"
+        aria-label="AI in delivery"
+      ></button>
+      <span>AI in delivery</span>
+    </div>
+  </div>
+</form>

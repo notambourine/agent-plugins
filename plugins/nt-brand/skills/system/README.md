@@ -4,15 +4,30 @@ NoTambourine brand assets and guidance for design, decks, and copy. Use the
 stylesheets, fonts, and logo together. Read `SKILL.md` for the relevant
 guidance.
 
-| Link this        | To get                                                                     |
-| ---------------- | -------------------------------------------------------------------------- |
-| `tokens.css`     | The whole system: the faces, every value, and styled bare HTML.            |
-| `vars.css`       | The values alone, for a surface with its own faces and base layer.         |
-| `components.css` | `.nt-btn`, `.nt-card`, `.nt-nav`, and the rest, all `var()`-based.         |
-| `deck.css`       | The Marpit slide theme, 1280x720. Load `tokens.css` on the page too.       |
-| `prose.css`      | `.nt-prose` for rendered markdown, on screen and on paper.                 |
-| `logo/`          | The mark, the lockup, the icons, and the rasters cut from them.            |
-| `doctrine/`      | What the firm believes and how the team works, as the site publishes them. |
+| Link this        | To get                                                                         |
+| ---------------- | ------------------------------------------------------------------------------ |
+| `tokens.css`     | The whole system: the faces, every value, and styled bare HTML.                |
+| `vars.css`       | The values alone, for a surface with its own faces and base layer.             |
+| `components.css` | The page shell, `.nt-btn`, `.nt-card`, and the rest, all `var()`-based.        |
+| `tailwind.css`   | `vars.css` plus a Tailwind v4 `@theme`, so a Tailwind surface needs no bridge. |
+| `examples/`      | Copyable HTML for every component and the page shell.                          |
+| `tokens/`        | The source of `vars.css` and `tailwind.css`, in DTCG format.                   |
+| `deck.css`       | The Marpit slide theme, 1280x720. Load `tokens.css` on the page too.           |
+| `prose.css`      | `.nt-prose` for rendered markdown, on screen and on paper.                     |
+| `logo/`          | The mark, the lockup, the icons, and the rasters cut from them.                |
+| `doctrine/`      | What the firm believes and how the team works, as the site publishes them.     |
+
+## Tokens and examples
+
+`tokens/*.tokens.json` is the source for every value. `npm run build:tokens`
+compiles it into `vars.css` and `tailwind.css`, which are generated and
+gitignored; `prepack` builds them, so the published package always carries both.
+Change a value in the JSON, never in the CSS.
+
+`examples/` holds plain HTML fragments that use only the kit's classes. Read or
+paste them as-is. `npm run storybook` renders each one with the kit loaded, with
+a toolbar toggle for the light theme. The built Storybook deploys to its own
+Worker from `wrangler.jsonc` and is served with `noindex`.
 
 ## Logo
 
@@ -81,9 +96,18 @@ faces.
 
 ### With Tailwind or StyleX
 
-A surface with its own faces and base layer imports `vars.css` alone and writes
-`var()` against the semantic aliases. Neither system needs anything from this
-kit beyond the custom properties.
+A Tailwind v4 surface imports `tailwind.css`. It carries `vars.css` and maps it
+onto Tailwind's theme names (`bg-ink`, `text-fg-subtle`, `rounded-md`), so the
+surface writes no `@theme` of its own and `.theme-light` flips its utilities.
+
+```css
+@import "tailwindcss";
+@import "@notambourine/brand-kit/tailwind.css";
+@import "@notambourine/brand-kit/components.css" layer(components);
+```
+
+A StyleX surface imports `vars.css` alone and writes `var()` against the
+semantic aliases.
 
 ```js
 import "@notambourine/brand-kit/vars.css";

@@ -7,10 +7,10 @@ paths:
 
 # Brand mirror
 
-- Golden source: `notambourine/brand-kit`.
+- Treat `notambourine/brand-kit` as the golden source.
 - Never hand-edit `plugins/nt-brand/skills/system/`.
-- Fix upstream; release; exact-pin; `npm run brand:sync`.
-- Dependabot bump: sync mirror.
-- Verify: `npm run brand`.
-- Runtime: committed mirror, never `node_modules`.
-- New files: publish upstream first.
+- Fix upstream, release, pin the exact version, run `npm run brand:sync`.
+- Sync the mirror on every Dependabot bump.
+- Verify with `npm run brand`.
+- Read the committed mirror at runtime, never `node_modules`.
+- Publish new files upstream before they land here.

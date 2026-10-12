@@ -26,8 +26,12 @@ Read exact values and component behavior from the CSS.
   columns for card grids, one on mobile, never four. Leave generous space
   between blocks.
 - Wrap long-form documents in `.nt-prose` from `prose.css`. In a document, pink
-  marks links alone, and links carry an underline. Set density on the container:
-  the body tokens on screen, about 10.5pt on paper.
+  marks links and one `*word*` per H1 or H2; links carry an underline. Structure
+  comes from plain Markdown: the paragraph under the H1 is the lede, a list of 2
+  to 6 bullets that each open `**figure**\` is a row of stat cards, an italic
+  last line in a quote is its attribution, and an italic line under a lone image
+  is its caption. Set density on the container: the body tokens on screen, about
+  10.5pt on paper.
 - Make nav the only sticky element. No sticky CTAs, chat bubbles, or cookie
   banners.
 

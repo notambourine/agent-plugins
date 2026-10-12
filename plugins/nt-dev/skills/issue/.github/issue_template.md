@@ -1,13 +1,13 @@
-<!-- 120 words max. Remove comments. `Parent: #N` on the first line when the issue has one. -->
+<!-- 120 words max. Delete comments. First line `Parent: #N` when there is a parent. Never name a client. -->
 
 ## Outcome
 
-<!-- One sentence: the capability someone gains. -->
+<!-- One sentence: what someone can do once this ships, with the number it should move when there is one. -->
 
 ## Scope
 
-<!-- One bullet level: what this covers, and where it matters, what it does not. -->
+<!-- One bullet level: what this covers, where it matters, and what it leaves out. -->
 
 ## Acceptance
 
-<!-- Observable confirmation a human can check. Never "tests pass". -->
+<!-- What a person can see to confirm it works. Never "tests pass". -->

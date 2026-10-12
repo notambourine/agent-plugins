@@ -14,6 +14,7 @@ html, body {
   line-height: var(--lh-body);
   letter-spacing: var(--ls-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -74,6 +75,9 @@ input:focus-visible, select:focus-visible, textarea:focus-visible,
 }
 /* Links have no radius of their own to trace. */
 a:focus-visible { border-radius: var(--r-xs); }
+
+/* Controls ignore inherited type by default; a button-as-card would set Arial. */
+button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
 
 code, kbd, pre { font-family: var(--font-mono); font-size: var(--fs-mono); }
 code         { background: var(--accent-soft); color: var(--accent-fg);

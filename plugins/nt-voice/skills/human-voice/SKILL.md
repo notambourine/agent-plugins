@@ -7,18 +7,26 @@ argument-hint: "[<file> | pasted text] [--surgical | --rewrite]"
 
 # Human voice
 
-Read one method only.
+Pick one method and read only that one.
 
-| Method | Choose | Read |
+| Method | Choose for | Read |
 | --- | --- | --- |
 | Surgical | Authored draft, settled structure, review, uncertain touch, PR/commit/technical artifact | [surgical/METHOD.md](surgical/METHOD.md) |
 | Rewrite | Machine draft, disposable structure, formulaic architecture, explicit redo/slop request | [rewrite/METHOD.md](rewrite/METHOD.md) |
 
-Flags win; default surgical. State choice in one line, then read method. For authored voice
-after machine rewrite: separate rewrite, then separate surgical pass. Never load both in one
-pass.
+Flags win. Default to surgical. State the choice in one line, then read the method. Never load both
+in one pass. To restore an author's voice after a machine rewrite, run the rewrite, then a separate
+surgical pass.
 
-Hold your own choice line and rationale to the same standard as the draft.
+Your choice line and rationale meet the same bar as the draft.
 
-User requirements win. Preserve claims, identifiers, commands, paths. Stable terms. ASCII
-hyphens unless required otherwise. Prefer deletion.
+## NoTambourine copy
+
+When the text speaks for NoTambourine, read nt-brand's `references/voice.md` and build from its
+golden set. Check claims against `doctrine/SOUL.md` and `doctrine/CULTURE.md`. Cite proof only from
+`references/case-studies/`, under its white-label rules.
+
+## Always
+
+User requirements win. Keep claims, identifiers, commands, and paths intact. Hold terms stable. Use
+ASCII hyphens unless told otherwise. Delete before adding.
