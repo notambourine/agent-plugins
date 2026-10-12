@@ -37,7 +37,7 @@ vendored skill metadata is adapted: `nt-seo-spider`, `nt-shopify`, `nt-vendor`.
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `nt-brand`      | Brand tokens (CSS, JSON, Tailwind theme), components, examples, fonts, logos, decks, voice, doctrine, and white-labelled case studies |
 | `nt-dev`        | Commits, PRs, issues, cleanup, recall, and daily development workflow                                                                 |
-| `nt-pm` | Deploy notes, weekly recaps, client call agendas and follow-ups, and a deduped calendar loop; client configs stay outside this repo |
+| `nt-pm`         | Deploy notes, weekly recaps, client call agendas and follow-ups, and a deduped calendar loop; client configs stay outside this repo   |
 | `nt-seo-spider` | Screaming Frog MCP and a `crawl` skill; site facts in `.claude/refs/nt-seo-spider.md`. Needs SEO Spider 24+                           |
 | `nt-shopify`    | Blocks writes to a live store                                                                                                         |
 | `nt-voice`      | Surgical prose edits and structural rewrites                                                                                          |
@@ -59,7 +59,7 @@ Set switches in `.claude/settings.json` `env`:
 | `NT_DEV_SKILL_NUDGE` | unset: block once; `strict`: block until the skill is read; `off`                    |
 | `NT_DEV_DASH_GUARD`  | unset: block a commit that adds Unicode dashes; `strict`: block the write too; `off` |
 | `NT_SHOPIFY_GUARD`   | unset: block live writes; `off`                                                      |
-| `NT_PM_CLIENT_DIR` | Synced folder holding `<client>/nt-pm.md`; set in user settings, never committed |
+| `NT_PM_CLIENT_DIR`   | Synced folder holding `<client>/nt-pm.md`; set in user settings, never committed     |
 
 `nt-shopify` allows reads, local app work, theme development, and
 `theme push --development`. It blocks live targeting, mutations, deploys, releases,

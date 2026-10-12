@@ -28,11 +28,12 @@ decisions instead of repeating them.
 Write plainly: concrete nouns, no inflated adjectives, no `not just X but Y`, no closing
 flourish. Never name a client; describe them by sector and shape.
 
-A ticket moved from Asana, Jira, Slack, or a meeting carries only what the source and the user
-state. Every gap becomes an open question, never scope, acceptance, settings, or
-configurability. Never link an attachment behind a login (Asana `get_asset`, Jira). Download it
-and upload it per [../pr/references/github-attachments.md](../pr/references/github-attachments.md),
-or name it as missing.
+A ticket moved from Asana, Jira, Slack, or a meeting carries only what the source and the
+user state. Every gap becomes an open question, never scope, acceptance, settings, or
+configurability. Never link an attachment behind a login (Asana `get_asset`, Jira).
+Download it and upload it per
+[../pr/references/github-attachments.md](../pr/references/github-attachments.md), or name
+it as missing.
 
 Design work swaps the headings for four bold leads:
 
