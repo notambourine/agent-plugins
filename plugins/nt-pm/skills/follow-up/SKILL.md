@@ -39,8 +39,9 @@ Extract only what the notes support:
 • Date, or "To schedule".
 ```
 
-Write to every target per [../../outputs.md](../../outputs.md). For `github`, open one
-issue per NoTambourine-owned action item; client-owned items stay in the message.
+Write to every target per [../../outputs.md](../../outputs.md). For `deck`, start from
+[../../examples/follow-up.deck.md](../../examples/follow-up.deck.md). For `github`, open
+one issue per NoTambourine-owned action item; client-owned items stay in the message.
 
 When the next meeting is "to schedule", propose two or three slots from the user's
 free/busy in working hours, inside the follow-up. With `calendar: hold`, also hold the

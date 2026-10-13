@@ -39,7 +39,7 @@ where each one lives.
   client, state the metric, the comparison, and the measurement window.
 - Say "platform", not a vendor, unless the reader runs on it.
 - Describe constraints without blaming whoever built the system.
-- Sentence case; uppercase only for pink eyebrows and deck sublabels. ASCII
+- Sentence case; uppercase only for pink eyebrows and deck footers. ASCII
   punctuation; the interpunct separates name, role, and company.
 
 ## Names

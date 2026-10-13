@@ -43,4 +43,8 @@ Return only:
 
 Use exactly these four emoji, in this order.
 
+When asked for a deck or PDF, also build one from
+[../../examples/weekly-recap.deck.md](../../examples/weekly-recap.deck.md) per
+[../../outputs.md](../../outputs.md#decks).
+
 Ask for the repo when none is given. Ask when the default branch is unclear.
