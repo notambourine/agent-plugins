@@ -73,3 +73,7 @@ Write `Search`, `Sort Order`.
 
 Use these sections in this order, only the ones with bullets: ✨ Features, 🛠️ Fixes, ⚡
 Performance, 📈 SEO & Marketing, 🗂️ Admin & Internal, ⚙️ Behind the Scenes.
+
+When asked for a deck or PDF, also build one from
+[../../examples/shipped.deck.md](../../examples/shipped.deck.md) per
+[../../outputs.md](../../outputs.md#decks).
