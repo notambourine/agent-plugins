@@ -35,4 +35,6 @@ names the decision or input wanted and its owner.
 • *Item:* Status. _Owner_
 ```
 
-Omit empty sections. Write to the target per [../../outputs.md](../../outputs.md).
+Omit empty sections. When the target is the meeting itself, offer a `deck` built by the
+`deck` skill from this agenda. Write to the target per
+[../../outputs.md](../../outputs.md).

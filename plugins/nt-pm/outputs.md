@@ -1,17 +1,18 @@
 # Output contract
 
-The client skills (`intake`, `agenda`, `follow-up`, `tick`) write through these targets.
-Every write carries a ledger key; see [ledger.md](ledger.md).
+The client skills (`intake`, `agenda`, `deck`, `follow-up`, `tick`) write through these
+targets. Every write carries a ledger key; see [ledger.md](ledger.md).
 
 ## Targets
 
-| Target           | Write                                                           | Needs                                          |
-| ---------------- | --------------------------------------------------------------- | ---------------------------------------------- |
-| `slack:#channel` | Slack mrkdwn message                                            | Slack connector                                |
-| `drive`          | Google Doc in `sources.drive`                                   | Google Drive connector                         |
-| `pdf`            | Branded PDF beside the Drive Doc, else in the working directory | `nt-brand`, plus `typst` or `pandoc`           |
-| `github`         | One issue per action item in `sources.github`                   | `gh` CLI, or the GitHub connector in the cloud |
-| `chat`           | Return the text; write nothing                                  | none                                           |
+| Target           | Write                                                                          | Needs                                          |
+| ---------------- | ------------------------------------------------------------------------------ | ---------------------------------------------- |
+| `slack:#channel` | Slack mrkdwn message                                                           | Slack connector                                |
+| `drive`          | Google Doc in `sources.drive`                                                  | Google Drive connector                         |
+| `pdf`            | Branded PDF beside the Drive Doc, else in the working directory                | `nt-brand`, plus `typst` or `pandoc`           |
+| `deck`           | Marp Markdown and its PDF, beside the Drive Doc, else in the working directory | `nt-brand`, marp-cli via `npx`, and Chrome     |
+| `github`         | One issue per action item in `sources.github`                                  | `gh` CLI, or the GitHub connector in the cloud |
+| `chat`           | Return the text; write nothing                                                 | none                                           |
 
 ## Approval
 
