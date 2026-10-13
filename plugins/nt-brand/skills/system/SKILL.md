@@ -1,8 +1,9 @@
 ---
 name: system
 description:
-  Build or review NoTambourine-branded surfaces, decks, and copy. Use for brand
-  styling, color questions, positioning, and copy audits before shipping.
+  Build or review NoTambourine-branded surfaces, slide decks, and copy. Use for
+  brand styling, color questions, positioning, deck authoring and PDF export,
+  and copy audits before shipping.
 ---
 
 # NoTambourine brand
@@ -17,9 +18,9 @@ Apply the brand without padding.
   [voice and copy audit](references/voice.md) and build from its golden set.
 - For proof points or adding a client result, read
   [case studies](references/case-studies/README.md); never name the client.
-- For slide authoring or export, read [deck guidance](references/decks.md). Load
-  visual or voice guidance only when designing slides or writing/reviewing their
-  copy.
+- For slide authoring or PDF export, read [deck guidance](references/decks.md).
+  Load visual or voice guidance only when designing slides or writing/reviewing
+  their copy.
 - For a color, type, spacing, or component value, inspect the relevant CSS
   directly. Do not load prose references for a value lookup.
 - For page or component markup, start from the matching file in `examples/` and

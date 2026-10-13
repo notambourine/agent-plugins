@@ -20,18 +20,18 @@
 /* @theme nt */
 
 section {
-  width: 1280px;
-  height: 720px;
-  padding: 80px 96px;
+  width: 960px;
+  height: 540px;
+  padding: 56px 56px 72px;
   background: var(--bg, #0B0B0C);
   color: var(--fg2, #C9C9CE);
   font-family: var(--font-body, ui-monospace, 'SF Mono', Monaco, monospace);
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.6;
   letter-spacing: 0.01em;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.6em;
 }
 
@@ -39,8 +39,14 @@ section {
    why this engine beats a dumb split on `---`. */
 section.lead {
   align-items: center;
+  justify-content: center;
   text-align: center;
 }
+/* The title has to outweigh the purpose line: a wide mono line at body size
+   reads as heavy as a 2em headline. */
+section.lead h1 { font-size: 3.2em; margin-bottom: 0.15em; }
+section.lead p:not(.eyebrow) { font-size: 0.85em; color: var(--fg3, #8A8A92); max-width: 64ch; text-wrap: balance; }
+section.lead p.eyebrow:last-of-type { margin-top: 1.4em; color: var(--fg-mute, #5A5A62); }
 
 section h1, section h2, section h3, section h4 {
   font-family: var(--font-display, system-ui, sans-serif);
@@ -51,9 +57,9 @@ section h1, section h2, section h3, section h4 {
   text-wrap: balance;
   margin: 0;
 }
-section h1 { font-size: 2.1em; }
-section h2 { font-size: 1.5em; }
-section h3 { font-size: 1.15em; }
+section h1 { font-size: 2.6em; }
+section h2 { font-size: 1.9em; }
+section h3 { font-size: 1.25em; }
 section h4 { font-size: 1em; }
 /* `--accent-text`, not `--accent`: this is the accent as prose, and it is the
    token that flips to the text-grade deep pink under `.theme-light`. */
@@ -68,12 +74,24 @@ section h1 em, section h2 em { color: var(--accent-text, #E75A7C); font-style: i
 section .eyebrow {
   font-family: var(--font-accent, ui-monospace, 'SF Mono', Monaco, monospace);
   font-weight: var(--fw-semibold, 600);
-  font-size: 0.6em;
+  font-size: 0.7em;
   line-height: var(--lh-tight, 1.3);
   letter-spacing: var(--ls-allcaps, 0.08em);
   text-transform: uppercase;
   color: var(--accent-text, #E75A7C);
   margin: 0;
+}
+/* The eyebrow belongs to the headline, so it sits tighter to it than the
+   headline sits to the body. */
+section > :is(h1, h2) { margin-bottom: 0.35em; }
+/* A later eyebrow is the sublabel: the source or date under the content,
+   pinned above the footer and muted so it reads as a footnote. */
+section:not(.lead) > p.eyebrow ~ p.eyebrow {
+  margin-top: auto;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--fg3, #8A8A92);
 }
 
 /* `font-size` and `line-height` are named here because elements.css sizes a
@@ -89,7 +107,10 @@ section a { color: var(--accent, #E75A7C); text-decoration: none; }
 section strong { color: var(--fg1, #F5F5F7); font-weight: 600; }
 section em { font-style: italic; }
 
-section ul, section ol { margin: 0; padding-left: 1.2em; }
+/* Markers sit flush with the headline edge and text hangs past them; ch is
+   exact in the mono body, so the indent is the marker. */
+section ul { margin: 0; padding-left: 2ch; }
+section ol { margin: 0; padding-left: 3ch; }
 section li { margin-bottom: 0.35em; }
 section li::marker { color: var(--accent, #E75A7C); }
 
@@ -139,7 +160,9 @@ section th, section td {
 }
 section th { color: var(--fg1, #F5F5F7); font-weight: 600; }
 
-section img { max-height: 60%; border-radius: var(--r-sm, 10px); }
+/* Pixels, not 60%: a percentage resolves against the wrapping paragraph and
+   squashes the image. contain keeps a Marp `w:`/`h:` from distorting it. */
+section img { max-height: 324px; object-fit: contain; border-radius: var(--r-sm, 10px); }
 /* `margin: 0` for the same reason as the paragraph: elements.css gives a rule
    32px of air for a document, and the section's own `gap` already spaces it. */
 section hr { border: 0; border-top: 1px solid var(--line, #2A2A2E); width: 100%; margin: 0; }
@@ -164,7 +187,7 @@ section.divider h1, section.divider h2, section.divider h3 {
 
 /* `<!-- _class: quote -->` - the whole slide is the quotation, so the left rule
    that marks a quote inside prose would be marking nothing. */
-section.quote { align-items: center; text-align: center; }
+section.quote { align-items: center; justify-content: center; text-align: center; }
 section.quote blockquote {
   border-left: 0;
   padding-left: 0;
@@ -174,9 +197,16 @@ section.quote blockquote {
   color: var(--fg1, #F5F5F7);
   text-wrap: balance;
 }
+section.quote blockquote > * + * { margin-top: 0.6em; }
+/* An italic last line is the attribution, as in prose.css. */
+section.quote blockquote > p:last-child:not(:first-child):has(> em:only-child) {
+  font-family: var(--font-accent, ui-monospace, monospace);
+  font-size: 0.45em;
+  color: var(--fg3, #8A8A92);
+}
 
 /* `<!-- _class: split -->` - the list runs in two columns, so a slide can carry
-   eight short bullets instead of clipping at five.
+   six short bullets instead of clipping at four.
 
    On the list, not the section: markdown gives a run of bullets as ONE `<ul>`
    however it is spaced (a blank line makes a loose list, not a second list), so
@@ -188,6 +218,46 @@ section.split ul, section.split ol {
   column-gap: 1.6em;
 }
 section.split li { break-inside: avoid; }
+section.split :is(ul, ol) { font-size: 0.85em; }
+
+/* `<!-- _class: stats -->` - each bullet that leads with bold is a stat card,
+   one row, the bold line as the number. Same source shape as prose.css stat
+   cards, so a result pasted from a report lands as-is. */
+section.stats ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0.8em;
+}
+section.stats li {
+  margin: 0;
+  padding: 0.9em 1em;
+  background: var(--bg-card, #141416);
+  border: 1px solid var(--line, #2A2A2E);
+  border-radius: var(--r-md, 14px);
+  font-size: 0.8em;
+  line-height: 1.45;
+}
+section.stats li > strong:first-child {
+  display: block;
+  font-family: var(--font-display, system-ui, sans-serif);
+  font-size: 3em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--accent-text, #E75A7C);
+  margin-bottom: 0.2em;
+}
+/* Marp renders a newline as `<br>`; after a block-level number it is a blank line. */
+section.stats li > strong:first-child + br { display: none; }
+
+/* An italic line right under an image alone in its paragraph is the caption,
+   as in prose.css. */
+section p:has(> img:only-child) + p:has(> em:only-child) {
+  font-size: 0.6em;
+  color: var(--fg3, #8A8A92);
+}
 
 /* ---------------------------------------------------------
    Corner furniture: pagination, the running mark, and the two
@@ -204,8 +274,8 @@ section.split li { break-inside: avoid; }
 section::after {
   color: var(--fg-mute, #5A5A62);
   font-family: var(--font-accent, ui-monospace, monospace);
-  font-size: 16px;
-  padding: 40px 48px;
+  font-size: 13px;
+  padding: 28px 56px;
 }
 /* A cover carries no page number. Every deck used to print "1" on its title
    slide, which is the tell of a theme that never styled its own cover. */
@@ -220,8 +290,8 @@ section.lead::after { display: none; }
 section::before {
   content: '';
   position: absolute;
-  left: 48px;
-  bottom: 40px;
+  left: 56px;
+  bottom: 28px;
   width: 92px;
   height: 27px;
   background: var(--nt-lockup-url) left center / contain no-repeat;
@@ -229,7 +299,7 @@ section::before {
 }
 /* The cover states the name properly: bigger, centered, at full strength. */
 section.lead::before {
-  top: 72px;
+  top: 48px;
   bottom: auto;
   left: 50%;
   transform: translateX(-50%);
@@ -245,14 +315,19 @@ section.lead::before {
 section > header, section > footer {
   position: absolute;
   font-family: var(--font-accent, ui-monospace, monospace);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: var(--fw-semibold, 600);
   letter-spacing: var(--ls-allcaps, 0.08em);
   text-transform: uppercase;
   color: var(--fg-mute, #5A5A62);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 0;
 }
-section > header { top: 40px; left: 48px; right: 48px; }
-section > footer { bottom: 40px; left: 160px; right: 96px; }
-/* The cover has the big lockup where a header would sit. */
-section.lead > header { display: none; }
+section > header { top: 28px; left: 56px; right: 56px; }
+section > footer { bottom: 28px; left: 168px; right: 100px; }
+/* The cover carries no running furniture: its lockup moves to the top, so a
+   footer there would sit beside nothing. */
+section.lead > header, section.lead > footer { display: none; }
