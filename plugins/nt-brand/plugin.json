@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nt-brand",
-  "description": "Defines NoTambourine's brand system for surfaces, decks, and copy.",
+  "description": "Defines NoTambourine's brand system for surfaces, decks, documents, and copy.",
   "author": {
     "name": "NoTambourine LLC",
     "url": "https://notambourine.com"

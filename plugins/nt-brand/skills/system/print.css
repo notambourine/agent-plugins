@@ -1,0 +1,65 @@
+/* =========================================================
+   NoTambourine: documents on paper
+   ---------------------------------------------------------
+   Part of the golden set. Put `print-doc theme-light` on
+   <html> and wrap the content in `.nt-prose`. Light, because
+   a PDF gets printed and forwarded; on <html>, because the
+   canvas paints there and a class below it leaves the dark
+   page under the paper.
+   ========================================================= */
+
+/* Letter, because the clients sign in the US. */
+@page {
+  size: letter;
+  margin: 18mm 24mm 20mm;
+  /* The canvas stops at the margins; the page box carries the paper to the edge.
+     The page context may not see the root's tokens, so the fallbacks can print. */
+  background: var(--bg, #faf8f9);
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font: 7pt var(--font-body, "JetBrains Mono", monospace);
+    color: var(--fg3, #776c72);
+  }
+  /* doc-template.html fills in the document ID; a CSS file cannot read it. */
+  @bottom-left {
+    font: 7pt var(--font-body, "JetBrains Mono", monospace);
+    color: var(--fg3, #776c72);
+  }
+}
+
+/* Chrome drops backgrounds when printing unless told, and code blocks, stat
+   cards, and quotes are all fills. */
+.print-doc { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+.print-doc body { margin: 0; padding: 0; }
+/* A mono face sets wide and tall: 9.5pt reads like a 10.5pt proportional
+   contract. The column takes the full page so the rules line up with the
+   lockup's; at this size that is about 80 characters. */
+.print-doc .nt-prose { font-size: 9.5pt; line-height: 1.5; max-width: none; }
+.print-doc .nt-prose h1 { font-size: 1.75em; }
+.print-doc .nt-prose h2 { font-size: 1.35em; }
+.print-doc .nt-prose h3 { font-size: 1.1em; }
+/* Screen spacing gives a short section a half page on paper. */
+.print-doc .nt-prose > * + h2 { margin-top: 1.5em; padding-top: 0.6em; }
+.print-doc .nt-prose > * + h3 { margin-top: 1.25em; }
+.print-doc .nt-prose :is(th, td) { padding-block: 0.35em; }
+
+/* The lockup rides the first page only, so the PDF names its sender when it
+   arrives as an attachment with no link around it. A background off the data
+   URI in logo-vars.css, so no wrapper needs markup for it. */
+.print-doc body::before {
+  content: "";
+  display: block;
+  height: 26pt;
+  margin-bottom: 12pt;
+  padding-bottom: 6pt;
+  border-bottom: 1px solid var(--line);
+  background: var(--nt-lockup-url) left top / auto 26pt no-repeat;
+  background-origin: content-box;
+  box-sizing: content-box;
+}
+
+/* A signed document is read on screen, where a grey page reads as unbranded.
+   Section heads and bullets carry the accent; the deep tone holds contrast on
+   paper, and an H1 still keeps its one emphasized word. */
+.print-doc .nt-prose h2 { color: var(--accent-text); }
+.print-doc .nt-prose ul > li::marker { color: var(--accent-text); }
