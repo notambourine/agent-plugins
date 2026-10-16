@@ -4,19 +4,22 @@ NoTambourine brand assets and guidance for design, decks, and copy. Use the
 stylesheets, fonts, and logo together. Read `SKILL.md` for the relevant
 guidance.
 
-| Link this             | To get                                                                         |
-| --------------------- | ------------------------------------------------------------------------------ |
-| `tokens.css`          | The whole system: the faces, every value, and styled bare HTML.                |
-| `vars.css`            | The values alone, for a surface with its own faces and base layer.             |
-| `components.css`      | The page shell, `.nt-btn`, `.nt-card`, and the rest, all `var()`-based.        |
-| `tailwind.css`        | `vars.css` plus a Tailwind v4 `@theme`, so a Tailwind surface needs no bridge. |
-| `examples/`           | Copyable HTML for every component and the page shell, and a starter deck.      |
-| `tokens/`             | The source of `vars.css` and `tailwind.css`, in DTCG format.                   |
-| `deck.css`            | The Marpit slide theme, 960x540. Load `tokens.css` on the page too.            |
-| `deck-standalone.css` | `deck.css` with faces, tokens, and logo inlined, for marp-cli PDF export.      |
-| `prose.css`           | `.nt-prose` for rendered markdown, on screen and on paper.                     |
-| `logo/`               | The mark, the lockup, the icons, and the rasters cut from them.                |
-| `doctrine/`           | What the firm believes and how the team works, as the site publishes them.     |
+| Link this             | To get                                                                               |
+| --------------------- | ------------------------------------------------------------------------------------ |
+| `tokens.css`          | The whole system: the faces, every value, and styled bare HTML.                      |
+| `vars.css`            | The values alone, for a surface with its own faces and base layer.                   |
+| `components.css`      | The page shell, `.nt-btn`, `.nt-card`, and the rest, all `var()`-based.              |
+| `tailwind.css`        | `vars.css` plus a Tailwind v4 `@theme`, so a Tailwind surface needs no bridge.       |
+| `examples/`           | Copyable HTML for every component and the page shell, and a starter deck.            |
+| `tokens/`             | The source of `vars.css` and `tailwind.css`, in DTCG format.                         |
+| `deck.css`            | The Marpit slide theme, 960x540. Load `tokens.css` on the page too.                  |
+| `deck-standalone.css` | `deck.css` with faces, tokens, and logo inlined, for marp-cli PDF export.            |
+| `prose.css`           | `.nt-prose` for rendered markdown, on screen and on paper.                           |
+| `print.css`           | `.print-doc`: Letter page box, paper density, and the first-page lockup.             |
+| `doc-standalone.css`  | `prose.css` and `print.css` with faces, tokens, and logo inlined, for document PDFs. |
+| `doc-template.html`   | The pandoc template that wraps markdown for `doc-standalone.css`.                    |
+| `logo/`               | The mark, the lockup, the icons, and the rasters cut from them.                      |
+| `doctrine/`           | What the firm believes and how the team works, as the site publishes them.           |
 
 ## Tokens and examples
 

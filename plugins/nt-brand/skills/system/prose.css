@@ -5,7 +5,7 @@
    and load vars.css (or tokens.css) on the page. Every length
    is em or ch, so the container's font-size and line-height
    are the only knobs: the golden set's body on screen, about
-   10.5pt and 1.55 on paper.
+   9.5pt and 1.5 on paper.
    ========================================================= */
 
 .nt-prose {
@@ -52,8 +52,9 @@
 .nt-prose :is(h1, h2) em { color: var(--accent-text); font-style: italic; }
 
 /* Markers sit flush with the text column and nested markers land under the
-   parent's text. ch is exact in a mono face, so the indent is the marker. */
-.nt-prose ul { padding-left: 2ch; list-style-type: "\2022  "; }
+   parent's text. ch is exact in a mono face, so the indent is the marker. A
+   no-break space, because Chrome collapses a plain one and glues the bullet on. */
+.nt-prose ul { padding-left: 2ch; list-style-type: "\2022\00a0"; }
 .nt-prose ol { padding-left: 3ch; }
 .nt-prose :is(ul, ol) :is(ul, ol) { margin-top: 0.25em; }
 .nt-prose li + li { margin-top: 0.375em; }
@@ -182,6 +183,18 @@
 /* Only unaligned cells: a stylesheet beats the `align` a `---:` column emits. */
 .nt-prose :is(th, td):not([align]) { text-align: start; }
 .nt-prose th { color: var(--fg1); font-weight: var(--fw-semibold); border-bottom-color: var(--fg3); }
+/* A row blank after its label is a line to sign on: room for a pen and one inked
+   rule per signer. A data row with one empty cell keeps its height. */
+.nt-prose tr:has(> td:nth-child(2):empty):not(:has(> td:not(:first-child):not(:empty))) > td {
+  height: 3.5em;
+  vertical-align: bottom;
+  border-bottom-color: transparent;
+}
+/* A background rule rather than the border, which collapses into one line. */
+.nt-prose tr:has(> td:nth-child(2):empty):not(:has(> td:not(:first-child):not(:empty))) > td:empty {
+  min-width: 22ch;
+  background: linear-gradient(var(--fg1), var(--fg1)) left bottom / 100% 1px no-repeat content-box;
+}
 
 .nt-prose hr { border: 0; border-top: 1px solid var(--line); margin-block: 2em; }
 .nt-prose img { max-width: 100%; border-radius: var(--r-sm); }

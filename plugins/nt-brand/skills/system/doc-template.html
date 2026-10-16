@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" class="print-doc theme-light">
+  <head>
+    <meta charset="utf-8" />
+    <title>$pagetitle$ · NoTambourine</title>
+    $for(css)$
+    <link rel="stylesheet" href="$css$" />
+    $endfor$ $if(ref)$
+    <style>
+      @page {
+        @bottom-left {
+          content: "$ref$";
+        }
+      }
+    </style>
+    $endif$
+  </head>
+  <body>
+    <main class="nt-prose">$body$</main>
+  </body>
+</html>
