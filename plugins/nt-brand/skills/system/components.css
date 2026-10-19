@@ -15,44 +15,55 @@
    language, see SKILL.md.
    ========================================================= */
 
-/* --- Button: pill is the default shape --------------------- */
+/* --- Button: soft rectangle; pills are for badges and chips - */
 .nt-btn {
+  --h: 40px;
   font-family: var(--font-accent);
   font-weight: var(--fw-semibold);
-  font-size: var(--fs-small);
-  letter-spacing: 0.01em;
-  padding: var(--sp-3) 22px;
+  font-size: var(--fs-label);
+  block-size: var(--h);
+  padding: 0 var(--sp-4);
+  /* Strokes are inset shadows, never borders, so every variant is one height. */
   border: 0;
-  border-radius: var(--r-pill);
+  border-radius: var(--r-sm);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--sp-2);
   white-space: nowrap;
-  /* Named props, not `all`: the focus outline must land instantly, and
-     transform rides its own shorter beat for the press snap. */
-  transition: background var(--dur-2) var(--ease-out),
+  /* Named props, not `all`: the focus outline must land instantly. */
+  transition: background-color var(--dur-2) var(--ease-out),
               color var(--dur-2) var(--ease-out),
-              border-color var(--dur-2) var(--ease-out),
               box-shadow var(--dur-2) var(--ease-out),
-              transform var(--dur-1) var(--ease-out);
+              scale var(--dur-3) var(--ease-spring);
 }
-.nt-btn--sm { padding: var(--sp-2) 14px; font-size: var(--fs-caption); }
-.nt-btn--lg { padding: var(--sp-4) 28px; font-size: var(--fs-body); }
+.nt-btn--sm { --h: 30px; padding: 0 var(--sp-3); font-size: var(--fs-caption); border-radius: var(--r-xs); }
+.nt-btn--lg { --h: 48px; padding: 0 var(--sp-6); font-size: var(--fs-small); border-radius: var(--r-md); }
 
-/* One pink CTA per screen. Hover lifts the shadow rather than darkening
-   the fill: ink text on the press tone lands at 4.3:1 and fails AA. */
-.nt-btn--primary   { background: var(--accent); color: var(--fg-on-pink); box-shadow: var(--shadow-accent); }
-.nt-btn--primary:hover { box-shadow: var(--shadow-pink); }
-.nt-btn--secondary { background: transparent; color: var(--fg1); border: 1px solid var(--fg1); }
-.nt-btn--secondary:hover { background: var(--fg1); color: var(--bg); }
-.nt-btn--ghost     { background: transparent; color: var(--fg1); }
-.nt-btn--ghost:hover { background: var(--accent-soft); color: var(--accent-text); }
+/* One pink CTA per screen. Lit top edge and shaded bottom give the fill a
+   body; hover lightens, since ink on the darker press tone fails AA. */
+.nt-btn--primary {
+  background: var(--accent); color: var(--fg-on-pink);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), inset 0 -1px 0 rgb(0 0 0 / 0.18), var(--shadow-1);
+}
+.nt-btn--primary:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--accent), white 10%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.32), inset 0 -1px 0 rgb(0 0 0 / 0.18), 0 0 0 4px var(--accent-soft);
+}
+.nt-btn--secondary { background: var(--bg-raised); color: var(--fg1); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-edge); }
+.nt-btn--secondary:hover:not(:disabled) { background: var(--bg-input); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--fg3), transparent 50%), var(--shadow-edge); }
+/* Neutral hover: a pink ghost would be a second pink CTA. */
+.nt-btn--ghost     { background: transparent; color: var(--fg2); }
+.nt-btn--ghost:hover:not(:disabled) { background: var(--bg-raised); color: var(--fg1); }
 .nt-btn--inverse   { background: var(--fg1); color: var(--bg); }
-.nt-btn:disabled   { background: var(--bg-raised); color: var(--fg-mute); cursor: not-allowed; box-shadow: none; }
+.nt-btn--inverse:hover:not(:disabled) { background: color-mix(in oklab, var(--fg1), var(--bg) 12%); }
+/* Fade, don't grey out: the variant stays legible as what it would be. */
+.nt-btn:disabled   { opacity: 0.4; cursor: not-allowed; }
+.nt-btn--primary:disabled { box-shadow: none; }
 
-/* Scale only on press, never on hover. The one playful beat. */
-.nt-btn:active:not(:disabled) { transform: scale(0.97); }
+/* Scale only on press, never on hover. Snaps down, springs back. */
+.nt-btn:active:not(:disabled) { scale: 0.96; transition-duration: var(--dur-2), var(--dur-2), var(--dur-2), var(--dur-1); }
 
 /* --- Badge -------------------------------------------------- */
 .nt-badge {
@@ -82,9 +93,13 @@
   border-radius: var(--r-pill);
   border: 1px solid var(--line);
   background: var(--bg-card);
-  color: var(--fg1);
+  color: var(--fg2);
   cursor: pointer;
+  transition: background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out), scale var(--dur-3) var(--ease-spring);
 }
+.nt-chip:hover { border-color: var(--fg3); color: var(--fg1); }
+.nt-chip:active { scale: 0.96; }
 .nt-chip[aria-pressed="true"] { background: var(--fg1); color: var(--bg); border-color: var(--fg1); }
 
 /* --- Input -------------------------------------------------- */
@@ -95,16 +110,18 @@
 
 .nt-input {
   font-family: var(--font-body);
-  /* Never below 1rem: iOS Safari auto-zooms a focused input under 16px. */
   font-size: var(--fs-body);
   color: var(--fg1);
-  padding: var(--sp-3) 14px;
-  border-radius: var(--r-md);
+  padding: 0.625rem var(--sp-3);
+  border-radius: var(--r-sm);
   border: 1px solid var(--line);
   background: var(--bg-input);
   outline: none;
-  transition: border-color var(--dur-2), box-shadow var(--dur-2);
+  transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-3) var(--ease-out);
 }
+/* iOS Safari auto-zooms a focused input under 16px; only touch needs the floor. */
+@media (pointer: coarse) { .nt-input { font-size: max(var(--fs-body), 1rem); } }
+.nt-input:hover:not(:focus, :disabled) { border-color: color-mix(in oklab, var(--fg3), transparent 50%); }
 .nt-input::placeholder { color: var(--fg-mute); }
 .nt-input:focus        { border-color: var(--accent); box-shadow: var(--ring-accent); }
 .nt-input[aria-invalid="true"] { border-color: var(--accent); }
@@ -115,16 +132,18 @@
   background: var(--bg-card);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-md);
-  padding: var(--sp-6);
-  box-shadow: var(--shadow-1);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-edge), var(--shadow-1);
   text-align: start;
-  transition: background var(--dur-2), box-shadow var(--dur-2) var(--ease-out), border-color var(--dur-2);
+  transition: background-color var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out),
+              border-color var(--dur-2) var(--ease-out);
 }
-/* Hover lifts the shadow. No translate, no scale. */
-.nt-card--hover:hover { background: var(--bg-raised); box-shadow: var(--shadow-2); }
+/* Hover raises the surface and firms the edge. No translate, no scale. */
+.nt-card--hover:hover { background: var(--bg-raised); border-color: var(--line); box-shadow: var(--shadow-edge), var(--shadow-2); }
 /* A pink/mint border is a feature: callouts, active step, selected tier. */
-.nt-card--accent  { border-color: var(--accent); }
-.nt-card--support { border-color: var(--support); }
+/* Doubled class so the hover edge never repaints the feature border. */
+.nt-card.nt-card--accent  { border-color: var(--accent); }
+.nt-card.nt-card--support { border-color: var(--support); }
 
 /* --- Page shell: skip link, header, footer ------------------ */
 .nt-skip {
@@ -162,17 +181,9 @@
 .nt-header__links a[aria-current] { color: var(--fg1); border-bottom-color: transparent; }
 .nt-header__links a[aria-current] { border-bottom-color: var(--accent); }
 
-/* Outlined, not pink: the wordmark and the page's closing button own the
-   pink. Hover fills, press scales; hover never moves an element. */
-.nt-header__cta {
-  font-family: var(--font-accent); font-size: var(--fs-caption); font-weight: var(--fw-semibold);
-  color: var(--fg1); border: 1px solid var(--line); border-radius: var(--r-pill);
-  padding: var(--sp-2) var(--sp-4);
-  transition: color var(--dur-2) var(--ease-out), background var(--dur-2) var(--ease-out),
-              border-color var(--dur-2) var(--ease-out);
-}
-.nt-header__cta:hover { background: var(--fg1); color: var(--bg); }
-.nt-header__cta:active { scale: 0.97; }
+/* Secondary, not pink: the wordmark and the page's closing button own the
+   pink. Markup pairs it with .nt-btn--secondary.nt-btn--sm; this only places it. */
+.nt-header__cta { border-bottom: 0; }
 
 .nt-footer {
   --lockup-width: 148px;
@@ -199,6 +210,8 @@
 }
 
 /* --- Layout: one copy column, two or three card columns ---- */
+/* Uninherited, so a stack's gap never leaks into a cluster or grid inside it. */
+@property --gap { syntax: '*'; inherits: false; }
 .nt-measure { max-width: 640px; margin-inline: auto; }
 .nt-stack   { display: flex; flex-direction: column; gap: var(--gap, var(--sp-6)); }
 .nt-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, var(--sp-3)); }
@@ -207,17 +220,30 @@
 .nt-section { padding: var(--sp-12) var(--sp-8); border-top: 1px solid var(--line-soft); }
 @media (min-width: 640px) { .nt-section { padding-block: var(--sp-16); } }
 
+/* Opt-in entrance: fades up once as it scrolls into view. Never loops, and
+   without scroll timelines or with reduced motion it simply sits in place. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .nt-reveal { animation: nt-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+  }
+}
+@keyframes nt-rise { from { opacity: 0; translate: 0 12px; } }
+
 /* --- Switch / checkbox / radio ------------------------------ */
 .nt-switch {
-  width: 40px; height: 24px; flex-shrink: 0; cursor: pointer; position: relative;
+  width: 40px; height: 24px; flex-shrink: 0; cursor: pointer; position: relative; padding: 0;
   border-radius: var(--r-pill); border: 1px solid var(--line);
-  background: var(--bg-input); transition: background var(--dur-2);
+  background: var(--bg-input); transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
+/* The knob springs across and stretches while held, like a real toggle. */
 .nt-switch::after { content: ''; position: absolute; top: 3px; left: 3px;
-                    width: 16px; height: 16px; border-radius: 50%; background: var(--fg3);
-                    transition: left var(--dur-2), background var(--dur-2); }
+                    width: 16px; height: 16px; border-radius: var(--r-pill); background: var(--fg3);
+                    transition: translate var(--dur-3) var(--ease-spring), width var(--dur-2) var(--ease-out),
+                                background-color var(--dur-2) var(--ease-out); }
+.nt-switch:active::after { width: 20px; }
 .nt-switch[aria-checked="true"]        { background: var(--accent); border-color: var(--accent); }
-.nt-switch[aria-checked="true"]::after { left: 21px; background: var(--fg-on-pink); }
+.nt-switch[aria-checked="true"]::after { translate: 16px; background: var(--fg-on-pink); }
+.nt-switch[aria-checked="true"]:active::after { translate: 12px; }
 
 /* Put .nt-check/.nt-radio on a <button>: it tabs and clicks natively,
    where a span needs tabindex and key handling bolted on. */
@@ -226,25 +252,29 @@
   appearance: none;
   border-radius: var(--r-xs); border: 1.5px solid var(--fg3); background: var(--bg-card);
   display: inline-flex; align-items: center; justify-content: center;
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
 .nt-check[aria-checked="true"] { background: var(--accent); border-color: var(--accent); }
-.nt-check svg { display: none; }
-.nt-check[aria-checked="true"] svg { display: block; }
+.nt-check svg { scale: 0; transition: scale var(--dur-3) var(--ease-spring); }
+.nt-check[aria-checked="true"] svg { scale: 1; }
 
 .nt-radio {
   width: 20px; height: 20px; flex-shrink: 0; position: relative; padding: 0;
   cursor: pointer; appearance: none;
   border-radius: 50%; border: 1.5px solid var(--fg3); background: var(--bg-card);
+  transition: border-color var(--dur-2) var(--ease-out);
 }
+.nt-radio::after { content: ''; position: absolute; inset: 3px; border-radius: 50%;
+                   background: var(--accent); scale: 0; transition: scale var(--dur-3) var(--ease-spring); }
 .nt-radio[aria-checked="true"]        { border-color: var(--accent); }
-.nt-radio[aria-checked="true"]::after { content: ''; position: absolute; inset: 3px;
-                                        border-radius: 50%; background: var(--accent); }
+.nt-radio[aria-checked="true"]::after { scale: 1; }
 
 /* Row wrapper for a toggle + its label */
 .nt-toggle-row {
-  display: flex; align-items: center; gap: 14px;
-  padding: var(--sp-3) 14px;
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
   border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg-raised);
+  box-shadow: var(--shadow-edge);
 }
 .nt-sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;

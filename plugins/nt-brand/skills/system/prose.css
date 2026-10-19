@@ -15,9 +15,9 @@
   letter-spacing: var(--ls-body);
   max-width: 40em;
 }
-/* elements.css pins p, code, and pre to rem; inside prose they follow the
-   container, or a PDF paragraph prints larger than its own list items. */
-.nt-prose :is(p, li, td, th, blockquote) { font-size: inherit; line-height: inherit; }
+/* elements.css pins p, code, and pre to rem and greys p; inside prose they follow
+   the container, or a PDF paragraph prints larger and paler than its own list items. */
+.nt-prose :is(p, li, td, th, blockquote) { font-size: inherit; line-height: inherit; color: inherit; }
 .nt-prose > * { margin: 0; }
 .nt-prose > * + * { margin-top: 1em; }
 

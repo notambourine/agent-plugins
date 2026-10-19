@@ -6,7 +6,10 @@
    A surface with its own base layer imports vars.css instead.
    ========================================================= */
 
-html, body {
+html { background: var(--bg); }
+/* Body, never html: the root size is the rem every token resolves against,
+   so a 13px root would shrink the whole scale with it. */
+body {
   background: var(--bg);
   color: var(--fg2);
   font-family: var(--font-body);
@@ -40,7 +43,7 @@ h3           { font-size: var(--fs-h3); }
 h4           { font-size: var(--fs-h4); }
 
 p            { font-size: var(--fs-body); line-height: var(--lh-body);
-               color: var(--fg2); margin: 0; text-wrap: pretty; }
+               color: var(--fg3); margin: 0; text-wrap: pretty; }
 .lede        { font-size: var(--fs-lede); line-height: var(--lh-lede); color: var(--fg2); }
 small        { font-size: var(--fs-caption); color: var(--fg3); }
 /* Sentence-case supporting label, used under a heading or over a logo wall.
@@ -72,7 +75,11 @@ input:focus-visible, select:focus-visible, textarea:focus-visible,
 [role='radio']:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
+  /* An animation, not a transition: at this specificity a transition
+     shorthand would replace the component's own while focused. */
+  animation: nt-ring var(--dur-3) var(--ease-spring);
 }
+@keyframes nt-ring { from { outline-offset: 10px; } }
 /* Links have no radius of their own to trace. */
 a:focus-visible { border-radius: var(--r-xs); }
 

@@ -3,7 +3,7 @@
     "$description": "Light theme, opt-in: add class=\"theme-light\" to a root or any subtree (print, a press page, an email). Values only, so the vars.css-alone path carries both themes; a surface with its own base layer sets background: var(--bg) itself.",
     "$type": "color",
     "bg": {
-      "$value": "{light-neutrals.nt-paper}"
+      "$value": "{light-neutrals.nt-canvas}"
     },
     "bg-card": {
       "$value": "{light-neutrals.nt-white}"
@@ -24,7 +24,7 @@
       "$value": "{brand.nt-ink-70}"
     },
     "fg3": {
-      "$value": "{light-neutrals.nt-mid}"
+      "$value": "{light-neutrals.nt-mid-deep}"
     },
     "fg-mute": {
       "$value": "{light-neutrals.nt-mid}"
@@ -33,7 +33,7 @@
       "$value": "{light-neutrals.nt-line}"
     },
     "line-soft": {
-      "$value": "{light-neutrals.nt-line-soft}"
+      "$value": "{light-neutrals.nt-line}"
     },
     "line-strong": {
       "$value": "{brand.nt-ink}"
@@ -220,6 +220,37 @@
         }
       ],
       "$type": "shadow"
+    },
+    "shadow-edge": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [1, 1, 1],
+          "alpha": 0.8,
+          "hex": "#FFFFFF"
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 1,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 0,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        },
+        "inset": true
+      },
+      "$type": "shadow",
+      "$extensions": {
+        "com.notambourine.css": "inset 0 1px 0 rgba(255, 255, 255, 0.8)"
+      }
     }
   }
 }

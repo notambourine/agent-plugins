@@ -17,19 +17,21 @@
   background: var(--bg, #faf8f9);
   @bottom-right {
     content: counter(page) " / " counter(pages);
-    font: 7pt var(--font-body, "JetBrains Mono", monospace);
-    color: var(--fg3, #776c72);
+    font: 7pt var(--font-body, "Space Mono", monospace);
+    color: var(--fg3, #5e555a);
   }
   /* doc-template.html fills in the document ID; a CSS file cannot read it. */
   @bottom-left {
-    font: 7pt var(--font-body, "JetBrains Mono", monospace);
-    color: var(--fg3, #776c72);
+    font: 7pt var(--font-body, "Space Mono", monospace);
+    color: var(--fg3, #5e555a);
   }
 }
 
 /* Chrome drops backgrounds when printing unless told, and code blocks, stat
    cards, and quotes are all fills. */
 .print-doc { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+/* Paper, not the screen canvas: a sheet has no white cards to lift off it. */
+.print-doc.theme-light { --bg: var(--nt-paper); }
 .print-doc body { margin: 0; padding: 0; }
 /* A mono face sets wide and tall: 9.5pt reads like a 10.5pt proportional
    contract. The column takes the full page so the rules line up with the

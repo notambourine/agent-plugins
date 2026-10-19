@@ -120,8 +120,8 @@
     "nt-line": {
       "$value": {
         "colorSpace": "srgb",
-        "components": [0.9137, 0.8902, 0.902],
-        "hex": "#E9E3E6"
+        "components": [0.8863, 0.8588, 0.8745],
+        "hex": "#E2DBDF"
       },
       "$description": "subtle hairlines"
     },
@@ -156,6 +156,22 @@
         "components": [1, 1, 1],
         "hex": "#FFFFFF"
       }
+    },
+    "nt-mid-deep": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.3686, 0.3333, 0.3529],
+        "hex": "#5E555A"
+      },
+      "$description": "text-grade mid: secondary text at 6:1 on the canvas"
+    },
+    "nt-canvas": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9529, 0.9373, 0.9451],
+        "hex": "#F3EFF1"
+      },
+      "$description": "light page canvas: a step under the white cards so they read as surfaces"
     }
   },
   "dark-surfaces": {
