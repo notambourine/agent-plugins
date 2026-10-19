@@ -94,15 +94,15 @@ section:not(.lead) > p.eyebrow ~ p.eyebrow {
   color: var(--fg3, #8A8A92);
 }
 
-/* `font-size` and `line-height` are named here because elements.css sizes a
-   bare `p` for a document - 16px, 1.7 - and a slide is not a document: what
+/* `font-size`, `line-height`, and `color` are named here because elements.css
+   styles a bare `p` for a page - 13px, 1.7, secondary grey - and a slide is not a page: what
    `section` sets is what its content has to inherit. Without this a paragraph
    rendered at 16px inside a 26px slide, and a list changed size depending on
    whether the author left a blank line between bullets, because a loose list
    wraps each item in a `p` and a tight one does not. A deck is the only surface
    where the base layer and this theme both apply, so the fix belongs here
    rather than in a weaker elements.css. */
-section p { margin: 0; text-wrap: pretty; font-size: inherit; line-height: inherit; }
+section p { margin: 0; text-wrap: pretty; font-size: inherit; line-height: inherit; color: inherit; }
 section a { color: var(--accent, #E75A7C); text-decoration: none; }
 section strong { color: var(--fg1, #F5F5F7); font-weight: 600; }
 section em { font-style: italic; }

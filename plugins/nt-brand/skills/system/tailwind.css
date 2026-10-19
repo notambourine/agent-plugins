@@ -30,7 +30,7 @@
   --font-wordmark: var(--nt-font-nunito);
   --font-display: var(--nt-font-hanken);
   --font-accent: var(--nt-font-jetbrains);
-  --font-body: var(--nt-font-jetbrains);
+  --font-body: var(--nt-font-space);
   --font-mono: var(--nt-font-jetbrains);
   --text-display: var(--fs-display);
   --text-h1: var(--fs-h1);
@@ -58,4 +58,5 @@
   --shadow-lg: var(--shadow-3);
   --ease-out: var(--nt-ease-out);
   --ease-bounce: var(--nt-ease-bounce);
+  --ease-spring: linear(0, 0.18 7%, 0.6 17%, 0.94 28%, 1.06 38%, 1.03 50%, 0.99 66%, 1);
 }

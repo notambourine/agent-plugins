@@ -12,14 +12,19 @@ Read exact values and component behavior from the CSS.
   hand-drawn textures. Ask for real assets when needed.
 - Keep corners consistent within a component. Use full card borders, never
   colored left stripes.
-- Keep hover stationary. No parallax or looping animation. Preserve visible
-  focus rings when customizing controls.
+- Keep hover stationary. No parallax or looping animation. Press and toggle
+  motion springs on `--ease-spring`; `.nt-reveal` is the only entrance. Preserve
+  visible focus rings when customizing controls.
+- Shape buttons as soft rectangles; pills belong to badges and chips, so a
+  button never reads as a tag.
 - Use Lucide SVG icons with rounded caps and a 1.75px stroke: 20px in
   nav/buttons, 24px in features, 16px in inputs. No emoji in UI chrome or icon
   fonts.
 - Use existing logo artwork; never redraw it. Follow README for asset selection
   and regeneration. Reserve `--font-wordmark` for the lockup, never headings.
-  Monospace body is the practitioner signal; preserve it.
+  Monospace body is the practitioner signal; preserve it, and keep it small. Set
+  running text in `--font-body` and labels, buttons, and code in
+  `--font-accent`.
 - Emphasize one word per headline with `<em>`; preserve the supplied drawn
   italic.
 - Keep body copy in one column, at most about 640px wide. Use two or three
