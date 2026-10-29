@@ -53,14 +53,6 @@
         "url": "https://github.com/notambourine/wormhook.git"
       },
       "description": "Blocks npm/PyPI supply-chain malware and agent-hijack persistence at the Claude Code hook before it runs."
-    },
-    {
-      "name": "nt-share",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/notambourine/share.git"
-      },
-      "description": "Share a file, folder, or screenshot as one branded, unguessable link on share.notambourine.com. Browsers get a rendered page, curl and Slack unfurls get raw bytes from the same URL. Needs a NoTambourine-issued token."
     }
   ]
 }

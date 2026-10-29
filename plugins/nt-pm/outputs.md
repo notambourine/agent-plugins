@@ -1,8 +1,8 @@
 # Output contract
 
 The client skills (`intake`, `agenda`, `follow-up`, `tick`) write through these targets.
-`shipped` and `weekly-recap` use `deck` only. Every write carries a ledger key; see
-[ledger.md](ledger.md).
+`shipped` and `weekly-recap` use `deck` only; `share` uses `deck` and `pdf`. Every write
+carries a ledger key; see [ledger.md](ledger.md).
 
 ## Targets
 
