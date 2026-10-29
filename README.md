@@ -37,12 +37,11 @@ vendored skill metadata is adapted: `nt-seo-spider`, `nt-shopify`, `nt-vendor`.
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `nt-brand`      | Brand tokens (CSS, JSON, Tailwind theme), components, examples, fonts, logos, deck and document PDFs, voice, doctrine, and white-labelled case studies |
 | `nt-dev`        | Commits, PRs, issues, cleanup, recall, and daily development workflow                                                                                  |
-| `nt-pm`         | Deploy notes, weekly recaps, client call agendas and follow-ups, and a deduped calendar loop; client configs stay outside this repo                    |
+| `nt-pm`         | Deploy notes, weekly recaps, client call agendas and follow-ups, Drive share links, and a deduped calendar loop; client configs stay outside this repo |
 | `nt-seo-spider` | Screaming Frog MCP and a `crawl` skill; site facts in `.claude/refs/nt-seo-spider.md`. Needs SEO Spider 24+                                            |
 | `nt-shopify`    | Blocks writes to a live store                                                                                                                          |
 | `nt-voice`      | Surgical prose edits and structural rewrites                                                                                                           |
 | `nt-vendor`     | `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5`                                                      |
-| `nt-share`      | `/nt-share:share` returns a branded, unguessable URL; needs a token                                                                                    |
 | `wormhook`      | Blocks npm and PyPI supply-chain malware                                                                                                               |
 
 Turn on the repo-local plugins:
