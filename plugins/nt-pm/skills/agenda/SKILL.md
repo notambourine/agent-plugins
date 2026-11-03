@@ -20,13 +20,17 @@ Build from these, highest priority first:
 4. The event description, when it names a topic.
 
 Fit the agenda to the event length by dropping the lowest priority items first. Each item
-names the decision or input wanted and its owner.
+names the input wanted and its owner. Make an item a decision only when the sources show
+the client must choose on this call; otherwise make it a topic with a proposed default.
 
 ```text
 🗓️ *<Client>: <Event title> (M/D, h:mm)*
 
 🎯 *Decisions needed*
 • *Topic:* Decision wanted. _Owner_
+
+🤝 *Topics to align on*
+• *Topic:* What to discuss. Proposed default. _Owner_
 
 🔄 *Updates*
 • *Topic:* One line.

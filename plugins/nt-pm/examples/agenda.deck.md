@@ -31,15 +31,27 @@ The checkout release, the image budget, and the November window.
 
 ## the reviews widget costs the cart _a second_
 
-Removing it brings cart LCP in line with every other page. Reviews stay on the product page.
+Removing it brings cart LCP in line with every other page. Reviews stay on the product
+page.
 
 <p class="eyebrow">Decision: approve removal. Owner: Head of ecommerce</p>
 
 ---
 
+<p class="eyebrow">02 / Topics to align on</p>
+
+## holiday banners need _one owner_
+
+Marketing writes the copy and we schedule it. Proposed: marketing sends copy by the 1st of
+each month.
+
+<p class="eyebrow">Topic: banner hand-off. Owner: Marketing</p>
+
+---
+
 <!-- _class: split -->
 
-<p class="eyebrow">02 / Updates</p>
+<p class="eyebrow">03 / Updates</p>
 
 ## since last _week_
 
@@ -52,7 +64,7 @@ Removing it brings cart LCP in line with every other page. Reviews stay on the p
 
 ---
 
-<p class="eyebrow">03 / Carried over</p>
+<p class="eyebrow">04 / Carried over</p>
 
 ## still _open_
 
@@ -64,7 +76,7 @@ Removing it brings cart LCP in line with every other page. Reviews stay on the p
 
 ---
 
-<p class="eyebrow">04 / Decisions</p>
+<p class="eyebrow">05 / Decisions</p>
 
 ## what we need _today_
 

@@ -41,7 +41,9 @@ unsandboxed.
 
 Write `<date>-<skill>.md` and its PDF to `sources.drive_dir` under the Google Drive for
 desktop mount, else `My Drive/<client>/`, else the working directory. On macOS the mount
-is `~/Google Drive`. Drive syncs the files; never upload them.
+is `~/Google Drive`. Drive syncs the files; never upload them. A naming or folder rule in
+the context body's conventions overrides this; recurring outputs, like each week's call
+deck, keep a dated name in their own folder.
 
 ## Decks
 
@@ -71,7 +73,20 @@ line.
 
 ## Writing
 
-Lead with decisions, owners, and results. Give a result its number, comparison, and window
-when the source has them. One bullet per item. No meeting narration, no "great call".
-Client-facing outputs leave out internal notes from the config body. Anything that leaves
-the client's own channels describes the client by sector, never by name.
+Lead with decisions, owners, and results. One bullet per item. No meeting narration, no
+"great call". Client-facing outputs leave out internal notes from the context body.
+Anything that leaves the client's own channels describes the client by sector, never by
+name.
+
+Client-facing decks and documents read as an agency presenting its work:
+
+- **Pyramid:** open with one governing message, then group the support under it by
+  audience or outcome. Ask for the message once when the sources do not settle it.
+- **Numbers:** use one only when it carries the message and reads as a win. Never frame
+  results as error counts or ratios like 998 of 999; state the outcome.
+- **Asks:** a topic to align on beats a decision to make. Offer a proposed default the
+  client can veto. Never ask the client to pick items out of raw data.
+- **Proposals:** mark every date, plan, or readiness claim the sources do not state as the
+  agent's proposal, and list them for the user. Confirm each before the output reaches the
+  client.
+- **Voice:** run `nt-voice:human-voice` on the text before showing the draft.

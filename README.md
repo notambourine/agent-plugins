@@ -53,12 +53,12 @@ claude plugin enable nt-shopify@notambourine -s local
 
 Set switches in `.claude/settings.json` `env`:
 
-| Variable             | Values                                                                               |
-| -------------------- | ------------------------------------------------------------------------------------ |
-| `NT_DEV_SKILL_NUDGE` | unset: block once; `strict`: block until the skill is read; `off`                    |
-| `NT_DEV_DASH_GUARD`  | unset: block a commit that adds Unicode dashes; `strict`: block the write too; `off` |
-| `NT_SHOPIFY_GUARD`   | unset: block live writes; `off`                                                      |
-| `NT_PM_CLIENT_DIR`   | Synced folder holding `<client>/nt-pm.md`; set in user settings, never committed     |
+| Variable             | Values                                                                                    |
+| -------------------- | ----------------------------------------------------------------------------------------- |
+| `NT_DEV_SKILL_NUDGE` | unset: block once; `strict`: block until the skill is read; `off`                         |
+| `NT_DEV_DASH_GUARD`  | unset: block a commit that adds Unicode dashes; `strict`: block the write too; `off`      |
+| `NT_SHOPIFY_GUARD`   | unset: block live writes; `off`                                                           |
+| `NT_PM_CLIENT_DIR`   | Synced folder holding `<client>/client-context.md`; set in user settings, never committed |
 
 `nt-shopify` allows reads, local app work, theme development, and
 `theme push --development`. It blocks live targeting, mutations, deploys, releases,
