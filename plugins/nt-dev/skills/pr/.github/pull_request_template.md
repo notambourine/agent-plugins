@@ -6,7 +6,7 @@
 
 ## Summary
 
-<!-- One block per area the change reaches, one sentence per line. Problem: what a user hit or could not do. Cause: why, as a mechanism, not a file; a new capability drops it. Fix: the approach. One Mermaid diagram only when essential. -->
+<!-- One block per area the change reaches, one sentence under 20 words per line. Problem: what a user hit or could not do. Cause: why, as a mechanism, not a file; a new capability drops it. Fix: the approach. One Mermaid diagram only when essential. -->
 
 **Area**
 - Problem:

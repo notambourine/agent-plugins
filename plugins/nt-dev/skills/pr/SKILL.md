@@ -30,6 +30,10 @@ sentence each:
 - `Cause:` why it happened, as a mechanism, not a file. A new capability has none.
 - `Fix:` the approach that solves it, so a reader knows how without the diff.
 
+Keep each of those lines under 20 words. Fallbacks, edge cases, test counts, and file names
+stay in the diff. The whole body stays within the template's word budget; cut detail before
+cutting a section.
+
 Write plainly: concrete nouns, no inflated adjectives, no `not just X but Y`, no closing
 flourish. Never name a client; describe them by sector and shape.
 
