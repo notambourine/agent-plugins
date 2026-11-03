@@ -1,12 +1,17 @@
-<!-- 150 words max. Delete comments. One physical line per paragraph, bullet, or checkbox. Empty section: `_none_`. Omit Screenshots for non-visual changes. Never name a client. -->
+<!-- 250 words max. Delete comments. One physical line per paragraph, bullet, or checkbox. Empty section: `_none_`. Omit Screenshots for non-visual changes. Never name a client. -->
 
 ## Goal
 
-<!-- The outcome, its measured impact when known, and why. Link the issue inline. -->
+<!-- Who could not do what, what they can now, and why now. Link the issue inline. -->
 
 ## Summary
 
-<!-- Bold-lead bullets on behavior. One Mermaid diagram only when essential. -->
+<!-- One block per area the change reaches, one sentence per line. Problem: what a user hit or could not do. Cause: why, as a mechanism, not a file; a new capability drops it. Fix: the approach. One Mermaid diagram only when essential. -->
+
+**Area**
+- Problem:
+- Cause:
+- Fix:
 
 ## Key Decisions
 
