@@ -7,15 +7,17 @@ description: Turn a report, notes, deck, screenshot, or folder into a branded de
 
 Land the file in Drive and return a link. Never host it anywhere else.
 
-1. Pick the client per [../../client-config.md](../../client-config.md). With no client,
-   use `My Drive/notambourine/`.
+1. Run `intake` when a client applies. With no client, use `My Drive/notambourine/`. A
+   draft with unconfirmed proposals per [../../outputs.md](../../outputs.md#writing) stops
+   here until the user confirms or cuts them.
 2. Shape the source:
    - Slides, or content the user calls a deck: a `deck` per
      [../../outputs.md](../../outputs.md#decks).
-   - Prose, notes, or a report: a `pdf` per [../../outputs.md](../../outputs.md#documents).
+   - Prose, notes, or a report: a `pdf` per
+     [../../outputs.md](../../outputs.md#documents).
    - A finished PDF, image, video, or folder: copy as is.
-3. Write it where [../../outputs.md](../../outputs.md#brand-kit) lands decks. When no Drive
-   mount exists, stop and say so; a local path is not a share.
+3. Write it where [../../outputs.md](../../outputs.md#brand-kit) lands decks. When no
+   Drive mount exists, stop and say so; a local path is not a share.
 4. Find the synced file with the Google Drive connector and return its link. Without the
    connector, return the Drive path and say the link needs it.
 

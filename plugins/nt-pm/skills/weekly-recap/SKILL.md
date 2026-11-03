@@ -17,10 +17,14 @@ Recap the whole team's work. Follow [../../recap-format.md](../../recap-format.m
 Use the window the user named. Without one, ask for 1 to 4 weeks. Compute inclusive dates
 with whichever BSD or GNU `date` syntax is available.
 
+When the repo has a client context per [../../client-config.md](../../client-config.md),
+run `intake` first and follow its conventions.
+
 Collect merged PRs since the start, all open PRs, recent non-merge commits, and recently
 touched branches.
 
-- Shipped: merged PRs.
+- Shipped: PRs merged to the production branch. Work merged only to an integration branch
+  like `dev` or `staging` goes under In Progress, marked as waiting on release.
 - In Review: open, merge-ready core PRs.
 - In Progress: active unmerged branches.
 

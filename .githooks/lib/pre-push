@@ -3,7 +3,7 @@
 while read -r _ local_sha _ _; do
 	[ -n "$local_sha" ] || continue
 	case $local_sha in *[!0]*) ;; *) continue ;; esac
-	bad=$(git log --name-only --format= "$local_sha" --not --remotes | grep -E '(^|/)nt-pm\.md$' | sort -u)
+	bad=$(git log --name-only --format= "$local_sha" --not --remotes | grep -E '(^|/)(nt-pm|client-context)\.md$' | sort -u)
 	if [ -n "$bad" ]; then
 		echo "pre-push: client config in commits being pushed; remove it from history first:" >&2
 		echo "$bad" >&2
