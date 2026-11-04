@@ -64,7 +64,16 @@ each month.
 
 ---
 
-<p class="eyebrow">04 / Carried over</p>
+<p class="eyebrow">04 / Worked through</p>
+
+## image resizing took _two passes_
+
+The first edge resize broke zoom on product pages. We rolled it back the same day and
+shipped a fix that keeps the full-size image for zoom. It is in staging now.
+
+---
+
+<p class="eyebrow">05 / Carried over</p>
 
 ## still _open_
 
@@ -76,7 +85,7 @@ each month.
 
 ---
 
-<p class="eyebrow">05 / Decisions</p>
+<p class="eyebrow">06 / Decisions</p>
 
 ## what we need _today_
 

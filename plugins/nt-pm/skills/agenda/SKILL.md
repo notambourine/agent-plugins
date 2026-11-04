@@ -1,6 +1,6 @@
 ---
 name: agenda
-description: Draft a default agenda for an upcoming client call from the calendar event, the last follow-up, and open work. Use before a client meeting or when asked for an agenda.
+description: Draft a default agenda for an upcoming client call from the calendar event, the last follow-up, and open work. Use before a client meeting or when asked for an agenda; for a report of shipped work with no call, use weekly-recap.
 ---
 
 # Agenda
@@ -19,6 +19,8 @@ Build from these, highest priority first:
    client, and Slack threads that need a decision.
 4. The event description, when it names a topic.
 
+Write claims per [../../recap-format.md](../../recap-format.md#claims).
+
 Fit the agenda to the event length by dropping the lowest priority items first. Each item
 names the input wanted and its owner. Make an item a decision only when the sources show
 the client must choose on this call; otherwise make it a topic with a proposed default.
@@ -35,10 +37,15 @@ the client must choose on this call; otherwise make it a topic with a proposed d
 🔄 *Updates*
 • *Topic:* One line.
 
+🧗 *Worked through*
+• *Topic:* What was in the way. What we did. Where it stands.
+
 📌 *Carried over*
 • *Item:* Status. _Owner_
 ```
 
-Omit empty sections. When the target is the meeting itself, offer a `deck` from
+Select Worked through items per
+[../../recap-format.md](../../recap-format.md#worked-through). Omit empty sections. When
+the target is the meeting itself, offer a `deck` from
 [../../examples/agenda.deck.md](../../examples/agenda.deck.md). Write to the target per
 [../../outputs.md](../../outputs.md).
