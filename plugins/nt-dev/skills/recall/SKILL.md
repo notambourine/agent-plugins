@@ -49,6 +49,7 @@ Each line is one record keyed by `type` and linked by `uuid` and `parentUuid`.
 | `user`, `isMeta==true`                     | Skill body, local-command caveat, or pasted-image stub                                  |
 | `user`, no `origin`                        | Slash-command stub, interrupt marker, `!` bash I/O, or local command output             |
 | `user`, `origin.kind=="task-notification"` | Background task or agent completion                                                     |
+| `user`, `origin.kind=="peer"`              | Subagent final report in `origin.body`; read it for what a delegated agent found        |
 | `user`, `isCompactSummary==true`           | Summary of the conversation before compaction                                           |
 | `assistant`                                | One `text`, `thinking`, or `tool_use` block; records sharing `message.id` are one reply |
 | `system`, `subtype=="away_summary"`        | Model-written recap; other `system` subtypes are noise                                  |
