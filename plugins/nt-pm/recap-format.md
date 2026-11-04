@@ -33,6 +33,26 @@ Bold the header line and each section header with single asterisks. Put bullets 
 line right under their header. Leave one blank line under the header line and one between
 sections. Drop empty sections. Use exactly the skill's emoji, in the skill's order.
 
+## Claims
+
+State what the sources show: merged, in early access, scheduled for a date. Write live,
+launched, faster, or ready only when a production merge, or a metric with its comparison
+and window, backs it. When a release state is unclear, ask before drafting. Every headline
+option offered to the user must be true.
+
+## Worked through
+
+Skills with a 🧗 *Worked through* section use this bullet:
+
+```text
+• *Label:* What was in the way. What we did. Where it stands.
+```
+
+Include an item only when it cost a day or more, moved a date or scope, or needs client
+input. Keep three or fewer. Source them from PR Cause lines, reverts, reopened issues, and
+follow-up blockers. Let the facts carry the difficulty: no adjectives about effort. Name
+the constraint, never whoever built the system.
+
 ## Compression
 
 One bullet per theme, never per commit or PR. The block fits one Slack screen. Skip bots,
@@ -42,8 +62,9 @@ imports, dependency bumps, and docs that change nothing for the reader.
 
 Common shorthand is fine: 9s, 404, RSS, zip. Leave out PRs, hashes, branches, files,
 functions, database internals, implementation jargon, attribution, people's names, stock
-openings, inflated adjectives, and rhetorical framing. White-label clients per the
-nt-brand case-study rules: sector and shape, never a name, domain, or identifying detail.
+openings, inflated adjectives, rhetorical framing, and forecasts. White-label clients per
+the nt-brand case-study rules: sector and shape, never a name, domain, or identifying
+detail.
 
 ## Fallbacks
 

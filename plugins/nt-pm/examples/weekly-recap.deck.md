@@ -9,9 +9,9 @@ footer: Ecommerce retailer / Weekly recap
 
 <p class="eyebrow">Weekly recap</p>
 
-# checkout got _faster_
+# cart load, 9.2 s to _6.2 s_
 
-Shipped, in progress, and in review this week.
+Shipped, worked through, in progress, and in review this week.
 
 <p class="eyebrow">6 to 10 October 2026</p>
 
@@ -21,7 +21,7 @@ Shipped, in progress, and in review this week.
 
 <p class="eyebrow">01 / Shipped</p>
 
-## live on the _site_
+## shipped this _week_
 
 - Gift cards at checkout
 - Lighter mobile pages
@@ -31,9 +31,18 @@ Shipped, in progress, and in review this week.
 
 ---
 
-<p class="eyebrow">02 / In progress</p>
+<p class="eyebrow">02 / Worked through</p>
 
-## building _now_
+## worked _through_
+
+- Mobile pages loaded full-size images: smaller sizes served, pages 4x lighter
+- Promo banner shifted the layout: space reserved, banner holds its place
+
+---
+
+<p class="eyebrow">03 / In progress</p>
+
+## in _progress_
 
 - Image resizing at the edge
 - Page-weight budget in CI
@@ -41,9 +50,9 @@ Shipped, in progress, and in review this week.
 
 ---
 
-<p class="eyebrow">03 / In review</p>
+<p class="eyebrow">04 / In review</p>
 
-## ready to _ship_
+## in _review_
 
 - Removing the unused A/B script
 - Cart font preload

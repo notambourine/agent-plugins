@@ -38,6 +38,9 @@ Return only:
 🚀 *Shipped*
 • *Label:* Outcome in one short sentence.
 
+🧗 *Worked through*
+• *Label:* What was in the way. What we did. Where it stands.
+
 🔨 *In Progress*
 • *Label:* Outcome in one short sentence.
 
@@ -45,7 +48,7 @@ Return only:
 • *Label:* Outcome in one short sentence.
 ```
 
-Use exactly these four emoji, in this order.
+Use exactly these five emoji, in this order.
 
 When asked for a deck or PDF, also build one from
 [../../examples/weekly-recap.deck.md](../../examples/weekly-recap.deck.md) per
