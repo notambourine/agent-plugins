@@ -34,6 +34,7 @@ Return only:
 
 ```text
 📅 *Weekly Dev Recap: Mon D - Mon D, YYYY*
+The week's one result, in one line.
 
 🚀 *Shipped*
 • *Label:* Outcome in one short sentence.

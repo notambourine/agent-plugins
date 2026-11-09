@@ -17,6 +17,11 @@ The reader pastes into Slack, which strips markdown. Write mrkdwn:
 Return the block as bare text. A fence makes the reader copy markup instead of the
 message.
 
+## BLUF
+
+Put one plain line right under the header line: the bottom line up front, the single
+result the reader keeps if they read nothing else. Hold it to the [claims](#claims) bar.
+
 ## Bullets
 
 ```text
@@ -30,7 +35,7 @@ exists, give the metric, the comparison, and the window.
 ## Sections
 
 Bold the header line and each section header with single asterisks. Put bullets on the
-line right under their header. Leave one blank line under the header line and one between
+line right under their header. Leave one blank line under the BLUF line and one between
 sections. Drop empty sections. Use exactly the skill's emoji, in the skill's order.
 
 ## Claims

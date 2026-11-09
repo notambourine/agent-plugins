@@ -23,8 +23,11 @@ Extract only what the notes support:
 - Open questions.
 - The next meeting, when one was agreed or implied.
 
+Open with a BLUF (bottom line up front) line: the decision or next step that matters most.
+
 ```text
 📝 *<Client>: <Event title> (M/D)*
+The decision or next step that matters most, in one line.
 
 ✅ *Decisions*
 • *Topic:* Decision. _Owner_

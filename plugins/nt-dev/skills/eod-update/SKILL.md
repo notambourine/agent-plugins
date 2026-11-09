@@ -27,14 +27,17 @@ repo context, build the note from the answers.
 
 ## Write
 
-Lead each item with the result. Keep items short. Cite PR numbers, never URLs. Name each
-blocker and what it holds up. Write white-labelled: no client names.
+Write BLUF (bottom line up front). The line under the header is the day's one takeaway:
+the blocker that needs someone, else the biggest result. Lead each item with the result.
+Keep items short. Cite PR numbers, never URLs. Name each blocker and what it holds up.
+Write white-labelled: no client names.
 
 Return only this, as bare Slack mrkdwn text, not a fenced block. Slack strips markdown on
 paste, so bold is `*one asterisk*` and bullets are a literal `•`.
 
 ```text
 🌇 *EOD Update DD-MM-YYYY*
+[BLUF line]
 
 ✅ *Done*
 • [item]

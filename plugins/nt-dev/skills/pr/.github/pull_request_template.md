@@ -2,7 +2,7 @@
 
 ## Goal
 
-<!-- Who could not do what, what they can now, and why now. Link the issue inline. -->
+<!-- BLUF: the first sentence is what users can do now and what it moved. Then who could not, and why now. Link the issue inline. -->
 
 ## Summary
 

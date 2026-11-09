@@ -19,7 +19,8 @@ chosen template's headings and markers.
 ## Body
 
 Build the story from the issue, source, diff, and commits; a branch name or commit
-subjects alone are not enough. Open on the outcome and its measured impact. Explain
+subjects alone are not enough. Write BLUF (bottom line up front): Goal's first sentence
+states the outcome and its measured impact, so a PM who stops there has the PR. Explain
 behavior and decisions, not files. Size the body to the change. Give it a specific title.
 
 Summary answers the same three questions for each area the change reaches, even where the

@@ -55,6 +55,7 @@ Return only:
 
 ```text
 🚀 *Deploys: <window> (M/D/YY)*
+The release's one result, in one line.
 
 ✨ *Features*
 • *Label:* Outcome in one short sentence.

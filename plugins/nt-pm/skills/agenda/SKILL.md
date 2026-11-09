@@ -24,9 +24,11 @@ Write claims per [../../recap-format.md](../../recap-format.md#claims).
 Fit the agenda to the event length by dropping the lowest priority items first. Each item
 names the input wanted and its owner. Make an item a decision only when the sources show
 the client must choose on this call; otherwise make it a topic with a proposed default.
+Open with a BLUF (bottom line up front) line: what the call must leave with.
 
 ```text
 🗓️ *<Client>: <Event title> (M/D, h:mm)*
+What the call must leave with, in one line.
 
 🎯 *Decisions needed*
 • *Topic:* Decision wanted. _Owner_
