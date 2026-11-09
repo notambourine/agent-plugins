@@ -29,4 +29,5 @@ golden set. Check claims against `doctrine/SOUL.md` and `doctrine/CULTURE.md`. C
 ## Always
 
 User requirements win. Keep claims, identifiers, commands, and paths intact. Hold terms stable. Use
-ASCII hyphens unless told otherwise. Delete before adding.
+ASCII hyphens unless told otherwise. Delete before adding. Keep the BLUF (bottom line up front):
+the outcome stays in the first sentence, and an edit that buries it moves it back.

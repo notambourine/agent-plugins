@@ -73,6 +73,7 @@ line.
 
 ## Writing
 
+Write BLUF (bottom line up front): the first line carries the outcome the reader acts on.
 Lead with decisions, owners, and results. One bullet per item. No meeting narration, no
 "great call". Client-facing outputs leave out internal notes from the context body.
 Anything that leaves the client's own channels describes the client by sector, never by
@@ -80,7 +81,7 @@ name.
 
 Client-facing decks and documents read as an agency presenting its work:
 
-- **Pyramid:** open with one governing message, then group the support under it by
+- **Pyramid:** open with the BLUF as one governing message, then group the support under it by
   audience or outcome. Ask for the message once when the sources do not settle it.
 - **Numbers:** use one only when it carries the message and reads as a win. Never frame
   results as error counts or ratios like 998 of 999; state the outcome.

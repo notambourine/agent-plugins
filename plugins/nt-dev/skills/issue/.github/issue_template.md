@@ -2,7 +2,7 @@
 
 ## Outcome
 
-<!-- One sentence: what someone can do once this ships, with the number it should move when there is one. -->
+<!-- BLUF in one sentence: what someone can do once this ships, with the number it should move when there is one. -->
 
 ## Scope
 

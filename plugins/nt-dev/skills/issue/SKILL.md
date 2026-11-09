@@ -20,7 +20,9 @@ Fill the target repo's committed form or template from `.github/ISSUE_TEMPLATE/`
 
 ## Body
 
-Title the outcome, not the activity or mechanism. The body covers the problem, scope,
+Write BLUF (bottom line up front): the title and the body's first sentence state the
+outcome, so a PM who reads only those can triage. Never title the activity or mechanism.
+The body covers the problem, scope,
 constraints, context, and acceptance someone can observe. Put user behavior and business
 rules first. Add implementation only when it is decided or costly to rediscover. Link
 decisions instead of repeating them.
