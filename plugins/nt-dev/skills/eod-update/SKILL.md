@@ -1,9 +1,11 @@
 ---
 name: eod-update
-description: Draft a Slack end-of-day update. Use when the user asks for an EOD, end-of-day, or daily status note.
+description: Draft a Slack end-of-day update on progress against epics and goals. Use when the user asks for an EOD, end-of-day, or daily status note.
 allowed-tools:
   - Bash(gh pr list:*)
   - Bash(gh pr view:*)
+  - Bash(gh issue list:*)
+  - Bash(gh issue view:*)
   - Bash(gh api:*)
   - Bash(git log:*)
   - Bash(git config:*)
@@ -13,43 +15,70 @@ allowed-tools:
 
 # End-of-day update
 
-Draft the note. Never post it.
+Draft a note that tells a lead how far each epic or goal moved today and what stands in
+its way. The reader tracks goals, not the author's day: today's commits, reviews, and
+comments are the evidence behind the note, and they stay out of it. Draft only; the user
+posts it.
 
-## Gather
+## Find the goals
 
-Pull today's local commits and the user's authenticated GitHub events: authored, reviewed,
-commented, merged. Confirm each event's timestamp falls today. Count each PR once.
-Collapse commits into the outcome they produced.
+Start from today's record: local commits and the user's GitHub events (authored, reviewed,
+commented, merged) whose timestamps fall today.
 
-For a teammate's PR, state what the user did on it. For the user's own PR, state where it
-stands. Ask only about work the record cannot show, tomorrow's plan, and blockers. With no
-repo context, build the note from the answers.
+Trace each piece of work up to the goal it serves: the PR, the issue it closes, then that
+issue's `parent`, else its milestone, else its project. A review or comment on a
+teammate's PR belongs to the goal that PR serves. Goals the user names in the request
+override the tracker.
+
+Read each goal's standing from the tracker: `subIssuesSummary` on a parent issue, or the
+open and closed counts and due date on a milestone.
+
+Ask in one round for what the record cannot show: the goal behind any work that traces to
+nothing, tomorrow's plan, and blockers. With no repo context, build the note from the
+answers.
 
 ## Write
 
-Write BLUF (bottom line up front). The line under the header is the day's one takeaway:
-the blocker that needs someone, else the biggest result. Lead each item with the result.
-Keep items short. Cite PR numbers, never URLs. Name each blocker and what it holds up.
-Write white-labelled: no client names.
+Give one entry per goal that moved today or is blocked, largest movement first. A goal
+with neither is left out.
 
-Return only this, as bare Slack mrkdwn text, not a fenced block. Slack strips markdown on
-paste, so bold is `*one asterisk*` and bullets are a literal `•`.
+- **Standing:** what the tracker shows, such as `5 of 8 issues closed, due 14-11`. Call a
+  goal on track, at risk, or a percentage complete only when the user said so; the tracker
+  cannot show it.
+- **Progress:** what is true of the goal tonight that was not this morning, one bullet per
+  outcome. "Checkout accepts gift cards (#212)" is progress; "reviewed #212, pushed 4
+  commits" is activity. Cite PR and issue numbers, never URLs.
+- **Next:** what remains before the goal closes, or the step planned for tomorrow.
+- **Blockers:** the blocker, the goal it holds up, and who can clear it.
+
+Work that serves no goal, such as maintenance or an unrelated review, shares one line
+under Other.
+
+The line under the header is the BLUF (bottom line up front), the one thing the reader
+keeps: the blocker that needs someone, else the goal that moved furthest.
+
+The note is white-labelled. Epic and milestone titles often carry a client's name, so
+restate those by sector and shape.
+
+Return only the note, as bare Slack mrkdwn text with no fence around it. Slack strips
+markdown on paste, so bold is `*one asterisk*` and bullets are a literal `•`.
 
 ```text
 🌇 *EOD Update DD-MM-YYYY*
 [BLUF line]
 
-✅ *Done*
-• [item]
+🎯 *[Goal]* · [standing]
+• [progress]
+• Next: [what remains]
 
-🔨 *Doing*
-• [item]
+🧹 *Other*
+• [work outside any goal]
 
 🚩 *Blockers*
-• [item or None]
+• [blocker, goal, who can clear it; or None]
 
 📝 *Notes*
 [optional]
 ```
 
-Always include Blockers. Drop Notes when empty.
+Repeat the 🎯 block per goal. Blockers always appears; Other and Notes drop when empty.

@@ -5,7 +5,7 @@ description: Draft a default agenda for an upcoming client call from the calenda
 
 # Agenda
 
-An agenda gets each decision made on the call, with an owner.
+Draft an agenda that gets each needed decision made on the call and assigned an owner.
 
 Run `intake` for phase `agenda`. Resolve the event: the one named, else the client's next
 call on Google Calendar. Check the ledger per [../../ledger.md](../../ledger.md); a hit
@@ -24,7 +24,6 @@ Write claims per [../../recap-format.md](../../recap-format.md#claims).
 Fit the agenda to the event length by dropping the lowest priority items first. Each item
 names the input wanted and its owner. Make an item a decision only when the sources show
 the client must choose on this call; otherwise make it a topic with a proposed default.
-Open with a BLUF (bottom line up front) line: what the call must leave with.
 
 ```text
 🗓️ *<Client>: <Event title> (M/D, h:mm)*

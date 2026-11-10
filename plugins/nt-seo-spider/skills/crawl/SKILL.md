@@ -1,20 +1,20 @@
 ---
 name: crawl
-description: Crawl a site with Screaming Frog and turn the output into findings a repo can act on. Sizes each crawl to its task, keeps PageSpeed off, audits crawl scope before quoting numbers, and separates the repo's own defects from a third party's. Trigger on "run an SEO crawl", "audit the site", "what's Screaming Frog saying", "check redirects", "check our structured data", "why isn't this page eligible for rich results", or any request that starts from crawl output.
+description: Crawl a site with Screaming Frog and turn the output into findings a repo can act on. Use for SEO crawls and site audits, redirect or structured-data checks, rich-result eligibility questions, or any request that starts from crawl output.
 ---
 
 # SEO crawls with Screaming Frog
 
-A finding counts when it names coverage, an owner, and a source file. Everything below serves that.
+The output is a list of findings a developer in this repo can fix. Each finding states how much of
+the site the crawl covered, who owns the defect, and the source file that emits it.
 
 ## Read the site supplement
 
 Read `.claude/refs/nt-seo-spider.md` first when the repo has one. It holds the domain, sitemap URLs,
 the paths this repo serves, where SEO source lives, and site rules. It wins over this skill.
 
-Without it, a report fails silently twice: the crawl may have reached a third of the site, and many
-failures may come from a platform this repo doesn't ship. Settle scope and ownership before any
-finding.
+Without it, settle two things before any finding: how much of the site the crawl reached, and which
+failures come from a platform this repo doesn't ship.
 
 ## Pick the lightest tool
 
@@ -83,55 +83,17 @@ site supplement names.
 A `.seospiderconfig` is Java-serialized binary. Never write or patch one by hand. To read one, run it
 headless against `$SITE/robots.txt` and grep the config dump in the log.
 
-Each config starts from factory defaults (Configuration -> Profiles -> Clear Default Config), takes
-one change, and saves with Configuration -> Profiles -> Save As. When one is missing, ask the user to
-build it:
-
-- `schema`: Configuration -> Spider -> Extraction -> JSON-LD + Schema.org + Google rich results.
-  Without it, `structured_data_all.csv` shows zero types on every row.
-- `render`: Configuration -> Spider -> Rendering -> JavaScript.
-- `links`: Configuration -> Spider -> Crawl -> untick Images, CSS, JavaScript, SWF, and External
-  Links. Status questions need only internal HTML.
-
-All three also tick Configuration -> Spider -> Crawl -> Crawl Linked XML Sitemaps, so a spidered
-run's coverage can be audited. Factory defaults don't read sitemaps.
+When a mode config is missing, ask the user to build it per
+[references/configs.md](references/configs.md).
 
 Runs on different configs measure different things. Never compare their numbers.
 
 ## Audit scope before quoting a number
 
 A crawl reports confidently on what it reached and says nothing about what it missed. Every count is
-a count among pages this config could see. Run four checks before quoting a figure. A sitemap-seeded
-run skips them; its coverage is complete by construction.
-
-1. Elapsed time, from the `Crawl Overview` header, divided by URL count. Under roughly 50ms per URL
-   means JavaScript rendering was off; a headless render can't run that fast.
-2. The `Sitemaps` block of `Crawl Overview`. `URLs in Sitemap: 0` means the crawl never read a
-   sitemap, not that the site lacks one. Every sitemap figure below it is 0 and meaningless. Fix the
-   config; don't interpret the zero.
-3. Crawled pages against the sitemap. This is the real coverage number.
-
-   ```sh
-   curl -s $SITE/robots.txt | grep -i sitemap          # find the index; often not sitemap.xml
-   curl -s $SITE/<sitemap-index> | grep -o '<loc>[^<]*' | sed 's/<loc>//'   # then each child
-   ```
-
-   Export `Internal` / `HTML` with `Address`, normalise trailing slashes on both sides, and `comm`
-   them. Group misses by first path segment. A whole missing segment usually has one cause.
-4. The crawl-depth histogram. Export `Internal` / `HTML` with `Crawl Depth` and count by depth. A
-   real crawl tapers. A cliff, many pages at the deepest level and none beyond, means
-   `Limit Search Depth` cut it off. Confirm the queue drained (`waiting: 0` in `sf_crawl_progress`)
-   and no URL cap stopped it.
-
-| Signature | Cause | Effect |
-| --- | --- | --- |
-| Depth histogram cliffs with a large deepest bucket | `Limit Search Depth` is set | Everything past that hop is invisible |
-| `URLs in Sitemap: 0` | Crawl Linked XML Sitemaps is off | Only link-reachable pages are seen |
-| Elapsed time implausibly low; a segment missing wholesale | JS rendering off | Any client-rendered listing is a dead end |
-
-JS rendering off compounds the others. An index page that ships an app shell has no links in raw
-HTML, so nothing behind it is reachable at any depth. Check with
-`curl -sL $URL | grep -c 'href="/<segment>/'` before blaming depth.
+a count among pages this config could see. Before quoting a figure from a spidered crawl, run the
+checks in [references/scope-audit.md](references/scope-audit.md). A sitemap-seeded run skips them;
+its coverage is complete by construction.
 
 ## Three data shapes
 
@@ -140,8 +102,6 @@ HTML, so nothing behind it is reachable at any depth. Check with
 | `sf_generate_report` | 61 pre-baked cross-cutting analyses | The question spans URLs: chains, reciprocity, rich-result eligibility, totals |
 | `sf_export_seo_element_urls` | The UI's tab and filter grid | "Give me the URLs where X", where X is a filter in a tab |
 | `sf_generate_bulk_export` | Edges and raw content | "What links to the broken thing", or "dump the rendered HTML" |
-
-Report is the analysis, element export is the tab, bulk export is the edges.
 
 ## Work in this order
 
@@ -152,42 +112,8 @@ Report is the analysis, element export is the tab, bulk export is the edges.
 3. Drill into whatever Issues Overview ranks High.
 4. Trace each candidate to a source file before it becomes a finding.
 
-## Question to call
-
-### Structured data
-
-| Question | Call |
-| --- | --- |
-| Which rich-result types do we qualify for? | report `Structured Data:Google Rich Results Features Summary` |
-| Which property fails, on how many URLs? | report `Structured Data:Validation Errors & Warnings Summary` |
-| The failing URLs themselves | report `Structured Data:Validation Errors & Warnings` |
-| Malformed JSON-LD, not merely invalid | report `Structured Data:Parse Errors` |
-| Pages with no structured data | element `Structured Data`, filter `Missing` |
-
-Summary first, per-URL second. Google's rich-result rules are stricter than schema.org validity:
-`Course.description` must be 60 characters or fewer, so a Course graph needs its own short field, not
-reused page prose.
-
-### Crawlability and delivery
-
-| Question | Call |
-| --- | --- |
-| What's 404ing, and what links to it? | bulk `Response Codes:Internal:Internal Client Error (4xx) Inlinks` |
-| Where are the redirect hops? | report `Redirects:Redirect Chains` |
-| What links to each redirect? | bulk `Response Codes:Internal:Internal Redirection (3xx) Inlinks` |
-| What is robots.txt blocking? | element `Response Codes`, filter `Blocked by Robots.txt` |
-| What did we noindex? | element `Directives`, filter `Noindex` |
-| Non-indexable pages in the sitemap | bulk `Sitemaps:Non-Indexable URLs in Sitemap Inlinks` |
-| Pages nothing links to | report `Orphan Pages` |
-
-### Content and answerability
-
-| Question | Call |
-| --- | --- |
-| Is the answer text in the served HTML? | bulk `Web:All Page Text`, then grep |
-| What did the renderer produce? | bulk `Web:All Page Source` |
-| Thin pages | element `Content`, filter `Low Content Pages` |
-| Near-duplicate bodies | bulk `Content:Near Duplicates` |
+For the report or export that answers a specific question, read
+[references/calls.md](references/calls.md).
 
 ## Traps
 

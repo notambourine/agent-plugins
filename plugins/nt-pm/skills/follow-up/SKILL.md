@@ -5,8 +5,8 @@ description: Turn a finished client call into a documented follow-up with decisi
 
 # Follow-up
 
-A follow-up writes down what the call decided, who owns each next step, and when the team
-meets next.
+Draft a follow-up that records what the call decided, who owns each next step, and when
+the team meets next.
 
 Run `intake` for phase `follow-up`. Resolve the event: the one named, else the client's
 most recent ended call. Check the ledger per [../../ledger.md](../../ledger.md); a hit
@@ -22,8 +22,6 @@ Extract only what the notes support:
   date".
 - Open questions.
 - The next meeting, when one was agreed or implied.
-
-Open with a BLUF (bottom line up front) line: the decision or next step that matters most.
 
 ```text
 📝 *<Client>: <Event title> (M/D)*

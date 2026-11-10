@@ -55,7 +55,7 @@ Skills with a 🧗 *Worked through* section use this bullet:
 
 Include an item only when it cost a day or more, moved a date or scope, or needs client
 input. Keep three or fewer. Source them from PR Cause lines, reverts, reopened issues, and
-follow-up blockers. Let the facts carry the difficulty: no adjectives about effort. Name
+follow-up blockers. Describe the difficulty in facts, with no adjectives about effort. Name
 the constraint, never whoever built the system.
 
 ## Compression
