@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 # Trim comments
 
-Leave only comments that stop a wrong change.
+Delete comments that restate the code and shorten the ones worth keeping.
 
 ## Test
 
@@ -23,7 +23,7 @@ most, and never longer than the code it covers.
 
 Delete comments that describe code, explain well-named values or routine config switches,
 narrate a change, repeat another comment or a memory rule, or carry authorship, tags, or
-dates. Age earns no exemption.
+dates. Old comments face the same test.
 
 ## Scope
 
@@ -51,6 +51,7 @@ Confirm every diff hunk changed only comments:
 git diff -U0 | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' | grep -vE '^[+-][[:space:]]*(#|//|/\*|\*|--|$)'
 ```
 
-Output is acceptable only for trailing comments. Skip checks CI already runs.
+The command prints every changed line that is not a whole-line comment. Expect output
+only where a trailing comment changed on a line of code. Skip checks CI already runs.
 
 Report the changed files and counts for deleted, shortened, kept, and skipped.

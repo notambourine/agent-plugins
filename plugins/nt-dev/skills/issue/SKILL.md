@@ -12,7 +12,8 @@ Write an issue a PM can act on: the outcome, what it covers, and how to tell it 
 ## Template
 
 Work in the target repo with authenticated `gh`. Read its recent issues for conventions,
-milestones, labels, projects, and hierarchy. Never carry metadata across projects.
+milestones, labels, projects, and hierarchy. Labels and milestones are per repo, so never
+carry metadata across projects.
 
 Fill the target repo's committed form or template from `.github/ISSUE_TEMPLATE/` or
 `.github/issue_template.md`, keeping its headings exactly. Without one, use
@@ -22,18 +23,15 @@ Fill the target repo's committed form or template from `.github/ISSUE_TEMPLATE/`
 
 Write BLUF (bottom line up front): the title and the body's first sentence state the
 outcome, so a PM who reads only those can triage. Never title the activity or mechanism.
-The body covers the problem, scope,
-constraints, context, and acceptance someone can observe. Put user behavior and business
+The body covers the problem, scope, constraints, context, and acceptance someone can
+observe. Put user behavior and business
 rules first. Add implementation only when it is decided or costly to rediscover. Link
 decisions instead of repeating them.
 
-Write plainly: concrete nouns, no inflated adjectives, no `not just X but Y`, no closing
-flourish. Never name a client; describe them by sector and shape.
-
 A ticket moved from Asana, Jira, Slack, or a meeting carries only what the source and the
 user state. Every gap becomes an open question, never scope, acceptance, settings, or
-configurability. Never link an attachment behind a login (Asana `get_asset`, Jira).
-Download it and upload it per
+configurability. An attachment behind a login (Asana `get_asset`, Jira) is unreadable to the issue's
+readers, so never link one. Download it and upload it per
 [../pr/references/github-attachments.md](../pr/references/github-attachments.md), or name
 it as missing.
 
@@ -49,13 +47,13 @@ Engineering work keeps the headings. Open with dated measurements, then the cons
 then the target state. Cite `file.ts:155` only where the implementer would otherwise
 rediscover it. Use at most one table or diagram. Name prerequisites and open questions.
 
-Leave out delivery plans, tutorials, speculative solutions, recaps, and fake hierarchy.
-Use child issues and real parent links.
+Leave out delivery plans, tutorials, speculative solutions, and recaps. Show hierarchy
+with child issues and parent links, never by nesting it in the body.
 
 ## Submit
 
-Write the body file to an absolute session-scratchpad path, never `$TMPDIR`. `gh` runs
-unsandboxed, where `$TMPDIR` is shared and `--body-file` can read another session's file.
+Follow [../pr/references/body.md](../pr/references/body.md) for wording and for where the
+body file goes.
 
 Set only the milestone, labels, fields, status, and parent the repo uses. Keep duplicated
 metadata consistent. A revision folds new facts into the body; a comment records only a

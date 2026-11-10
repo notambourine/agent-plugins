@@ -8,7 +8,8 @@ argument-hint: "[--dry-run] [path-or-glob]"
 
 # Repository cleanup
 
-Leave the repo's context true to its code.
+Find checked-in context and Claude config that no longer match the code, then fix the
+clear cases and report the rest.
 
 ## Scope
 

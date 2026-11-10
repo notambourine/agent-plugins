@@ -22,8 +22,8 @@ carries a ledger key; see [ledger.md](ledger.md).
 - `post` writes to the target. A target that reaches the client still needs `post`;
   nothing goes to a client by default.
 
-Never send calendar invites to external guests. `calendar: hold` places a hold on the
-user's calendar only.
+An invite reaches the client without approval, so never send one to external guests.
+`calendar: hold` places a hold on the user's calendar only.
 
 ## Brand kit
 
@@ -53,8 +53,8 @@ too.
 - **Content:** start from the skill's golden example in [examples/](examples/). Keep its
   slide order and section names; swap in this run's content and drop empty sections.
 - **Format:** nt-brand's `system` skill owns slide shapes, front matter, and export in its
-  `references/decks.md`. Pass `$KIT/deck-standalone.css` to `--theme-set`. Never add a
-  `<style>` block.
+  `references/decks.md`. Pass `$KIT/deck-standalone.css` to `--theme-set`. The theme carries
+  all styling, so never add a `<style>` block.
 
 ## Documents
 
@@ -63,13 +63,13 @@ draft too.
 
 - **Format:** nt-brand's `system` skill owns front matter, structure, and the pandoc and
   Chrome export in its `references/documents.md`. Build `ref` from the client code and the
-  skill. Never add a `<style>` block or print flags.
+  skill. The template carries styling and page setup, so never add a `<style>` block or
+  print flags.
 
 ## Slack mrkdwn
 
-Slack strips markdown on paste. Bold is `*one asterisk*`, bullets are a literal `•`, and
-there are no headings, tables, or fenced blocks. Put the ledger key in a final context
-line.
+Write Slack messages per [recap-format.md](recap-format.md#slack-mrkdwn-not-markdown). Put
+the ledger key in a final context line.
 
 ## Writing
 

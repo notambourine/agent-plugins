@@ -63,9 +63,7 @@ npm run brand
 npm run brand:sync
 ```
 
-- Fix the brand upstream, release it, pin the exact version, then sync.
-- Never edit the mirror. Never read it from `node_modules` at runtime.
-- Style with the semantic `--bg`, `--fg1`, `--accent`, `--sp-*`, and `--r-*` tokens.
+Rules: [.claude/rules/brand-mirror.md](.claude/rules/brand-mirror.md).
 
 ## Vendored skills
 
@@ -76,14 +74,9 @@ node scripts/vendor-skills.mjs pull <name>
 node scripts/vendor-skills.mjs refs
 ```
 
-- Give each manifest entry a source, pin, path, and license. A gist uses `gist`, `owner`,
-  and `entry`.
-- Pull one named skill at a time.
-- Vendor whole directories.
-- Review the prose diff and every referrer the script names.
-- Use `dest` plus `as` for private supporting material.
-- Call public skills as `nt-vendor:<name>`.
-- Never infer a license.
+Review the prose diff of every pull. Rules:
+[.claude/rules/vendored-skills.md](.claude/rules/vendored-skills.md).
 
-Rules: [.claude/rules/vendored-skills.md](.claude/rules/vendored-skills.md),
-[.claude/rules/portable-shell.md](.claude/rules/portable-shell.md).
+## Shell in skills
+
+Rules: [.claude/rules/portable-shell.md](.claude/rules/portable-shell.md).

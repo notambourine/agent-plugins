@@ -21,7 +21,7 @@ chosen template's headings and markers.
 Build the story from the issue, source, diff, and commits; a branch name or commit
 subjects alone are not enough. Write BLUF (bottom line up front): Goal's first sentence
 states the outcome and its measured impact, so a PM who stops there has the PR. Explain
-behavior and decisions, not files. Size the body to the change. Give it a specific title.
+behavior and decisions, not files.
 
 Summary answers the same three questions for each area the change reaches, even where the
 repo's template words its Summary another way. Give each area a bold lead line, then one
@@ -35,16 +35,11 @@ Keep each of those lines under 20 words. Fallbacks, edge cases, test counts, and
 stay in the diff. The whole body stays within the template's word budget; cut detail before
 cutting a section.
 
-Write plainly: concrete nouns, no inflated adjectives, no `not just X but Y`, no closing
-flourish. Never name a client; describe them by sector and shape.
-
 For visible changes, add named before/after captures, or a recording for motion and flows.
 Upload them as GitHub user attachments per
 [references/github-attachments.md](references/github-attachments.md).
 
 ## Submit
 
-Write the body file to an absolute session-scratchpad path, never `$TMPDIR`. `gh` runs
-unsandboxed, where `$TMPDIR` is shared and `--body-file` can read another session's file.
-
-Submit with `gh pr create` or `gh pr edit`, keeping the formatting intact.
+Follow [references/body.md](references/body.md) for wording and for where the body file
+goes. Submit with `gh pr create` or `gh pr edit`, keeping the formatting intact.
