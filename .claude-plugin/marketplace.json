@@ -10,25 +10,25 @@
     {
       "name": "nt-brand",
       "source": "./plugins/nt-brand",
-      "description": "Defines NoTambourine's brand system, including tokens, components, fonts, voice, and doctrine. Copy audits require nt-voice.",
+      "description": "NoTambourine's brand kit: tokens, components, fonts, logos, deck and document export, voice, and doctrine. Copy audits use nt-voice.",
       "strict": false
     },
     {
       "name": "nt-dev",
       "source": "./plugins/nt-dev",
-      "description": "Standardizes everyday development work and house conventions. Never posts end-of-day updates; hooks guide GitHub usage and identify Unicode dash violations.",
+      "description": "Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in NoTambourine conventions. Drafts only; hooks point PR and issue writes at their skills and block Unicode dashes in commits.",
       "strict": false
     },
     {
       "name": "nt-pm",
       "source": "./plugins/nt-pm",
-      "description": "Creates plain-English status updates, client call agendas, and follow-ups, plus a calendar loop that never repeats work. Drafts by default; posts only where a client config opts in, and never deploys. Client configs live outside this repo.",
+      "description": "Drafts client call agendas and follow-ups, deploy notes, and weekly recaps in plain English, and shares files through Drive. Posts only where a client context opts in and never deploys. Client facts live outside this repo.",
       "strict": false
     },
     {
       "name": "nt-voice",
       "source": "./plugins/nt-voice",
-      "description": "Applies the appropriate prose voice pass for humanization and editorial requests. Requires nt-vendor.",
+      "description": "Edits prose so it reads as written by a person: a light phrasing pass for an authored draft, or a full rewrite for a machine draft.",
       "strict": false
     },
     {
@@ -44,7 +44,7 @@
     {
       "name": "nt-vendor",
       "source": "./plugins/nt-vendor",
-      "description": "Mirrors third-party skills from upstream repositories so other plugins can use them. The nt-vendor prefix identifies external work."
+      "description": "Third-party skills mirrored from their upstream repositories. The nt-vendor prefix marks work that is not ours."
     },
     {
       "name": "wormhook",

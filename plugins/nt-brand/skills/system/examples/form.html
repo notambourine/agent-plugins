@@ -1,40 +1,87 @@
 <form class="nt-measure nt-stack" style="margin-inline: 0">
   <div class="nt-field">
     <label for="ex-rate">Conversion rate</label>
-    <input class="nt-input" id="ex-rate" inputmode="decimal" value="2.5" />
-    <span class="nt-hint">Percent of sessions that purchase.</span>
+    <input
+      class="nt-input"
+      id="ex-rate"
+      inputmode="decimal"
+      value="2.5"
+      aria-describedby="ex-rate-hint"
+    />
+    <span class="nt-hint" id="ex-rate-hint"
+      >Percent of sessions that purchase.</span
+    >
   </div>
   <div class="nt-field">
     <label for="ex-email">Email</label>
-    <input
+    <!-- An inline row: the input and the button share --control-h. -->
+    <div class="nt-cluster" style="--gap: var(--sp-2)">
+      <input
+        class="nt-input"
+        id="ex-email"
+        type="email"
+        aria-invalid="true"
+        aria-describedby="ex-email-err"
+        value="you@"
+        style="flex: 1"
+      />
+      <button class="nt-btn nt-btn--secondary" type="submit">Send</button>
+    </div>
+    <!-- Lucide circle-alert: the error never rests on color. -->
+    <span class="nt-err" id="ex-email-err">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 8v4M12 16h.01" />
+      </svg>
+      Enter a full email address.
+    </span>
+  </div>
+  <div class="nt-field">
+    <label for="ex-work">Work type</label>
+    <select class="nt-input" id="ex-work">
+      <option>Platform migration</option>
+      <option>Redesign</option>
+      <option>Site speed</option>
+    </select>
+  </div>
+  <div class="nt-field">
+    <label for="ex-notes">Notes</label>
+    <textarea
       class="nt-input"
-      id="ex-email"
-      type="email"
-      aria-invalid="true"
-      value="you@"
-    />
-    <span class="nt-err">Enter a full email address.</span>
+      id="ex-notes"
+      placeholder="What should ship, and by when?"
+    ></textarea>
   </div>
+  <!-- Native inputs inside a label: the whole row toggles, with no script. -->
   <div class="nt-grid">
-    <div class="nt-toggle-row">
+    <label class="nt-toggle-row">
       <span style="flex: 1">Email me</span>
-      <button
-        class="nt-switch"
-        type="button"
-        role="switch"
-        aria-checked="true"
-        aria-label="Email me"
-      ></button>
-    </div>
-    <div class="nt-toggle-row">
-      <button
-        class="nt-radio"
-        type="button"
-        role="radio"
-        aria-checked="true"
-        aria-label="AI in delivery"
-      ></button>
-      <span>AI in delivery</span>
-    </div>
+      <input class="nt-switch" type="checkbox" role="switch" checked />
+    </label>
+    <label class="nt-toggle-row">
+      <input class="nt-check" type="checkbox" checked />
+      <span>Send a copy</span>
+    </label>
   </div>
+  <fieldset class="nt-grid" style="border: 0; margin: 0; padding: 0">
+    <legend class="nt-sr-only">Delivery</legend>
+    <label class="nt-toggle-row">
+      <input class="nt-radio" type="radio" name="ex-delivery" checked />
+      <span>AI in delivery</span>
+    </label>
+    <label class="nt-toggle-row">
+      <input class="nt-radio" type="radio" name="ex-delivery" />
+      <span>Advisory only</span>
+    </label>
+  </fieldset>
 </form>

@@ -5,23 +5,26 @@ description: Turn a report, notes, deck, screenshot, or folder into a branded de
 
 # Share
 
-Land the file in Drive and return a link. Never host it anywhere else.
+Put the file in Drive and return its link. Never host it anywhere else.
 
-1. Run `intake` when a client applies. With no client, use `My Drive/notambourine/`. A
-   draft with unconfirmed proposals per [../../outputs.md](../../outputs.md#writing) stops
-   here until the user confirms or cuts them.
+1. Run `intake` when the file is for a client. With no client, use
+   `My Drive/notambourine/`. If the draft holds proposals the user has not confirmed, per
+   [../../outputs.md](../../outputs.md#writing), stop here until the user confirms or cuts
+   them.
 2. Shape the source:
    - Slides, or content the user calls a deck: a `deck` per
      [../../outputs.md](../../outputs.md#decks).
    - Prose, notes, or a report: a `pdf` per
      [../../outputs.md](../../outputs.md#documents).
-   - A finished PDF, image, video, or folder: copy as is.
-3. Write it where [../../outputs.md](../../outputs.md#brand-kit) lands decks. When no
-   Drive mount exists, stop and say so; a local path is not a share.
+   - A finished PDF, image, video, or folder: copy it unchanged.
+3. Name it and write it per [../../outputs.md](../../outputs.md#files). Rename a finished
+   PDF that is named for its tool or as `deck.pdf`. If there is no Drive mount, stop and
+   say so, because a local path cannot be shared.
 4. Find the synced file with the Google Drive connector and return its link. Without the
-   connector, return the Drive path and say the link needs it.
+   connector, return the Drive path and say that a link needs the connector.
 
-Never change sharing permissions; the file inherits its folder's access. Say who that
-folder reaches when it is not the client's shared drive.
+Never change sharing permissions. The file inherits its folder's access, so when the
+folder is not the client's shared drive, say who can open it.
 
-Anything leaving the client's own folder describes the client by sector, never by name.
+A file that leaves the client's own folder describes the client by sector and never by
+name.

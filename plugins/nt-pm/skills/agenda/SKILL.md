@@ -5,11 +5,11 @@ description: Draft a default agenda for an upcoming client call from the calenda
 
 # Agenda
 
-Draft an agenda that gets each needed decision made on the call and assigned an owner.
+Draft an agenda that gets each needed decision made on the call and gives it an owner.
 
-Run `intake` for phase `agenda`. Resolve the event: the one named, else the client's next
-call on Google Calendar. Check the ledger per [../../ledger.md](../../ledger.md); a hit
-ends the run.
+Run `intake` for phase `agenda`. Use the event the user named, or the client's next call
+on Google Calendar. Check the ledger per [../../ledger.md](../../ledger.md), and stop if
+the key is already written.
 
 Build from these, highest priority first:
 
@@ -21,9 +21,10 @@ Build from these, highest priority first:
 
 Write claims per [../../recap-format.md](../../recap-format.md#claims).
 
-Fit the agenda to the event length by dropping the lowest priority items first. Each item
-names the input wanted and its owner. Make an item a decision only when the sources show
-the client must choose on this call; otherwise make it a topic with a proposed default.
+Fit the agenda to the length of the event, dropping the lowest-priority items first. Each
+item names the input wanted and who owns it. List an item as a decision only when the
+sources show the client has to choose on this call. Otherwise list it as a topic with a
+proposed default.
 
 ```text
 🗓️ *<Client>: <Event title> (M/D, h:mm)*
@@ -45,8 +46,8 @@ What the call must leave with, in one line.
 • *Item:* Status. _Owner_
 ```
 
-Select Worked through items per
+Choose Worked through items per
 [../../recap-format.md](../../recap-format.md#worked-through). Omit empty sections. When
-the target is the meeting itself, offer a `deck` from
+the agenda will be shown in the meeting, offer a `deck` built from
 [../../examples/agenda.deck.md](../../examples/agenda.deck.md). Write to the target per
 [../../outputs.md](../../outputs.md).

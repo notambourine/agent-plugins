@@ -46,7 +46,7 @@ section.lead {
    reads as heavy as a 2em headline. */
 section.lead h1 { font-size: 3.2em; margin-bottom: 0.15em; }
 section.lead p:not(.eyebrow) { font-size: 0.85em; color: var(--fg3, #8A8A92); max-width: 64ch; text-wrap: balance; }
-section.lead p.eyebrow:last-of-type { margin-top: 1.4em; color: var(--fg-mute, #5A5A62); }
+section.lead p.eyebrow:last-of-type { margin-top: 1.4em; color: var(--fg3, #8A8A92); }
 
 section h1, section h2, section h3, section h4 {
   font-family: var(--font-display, system-ui, sans-serif);
@@ -103,7 +103,8 @@ section:not(.lead) > p.eyebrow ~ p.eyebrow {
    where the base layer and this theme both apply, so the fix belongs here
    rather than in a weaker elements.css. */
 section p { margin: 0; text-wrap: pretty; font-size: inherit; line-height: inherit; color: inherit; }
-section a { color: var(--accent, #E75A7C); text-decoration: none; }
+/* Underlined, as in prose.css: pink and body grey share a luminance. */
+section a { color: var(--accent-text, #E75A7C); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 section strong { color: var(--fg1, #F5F5F7); font-weight: 600; }
 section em { font-style: italic; }
 
@@ -116,8 +117,9 @@ section li::marker { color: var(--accent, #E75A7C); }
 
 section code {
   font-family: var(--font-mono, ui-monospace, monospace);
-  background: var(--accent-soft, rgba(231,90,124,0.16));
-  color: var(--accent-fg, #F5A6BB);
+  background: var(--bg-raised, #1C1C1F);
+  color: var(--fg1, #F5F5F7);
+  border: 1px solid var(--line, #2A2A2E);
   padding: 2px 8px;
   border-radius: var(--r-xs, 6px);
   font-size: 0.82em;
@@ -134,18 +136,19 @@ section pre {
 }
 section pre code {
   background: none;
+  border: 0;
   color: var(--fg2, #C9C9CE);
   padding: 0;
   font-size: 1em;
 }
 
-/* The left rule is quotation grammar, not a card stripe; the
-   no-colored-left-border non-negotiable governs cards. */
+/* Rules above and below, as in prose.css: no colored left stripe, even here. */
 section blockquote {
-  border-left: 2px solid var(--support, #58C9B9);
-  padding-left: 0.8em;
+  border-block: 1px solid var(--line, #2A2A2E);
+  padding: 0.6em 0;
   margin: 0;
-  color: var(--fg3, #8A8A92);
+  font-family: var(--font-display, system-ui, sans-serif);
+  color: var(--fg1, #F5F5F7);
 }
 
 section table {
@@ -185,16 +188,14 @@ section.divider h1, section.divider h2, section.divider h3 {
   color: var(--accent-text, #E75A7C);
 }
 
-/* `<!-- _class: quote -->` - the whole slide is the quotation, so the left rule
-   that marks a quote inside prose would be marking nothing. */
+/* `<!-- _class: quote -->` - the whole slide is the quotation, so the rules
+   that mark a quote inside prose would be marking nothing. */
 section.quote { align-items: center; justify-content: center; text-align: center; }
 section.quote blockquote {
-  border-left: 0;
-  padding-left: 0;
-  font-family: var(--font-display, system-ui, sans-serif);
+  border: 0;
+  padding: 0;
   font-size: 1.5em;
   line-height: 1.3;
-  color: var(--fg1, #F5F5F7);
   text-wrap: balance;
 }
 section.quote blockquote > * + * { margin-top: 0.6em; }
@@ -272,7 +273,7 @@ section p:has(> img:only-child) + p:has(> em:only-child) {
 
 /* `<!-- paginate: true -->` opts a deck in; Marpit fills the attribute. */
 section::after {
-  color: var(--fg-mute, #5A5A62);
+  color: var(--fg3, #8A8A92);
   font-family: var(--font-accent, ui-monospace, monospace);
   font-size: 13px;
   padding: 28px 56px;
@@ -319,7 +320,7 @@ section > header, section > footer {
   font-weight: var(--fw-semibold, 600);
   letter-spacing: var(--ls-allcaps, 0.08em);
   text-transform: uppercase;
-  color: var(--fg-mute, #5A5A62);
+  color: var(--fg3, #8A8A92);
   text-align: left;
   white-space: nowrap;
   overflow: hidden;

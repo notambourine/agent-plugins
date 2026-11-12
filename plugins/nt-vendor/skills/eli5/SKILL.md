@@ -7,4 +7,5 @@ disable-model-invocation: true
 
 # ELI5
 
-Explain `$ARGUMENTS` for a complete beginner. HTML artifact. Big pictures. Few words.
+Explain `$ARGUMENTS` to someone who knows nothing about it. Build an HTML artifact with
+big pictures and few words.

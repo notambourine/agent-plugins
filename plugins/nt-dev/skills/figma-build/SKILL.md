@@ -9,7 +9,8 @@ argument-hint: "[epic-issue-number]"
 # Figma page build
 
 Ship one epic of several sections as a page that matches its frames at every breakpoint.
-The repo's Figma workflow owns frame-level mechanics; this skill runs the page.
+The repo's own Figma workflow covers how to read a single frame. This skill covers the
+page as a whole.
 
 ## Resolve the spec
 
@@ -35,9 +36,9 @@ Land shared work first: theme-complete tokens, then primitives that leave existi
 consumers unchanged, then assets exported from the recorded node IDs in the project's
 format.
 
-Build the first section alone; it exposes the missing shared work. Then build the rest in
-parallel. Each worker stays inside its section and hands missing tokens or primitives back
-to the coordinator.
+Build the first section alone, because it shows what shared work is still missing. Then
+build the rest in parallel. Each worker stays inside its section and hands missing tokens
+or primitives back to the coordinator.
 
 Follow the repo's server/client split and keep interactive state in small leaves. Copy
 frame text verbatim. Flag placeholders and conflicting copy; never invent content.

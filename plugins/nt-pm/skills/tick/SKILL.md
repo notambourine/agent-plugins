@@ -6,24 +6,26 @@ disable-model-invocation: true
 
 # Tick
 
-Runs unattended. Never ask questions; report what was skipped and why.
+This skill runs unattended. Never ask a question. Report what was skipped and why.
 
-Run it every 15 minutes with `/loop 15m /nt-pm:tick` or a desktop scheduled task. Cloud
-routines run at most hourly and have no `gh`, `typst`, or `NT_PM_CLIENT_DIR`. They suit an
-hourly follow-up sweep, not agendas.
+Run it every 15 minutes with `/loop 15m /nt-pm:tick` or a desktop scheduled task. A cloud
+routine runs at most hourly and has no `gh`, Drive mount, or `NT_PM_CLIENT_DIR`, so use
+one only for an hourly follow-up sweep.
 
-Run the cheapest check first, and drop an event at its first miss:
+Take the steps in order, cheapest first, and drop an event at the first step it fails:
 
 1. Read Google Calendar from 4 hours ago to 2 hours ahead. Drop declined, cancelled, and
    all-day events.
-2. Match each event to a client config in `$NT_PM_CLIENT_DIR` by attendee domain. No
-   match: skip. This drops internal meetings.
+2. Match each event to a client context in `$NT_PM_CLIENT_DIR` by attendee domain. Skip an
+   event that matches none, which removes internal meetings.
 3. Pick the phase:
-   - `agenda`: the call starts within `timing.agenda-lead`.
-   - `follow-up`: the call ended and Granola has its notes. No notes yet: skip until a
-     later tick. Past `timing.notes-timeout`: report once.
-4. Check the ledger per [../../ledger.md](../../ledger.md). Hit: skip.
-5. Run `agenda` or `follow-up` for that event.
+   - `agenda` when the call starts within `timing.agenda-lead`.
+   - `follow-up` when the call has ended and Granola has its notes. If the notes are not
+     there yet, skip until a later run. Once `timing.notes-timeout` has passed, report the
+     missing notes once.
+4. Check the ledger per [../../ledger.md](../../ledger.md). Skip an event whose key is
+   written.
+5. Run `agenda` or `follow-up` for the event.
 
-Return one line per event acted on or reported, and nothing for silent skips. Nothing due:
-return `nothing due`.
+Return one line for each event acted on or reported, and nothing for the rest. If nothing
+was due, return `nothing due`.

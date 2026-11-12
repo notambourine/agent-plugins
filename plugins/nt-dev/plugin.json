@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nt-dev",
-  "description": "Standardizes everyday development work and house conventions.",
+  "description": "Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in NoTambourine conventions.",
   "author": {
     "name": "NoTambourine LLC",
     "url": "https://notambourine.com"
@@ -14,15 +14,15 @@
       "hooks": [],
       "interface": {
         "displayName": "NoTambourine Development",
-        "shortDescription": "Development workflows and house conventions.",
-        "longDescription": "Creates pull requests, issues, commits, code cleanups, recalls, and end-of-day updates using NoTambourine conventions.",
+        "shortDescription": "Development skills in NoTambourine conventions.",
+        "longDescription": "Writes commits, draft pull requests, issues, and end-of-day notes, recalls earlier sessions, and audits checked-in agent context, all in NoTambourine conventions.",
         "developerName": "NoTambourine LLC",
         "category": "Developer Tools",
         "capabilities": ["Write"],
         "defaultPrompt": [
           "Create a draft pull request for my current branch.",
-          "Clean up the code I changed without altering behavior.",
-          "Recall the context behind this repository change."
+          "Audit this repo's checked-in agent context for drift.",
+          "Recall what the last session in this repo decided."
         ]
       }
     }

@@ -2,8 +2,9 @@
    NoTambourine: component recipes
    ---------------------------------------------------------
    The ~80% of UI you actually build: button, badge, chip,
-   input, card, switch/check/radio, the page shell, and the
-   layout primitives. examples/ shows each in markup.
+   input, card, alert, dialog, switch/check/radio, the page
+   shell, and the layout primitives. examples/ shows each in
+   markup.
 
    Native CSS, no build step, no framework. Every color, radius,
    space, and duration is a var() from tokens.css, so load that
@@ -17,10 +18,11 @@
 
 /* --- Button: soft rectangle; pills are for badges and chips - */
 .nt-btn {
-  --h: 40px;
+  --h: var(--control-h);
   font-family: var(--font-accent);
   font-weight: var(--fw-semibold);
-  font-size: var(--fs-label);
+  font-size: var(--fs-body);
+  text-decoration: none;
   block-size: var(--h);
   padding: 0 var(--sp-4);
   /* Strokes are inset shadows, never borders, so every variant is one height. */
@@ -40,17 +42,16 @@
 }
 .nt-btn--sm { --h: 30px; padding: 0 var(--sp-3); font-size: var(--fs-caption); border-radius: var(--r-xs); }
 .nt-btn--lg { --h: 48px; padding: 0 var(--sp-6); font-size: var(--fs-small); border-radius: var(--r-md); }
+/* Square, for a lone icon. Give it an aria-label. */
+.nt-btn--icon { inline-size: var(--h); padding: 0; }
 
 /* One pink CTA per screen. Lit top edge and shaded bottom give the fill a
-   body; hover lightens, since ink on the darker press tone fails AA. */
+   body; hover only lightens, since a halo would read as a focus ring. */
 .nt-btn--primary {
   background: var(--accent); color: var(--fg-on-pink);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), inset 0 -1px 0 rgb(0 0 0 / 0.18), var(--shadow-1);
 }
-.nt-btn--primary:hover:not(:disabled) {
-  background: color-mix(in oklab, var(--accent), white 10%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.32), inset 0 -1px 0 rgb(0 0 0 / 0.18), 0 0 0 4px var(--accent-soft);
-}
+.nt-btn--primary:hover:not(:disabled) { background: color-mix(in oklab, var(--accent), white 10%); }
 .nt-btn--secondary { background: var(--bg-raised); color: var(--fg1); box-shadow: inset 0 0 0 1px var(--line), var(--shadow-edge); }
 .nt-btn--secondary:hover:not(:disabled) { background: var(--bg-input); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--fg3), transparent 50%), var(--shadow-edge); }
 /* Neutral hover: a pink ghost would be a second pink CTA. */
@@ -61,6 +62,8 @@
 /* Fade, don't grey out: the variant stays legible as what it would be. */
 .nt-btn:disabled   { opacity: 0.4; cursor: not-allowed; }
 .nt-btn--primary:disabled { box-shadow: none; }
+/* Busy holds still: no spinner, since nothing in the brand loops. Swap the label. */
+.nt-btn[aria-busy="true"] { opacity: 0.7; cursor: progress; pointer-events: none; }
 
 /* Scale only on press, never on hover. Snaps down, springs back. */
 .nt-btn:active:not(:disabled) { scale: 0.96; transition-duration: var(--dur-2), var(--dur-2), var(--dur-2), var(--dur-1); }
@@ -68,14 +71,14 @@
 /* --- Badge -------------------------------------------------- */
 .nt-badge {
   font-family: var(--font-accent);
-  font-size: var(--fs-badge);
+  font-size: var(--fs-caption);
   font-weight: var(--fw-semibold);
   letter-spacing: 0.04em;
   padding: var(--sp-1) var(--sp-3);
   border-radius: var(--r-pill);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--sp-1);
   white-space: nowrap;
 }
 .nt-badge--pink    { background: var(--accent-soft); color: var(--accent-fg); }
@@ -87,9 +90,9 @@
 /* --- Filter chip -------------------------------------------- */
 .nt-chip {
   font-family: var(--font-accent);
-  font-size: var(--fs-label);
+  font-size: var(--fs-body);
   font-weight: var(--fw-medium);
-  padding: 6px var(--sp-3);
+  padding: var(--sp-1) var(--sp-3);
   border-radius: var(--r-pill);
   border: 1px solid var(--line);
   background: var(--bg-card);
@@ -98,34 +101,42 @@
   transition: background-color var(--dur-2) var(--ease-out), color var(--dur-2) var(--ease-out),
               border-color var(--dur-2) var(--ease-out), scale var(--dur-3) var(--ease-spring);
 }
-.nt-chip:hover { border-color: var(--fg3); color: var(--fg1); }
-.nt-chip:active { scale: 0.96; }
+.nt-chip:hover:not(:disabled) { border-color: var(--fg3); color: var(--fg1); }
+.nt-chip:active:not(:disabled) { scale: 0.96; }
 .nt-chip[aria-pressed="true"] { background: var(--fg1); color: var(--bg); border-color: var(--fg1); }
 
 /* --- Input -------------------------------------------------- */
-.nt-field { display: flex; flex-direction: column; gap: 6px; }
-.nt-field > label { font-family: var(--font-accent); font-size: var(--fs-label); font-weight: var(--fw-semibold); color: var(--fg1); }
+.nt-field { display: flex; flex-direction: column; gap: var(--sp-2); }
+.nt-field > label { font-family: var(--font-accent); font-size: var(--fs-body); font-weight: var(--fw-semibold); color: var(--fg1); }
 .nt-field .nt-hint { font-size: var(--fs-caption); color: var(--fg3); }
-.nt-field .nt-err  { font-size: var(--fs-caption); color: var(--accent-fg); }
+/* Danger, not pink, and led by an icon: an error never rests on hue. */
+.nt-field .nt-err  { display: flex; align-items: center; gap: var(--sp-1); font-size: var(--fs-caption); color: var(--danger-fg); }
 
+/* Works on input, select, and textarea. The fill is the raised surface, where
+   the placeholder holds 4.5:1; the border carries the 3:1 boundary. */
 .nt-input {
   font-family: var(--font-body);
   font-size: var(--fs-body);
   color: var(--fg1);
-  padding: 0.625rem var(--sp-3);
+  block-size: var(--control-h);
+  padding: 0 var(--sp-3);
   border-radius: var(--r-sm);
-  border: 1px solid var(--line);
-  background: var(--bg-input);
-  outline: none;
+  border: 1px solid var(--line-control);
+  background: var(--bg-raised);
   transition: border-color var(--dur-2) var(--ease-out), box-shadow var(--dur-3) var(--ease-out);
 }
+textarea.nt-input { block-size: auto; min-block-size: 6lh; padding-block: var(--sp-2); resize: vertical; }
+select.nt-input { cursor: pointer; }
 /* iOS Safari auto-zooms a focused input under 16px; only touch needs the floor. */
 @media (pointer: coarse) { .nt-input { font-size: max(var(--fs-body), 1rem); } }
-.nt-input:hover:not(:focus, :disabled) { border-color: color-mix(in oklab, var(--fg3), transparent 50%); }
-.nt-input::placeholder { color: var(--fg-mute); }
-.nt-input:focus        { border-color: var(--accent); box-shadow: var(--ring-accent); }
-.nt-input[aria-invalid="true"] { border-color: var(--accent); }
-.nt-input:disabled     { background: var(--bg-card); color: var(--fg-mute); cursor: not-allowed; }
+.nt-input:hover:not(:focus, :disabled) { border-color: var(--fg3); }
+.nt-input::placeholder { color: var(--fg3); opacity: 1; }
+.nt-input:focus        { border-color: var(--accent-text); box-shadow: var(--ring-accent); }
+/* One focus indicator: the border and ring stand in for the base outline. */
+.nt-input:focus-visible { outline: 0; animation: none; }
+.nt-input[aria-invalid="true"] { border-color: var(--danger); }
+.nt-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px var(--danger-soft); }
+.nt-input:disabled     { background: var(--bg-card); border-color: var(--line); color: var(--fg-disabled); cursor: not-allowed; }
 
 /* --- Card: full border, never a colored left stripe -------- */
 .nt-card {
@@ -144,19 +155,44 @@
 /* Doubled class so the hover edge never repaints the feature border. */
 .nt-card.nt-card--accent  { border-color: var(--accent); }
 .nt-card.nt-card--support { border-color: var(--support); }
+/* --hover belongs on these alone: a hover on a plain div promises a click. */
+:is(a, button).nt-card { cursor: pointer; text-decoration: none; }
+
+/* --- Alert: a status message. The icon carries the meaning -- */
+.nt-alert {
+  display: flex; align-items: flex-start; gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  background: var(--bg-card); color: var(--fg1);
+}
+.nt-alert > svg { flex-shrink: 0; margin-top: 0.2em; color: var(--fg3); }
+.nt-alert--danger  { border-color: var(--danger); background: var(--danger-soft); }
+.nt-alert--danger > svg  { color: var(--danger-fg); }
+.nt-alert--support { border-color: var(--support); background: var(--support-soft); }
+.nt-alert--support > svg { color: var(--support-fg); }
+
+/* --- Dialog: on a native <dialog>, so the focus trap and Esc come free */
+.nt-dialog {
+  width: min(100% - 2 * var(--gutter), 480px);
+  padding: var(--sp-6);
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--bg-raised); color: var(--fg2);
+  box-shadow: var(--shadow-edge), var(--shadow-3);
+}
+.nt-dialog::backdrop { background: var(--bg-veil); }
 
 /* --- Page shell: skip link, header, footer ------------------ */
 .nt-skip {
   position: fixed; top: var(--sp-4); left: var(--sp-4); z-index: 100;
   padding: 0.625rem var(--sp-4); border-radius: var(--r-xs);
-  background: var(--fg1); color: var(--bg); border: 0;
+  background: var(--fg1); color: var(--bg); text-decoration: none;
   translate: 0 -200%;
 }
 .nt-skip:focus { translate: 0; }
 
 /* The outlined lockup.svg, never live wordmark text: no font to load and
    no glyph drift. Size it with --lockup-width. */
-.nt-brand { display: inline-flex; width: var(--lockup-width, 178px); border: 0; }
+.nt-brand { display: inline-flex; width: var(--lockup-width, 178px); }
 .nt-brand img { display: block; width: 100%; height: auto; }
 
 .nt-nav-note { font-family: var(--font-accent); font-size: var(--fs-caption); color: var(--fg3); }
@@ -168,27 +204,26 @@
   display: flex; flex-wrap: wrap; align-items: center;
   gap: var(--sp-3) var(--sp-6);
   min-height: 72px;
-  padding: var(--sp-3) var(--sp-8);
+  /* The rule runs edge to edge; the content sits in the page container. */
+  padding: var(--sp-3) max(var(--gutter), (100% - var(--page-max)) / 2);
   border-bottom: 1px solid var(--line-soft);
 }
 .nt-header__links { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-6); margin-left: auto; }
 .nt-header__links a {
-  font-family: var(--font-accent); font-size: var(--fs-caption); font-weight: var(--fw-medium);
-  color: var(--fg3); padding-block: 6px; border-bottom: 1.5px solid transparent;
-  transition: color var(--dur-2) var(--ease-out);
+  font-family: var(--font-accent); font-size: var(--fs-body); font-weight: var(--fw-medium);
+  color: var(--fg3); text-decoration: none;
+  padding-block: var(--sp-2); border-bottom: 1.5px solid transparent;
+  transition: color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
 .nt-header__links a:hover,
-.nt-header__links a[aria-current] { color: var(--fg1); border-bottom-color: transparent; }
-.nt-header__links a[aria-current] { border-bottom-color: var(--accent); }
-
-/* Secondary, not pink: the wordmark and the page's closing button own the
-   pink. Markup pairs it with .nt-btn--secondary.nt-btn--sm; this only places it. */
-.nt-header__cta { border-bottom: 0; }
+.nt-header__links a[aria-current] { color: var(--fg1); }
+/* Neutral, like every other selected state: pink stays the CTA's. */
+.nt-header__links a[aria-current] { border-bottom-color: var(--fg1); }
 
 .nt-footer {
   --lockup-width: 148px;
   display: grid; gap: var(--sp-8);
-  width: min(100% - 3rem, 1100px); margin-inline: auto;
+  width: min(100% - 2 * var(--gutter), var(--page-max)); margin-inline: auto;
   padding-block: var(--sp-12) var(--sp-8);
   border-top: 1px solid var(--line-soft);
   font-family: var(--font-accent); font-size: var(--fs-caption); color: var(--fg3);
@@ -197,27 +232,28 @@
 .nt-footer__label { font-size: inherit; font-weight: var(--fw-semibold); color: var(--fg1); margin: 0 0 var(--sp-3); }
 .nt-footer__legal { font-size: inherit; color: inherit; margin: 0; }
 .nt-footer ul { display: grid; gap: var(--sp-2); list-style: none; margin: 0; padding: 0; }
-.nt-footer a { color: inherit; border: 0; transition: color var(--dur-2) var(--ease-out); }
+.nt-footer a { color: inherit; text-decoration: none; transition: color var(--dur-2) var(--ease-out); }
 .nt-footer a:hover,
 .nt-footer a[aria-current] { color: var(--fg1); }
 
 @media (max-width: 720px) {
-  .nt-header { padding-inline: var(--sp-4); }
   /* Lockup and call to action share the first row; links wrap below. */
   .nt-header__links { order: 1; width: 100%; margin-left: 0; }
+  /* Pair it with .nt-btn--secondary.nt-btn--sm, never pink: the wordmark and
+     the page's closing button own the pink. */
   .nt-header__cta { margin-left: auto; }
-  .nt-footer { width: min(100% - 2rem, 1100px); }
 }
 
 /* --- Layout: one copy column, two or three card columns ---- */
 /* Uninherited, so a stack's gap never leaks into a cluster or grid inside it. */
 @property --gap { syntax: '*'; inherits: false; }
-.nt-measure { max-width: 640px; margin-inline: auto; }
+/* ch, not px: the measure is a character count, and it tracks the face. */
+.nt-measure { max-width: 68ch; margin-inline: auto; }
 .nt-stack   { display: flex; flex-direction: column; gap: var(--gap, var(--sp-6)); }
 .nt-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, var(--sp-3)); }
-/* Never four: the 240px floor caps a 640-1100px column at two or three. */
-.nt-grid    { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--gap, var(--sp-4)); }
-.nt-section { padding: var(--sp-12) var(--sp-8); border-top: 1px solid var(--line-soft); }
+/* Never four: a column is at least a third of the row, and at least 240px. */
+.nt-grid    { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, max(240px, (100% - 2 * var(--gap, var(--sp-4))) / 3)), 1fr)); gap: var(--gap, var(--sp-4)); }
+.nt-section { padding: var(--sp-12) max(var(--gutter), (100% - var(--page-max)) / 2); border-top: 1px solid var(--line-soft); }
 @media (min-width: 640px) { .nt-section { padding-block: var(--sp-16); } }
 
 /* Opt-in entrance: fades up once as it scrolls into view. Never loops, and
@@ -230,47 +266,44 @@
 @keyframes nt-rise { from { opacity: 0; translate: 0 12px; } }
 
 /* --- Switch / checkbox / radio ------------------------------ */
-.nt-switch {
-  width: 40px; height: 24px; flex-shrink: 0; cursor: pointer; position: relative; padding: 0;
-  border-radius: var(--r-pill); border: 1px solid var(--line);
-  background: var(--bg-input); transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
+/* Native inputs: `<input type="checkbox" class="nt-check">`, `type="radio"`
+   for .nt-radio, and `type="checkbox" role="switch"` for .nt-switch. They
+   toggle, submit, and take arrow keys with no script. */
+.nt-switch, .nt-check, .nt-radio {
+  appearance: none; margin: 0; flex-shrink: 0; cursor: pointer; position: relative;
+  border: 1.5px solid var(--line-control); background: var(--bg-card);
+  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
 }
+/* Selected is neutral, as on a pressed chip: pink stays the CTA's. */
+:is(.nt-switch, .nt-check, .nt-radio):checked { border-color: var(--fg1); }
+:is(.nt-switch, .nt-check):checked { background: var(--fg1); }
+:is(.nt-switch, .nt-check, .nt-radio, .nt-chip):disabled { opacity: 0.4; cursor: not-allowed; }
+
+.nt-switch { width: 40px; height: 24px; border-radius: var(--r-pill); background: var(--bg-input); }
 /* The knob springs across and stretches while held, like a real toggle. */
-.nt-switch::after { content: ''; position: absolute; top: 3px; left: 3px;
+.nt-switch::after { content: ''; position: absolute; top: 2.5px; left: 2.5px;
                     width: 16px; height: 16px; border-radius: var(--r-pill); background: var(--fg3);
                     transition: translate var(--dur-3) var(--ease-spring), width var(--dur-2) var(--ease-out),
                                 background-color var(--dur-2) var(--ease-out); }
-.nt-switch:active::after { width: 20px; }
-.nt-switch[aria-checked="true"]        { background: var(--accent); border-color: var(--accent); }
-.nt-switch[aria-checked="true"]::after { translate: 16px; background: var(--fg-on-pink); }
-.nt-switch[aria-checked="true"]:active::after { translate: 12px; }
+.nt-switch:active:not(:disabled)::after { width: 20px; }
+.nt-switch:checked::after { translate: 16px; background: var(--bg); }
+.nt-switch:checked:active:not(:disabled)::after { translate: 12px; }
 
-/* Put .nt-check/.nt-radio on a <button>: it tabs and clicks natively,
-   where a span needs tabindex and key handling bolted on. */
-.nt-check {
-  width: 20px; height: 20px; flex-shrink: 0; padding: 0; cursor: pointer;
-  appearance: none;
-  border-radius: var(--r-xs); border: 1.5px solid var(--fg3); background: var(--bg-card);
-  display: inline-flex; align-items: center; justify-content: center;
-  transition: background-color var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out);
-}
-.nt-check[aria-checked="true"] { background: var(--accent); border-color: var(--accent); }
-.nt-check svg { scale: 0; transition: scale var(--dur-3) var(--ease-spring); }
-.nt-check[aria-checked="true"] svg { scale: 1; }
+.nt-check { width: 20px; height: 20px; border-radius: var(--r-xs); }
+/* A mask, so the tick takes a token: an input holds no child svg. */
+.nt-check::after { content: ''; position: absolute; inset: 0; background: var(--bg);
+                   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat;
+                   scale: 0; transition: scale var(--dur-3) var(--ease-spring); }
+.nt-check:checked::after { scale: 1; }
 
-.nt-radio {
-  width: 20px; height: 20px; flex-shrink: 0; position: relative; padding: 0;
-  cursor: pointer; appearance: none;
-  border-radius: 50%; border: 1.5px solid var(--fg3); background: var(--bg-card);
-  transition: border-color var(--dur-2) var(--ease-out);
-}
+.nt-radio { width: 20px; height: 20px; border-radius: 50%; }
 .nt-radio::after { content: ''; position: absolute; inset: 3px; border-radius: 50%;
-                   background: var(--accent); scale: 0; transition: scale var(--dur-3) var(--ease-spring); }
-.nt-radio[aria-checked="true"]        { border-color: var(--accent); }
-.nt-radio[aria-checked="true"]::after { scale: 1; }
+                   background: var(--fg1); scale: 0; transition: scale var(--dur-3) var(--ease-spring); }
+.nt-radio:checked::after { scale: 1; }
 
-/* Row wrapper for a toggle + its label */
+/* A <label> around a toggle and its text, so the whole row is the target. */
 .nt-toggle-row {
+  cursor: pointer;
   display: flex; align-items: center; gap: var(--sp-3);
   padding: var(--sp-3) var(--sp-4);
   border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg-raised);

@@ -18,8 +18,8 @@ A comment stays only when both hold:
 - The surrounding code or config cannot show the fact.
 - Without it, a competent editor could make a wrong change.
 
-A survivor explains why a choice wins or warns of a trap. One line when possible, two at
-most, and never longer than the code it covers.
+A comment that stays explains why a choice wins or warns of a trap. Keep it to one line
+when possible and two at most, and never longer than the code it covers.
 
 Delete comments that describe code, explain well-named values or routine config switches,
 narrate a change, repeat another comment or a memory rule, or carry authorship, tags, or
@@ -41,9 +41,9 @@ directives, lint and type suppressions, TODOs and FIXMEs linked to an issue, hoo
 
 ## Apply
 
-Read each comment in context. Delete the failures first, then shorten survivors. Keep
-traps at their point of use. Ask before moving broader rationale into a commit body, PR,
-or repo memory file. Leave edits uncommitted.
+Read each comment in context. Delete the ones that fail the test, then shorten the rest.
+Keep a trap warning at the line it protects. Ask before moving broader rationale into a
+commit body, PR, or repo memory file. Leave edits uncommitted.
 
 Confirm every diff hunk changed only comments:
 

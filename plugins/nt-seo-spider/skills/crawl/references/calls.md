@@ -10,9 +10,9 @@
 | Malformed JSON-LD, not merely invalid | report `Structured Data:Parse Errors` |
 | Pages with no structured data | element `Structured Data`, filter `Missing` |
 
-Summary first, per-URL second. Google's rich-result rules are stricter than schema.org validity:
-`Course.description` must be 60 characters or fewer, so a Course graph needs its own short field, not
-reused page prose.
+Run the summary before the per-URL report. Google's rich-result rules are stricter than schema.org
+validity. For example, `Course.description` must be 60 characters or fewer, so a Course graph needs
+its own short field and cannot reuse page prose.
 
 ### Crawlability and delivery
 

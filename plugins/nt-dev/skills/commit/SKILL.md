@@ -11,13 +11,14 @@ allowed-tools:
 
 # Commit
 
-One commit, one coherent scope. Split broader work.
+Give each commit one coherent scope, and split work that covers more.
 
-Subject: `scope: lowercase imperative description`, under 72 characters, in the repo's
-vocabulary. No Conventional Commit type. Nest a scope when it helps; join two with `a,b`.
-The subject is the BLUF (bottom line up front): the outcome a `git log --oneline` reader
-needs, never the mechanism.
+Write the subject as `scope: lowercase imperative description`, under 72 characters, in
+the repo's vocabulary and with no Conventional Commit type. Nest a scope when that helps,
+and join two as `a,b`. The subject is the BLUF (bottom line up front): it states the
+outcome, because that is what someone reading `git log --oneline` needs.
 
-Add a body only for rationale the diff hides, a trap, or an issue it closes.
+Add a body only for rationale the diff does not show, a trap, or an issue the commit
+closes.
 
-Stage the paths you touched. Never `git add -A`.
+Stage the paths you touched. Never run `git add -A`.

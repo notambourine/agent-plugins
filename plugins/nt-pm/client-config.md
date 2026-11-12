@@ -1,23 +1,23 @@
 # Client context contract
 
-Every client skill reads client facts from a context file. Client facts never live in this
-plugin or its repo.
+Every client skill reads its client facts from a context file. Those facts never live in
+this plugin or its repo.
 
 ## Location
 
-Read the first one that exists:
+Read the first of these that exists:
 
-1. `.claude/refs/client-context.md` in the current repo, for one client and repo-scoped
-   work.
-2. `$NT_PM_CLIENT_DIR/<client>/client-context.md`, for every client; `tick` reads here.
-   Set `NT_PM_CLIENT_DIR` in user settings `env` to a synced folder.
+1. `.claude/refs/client-context.md` in the current repo, for work scoped to one client's
+   repo.
+2. `$NT_PM_CLIENT_DIR/<client>/client-context.md`, which covers every client and is where
+   `tick` reads. Set `NT_PM_CLIENT_DIR` to a synced folder in user settings `env`.
 
-Read a legacy `nt-pm.md` at either path when no `client-context.md` exists, and offer to
-rename it.
+When neither path has a `client-context.md` but one has a legacy `nt-pm.md`, read that
+and offer to rename it.
 
-Neither exists: offer to write one. Seed it from what the connectors find: Slack channels
-matching the client, the tracker project, the Drive folder, the repo. Never write it
-inside a plugin directory or this marketplace repo.
+When no file exists, offer to write one. Seed it from what the connectors find: the Slack
+channels that match the client, the tracker project, the Drive folder, and the repo. Never
+write it inside a plugin directory or this marketplace repo.
 
 ## Template
 
@@ -55,7 +55,7 @@ complete. Board guide: the project description.
 
 ## Conventions
 
-- Weekly call decks: `weekly-calls/<YYYY-MM-DD> <name>.pdf`.
+- Weekly call decks land in `weekly-calls/`.
 - Shipped means live on the production branch.
 
 ## Context map
@@ -69,7 +69,7 @@ complete. Board guide: the project description.
 | Field                    | Default           | Meaning                                                                                        |
 | ------------------------ | ----------------- | ---------------------------------------------------------------------------------------------- |
 | `domains`                | required          | Attendee email domains that tie a calendar event to this client                                |
-| `sources.slack.internal` | required          | Team channels about the client; Slack is always on                                             |
+| `sources.slack.internal` | required          | Team channels about the client; Slack is always read                                           |
 | `sources.slack.external` | none              | Shared channels with the client; read for asks, approvals, and tone                            |
 | `sources.granola`        | `false`           | Read call notes from Granola                                                                   |
 | `sources.drive`          | none              | Folder read for context and written for Doc outputs                                            |
@@ -87,15 +87,15 @@ A flat `sources.slack` list counts as `internal`.
 
 ## Body
 
-The body is the memory skills write back to. Where it and a skill default conflict, the
-body wins.
+Skills write what they learn about the client back to the body. Where the body and a
+skill's default disagree, follow the body.
 
 - **Tracker:** the stage field, what each stage means, and where the board guide lives.
-  Read the board and record it before proposing a ticket move. Never name a stage the
+  Read the board and record it here before proposing a ticket move. Never name a stage the
   board does not have.
-- **Conventions:** naming, folders, and definitions the user corrected. Record each
-  correction here so the next session keeps it.
-- **Context map:** each channel, doc, board, or thread that held context, with one line on
-  what it holds. Add a place the first time it pays off.
+- **Conventions:** the naming, folders, and definitions the user has corrected. Record
+  each correction so the next session keeps it.
+- **Context map:** each channel, doc, board, or thread that held useful context, with one
+  line on what it holds. Add a place the first time it answers a question.
 
-Edit the body in place; keep it a map, never a log.
+Edit the body in place. It describes the client as they are now and keeps no history.

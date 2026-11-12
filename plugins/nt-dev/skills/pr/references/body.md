@@ -2,8 +2,9 @@
 
 ## Wording
 
-Write plainly: concrete nouns, no inflated adjectives, no `not just X but Y`, no closing
-flourish. Never name a client; describe them by sector and shape.
+Write plainly, with concrete nouns. Use no inflated adjectives, no `not just X but Y`,
+and no closing line that restates the body. Never name a client. Describe them by sector
+and shape.
 
 ## Body file
 

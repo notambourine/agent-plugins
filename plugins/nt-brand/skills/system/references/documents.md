@@ -20,15 +20,16 @@ print it with Chrome:
 
 ```bash
 KIT=node_modules/@notambourine/brand-kit
-pandoc doc.md -f gfm+yaml_metadata_block -s --embed-resources \
+pandoc <slug>.md -f gfm+yaml_metadata_block -s --embed-resources \
   --template $KIT/doc-template.html --css $KIT/doc-standalone.css -o doc.html
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
-  --no-pdf-header-footer --print-to-pdf=doc.pdf doc.html
+  --no-pdf-header-footer \
+  --print-to-pdf="NoTambourine · Client (SOW 2) NTB-CLI-SOW2.pdf" doc.html
 ```
 
 - `ref` prints in every page's footer beside the page number. Build it as
-  `NTB-<client code>-<document><number>` and use the same string for the
-  filename and the DocuSign envelope, so a citation finds all three.
+  `NTB-<client code>-<document><number>` and use the same string in the filename
+  and the DocuSign envelope, so a citation finds all three.
 - `-f gfm` keeps a lone image a paragraph rather than a `<figure>` and turns a
   trailing `\` into the break a stat card needs.
 - `doc-standalone.css` carries the faces, tokens, and lockup as data URIs, so

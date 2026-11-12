@@ -6,7 +6,8 @@
    A surface with its own base layer imports vars.css instead.
    ========================================================= */
 
-html { background: var(--bg); }
+/* color-scheme themes the native parts: select arrows, scrollbars, autofill. */
+html { background: var(--bg); color-scheme: dark; }
 /* Body, never html: the root size is the rem every token resolves against,
    so a 13px root would shrink the whole scale with it. */
 body {
@@ -39,12 +40,13 @@ h1, h2, h3, h4, .display {
                letter-spacing: var(--ls-display); font-weight: var(--fw-black); }
 h1           { font-size: var(--fs-h1); }
 h2           { font-size: var(--fs-h2); }
-h3           { font-size: var(--fs-h3); }
-h4           { font-size: var(--fs-h4); }
+/* Small headings wrap, and 1.15 collides their lines. */
+h3           { font-size: var(--fs-h3); line-height: var(--lh-tight); }
+h4           { font-size: var(--fs-h4); line-height: var(--lh-tight); }
 
 p            { font-size: var(--fs-body); line-height: var(--lh-body);
-               color: var(--fg3); margin: 0; text-wrap: pretty; }
-.lede        { font-size: var(--fs-lede); line-height: var(--lh-lede); color: var(--fg2); }
+               color: var(--fg2); margin: 0; text-wrap: pretty; }
+.lede        { font-size: var(--fs-lede); line-height: var(--lh-lede); }
 small        { font-size: var(--fs-caption); color: var(--fg3); }
 /* Sentence-case supporting label, used under a heading or over a logo wall.
    The sentence-case counterpart to .eyebrow; never ALL CAPS. */
@@ -58,13 +60,16 @@ small        { font-size: var(--fs-caption); color: var(--fg3); }
    the emphasis gets both the accent and a real slant, never a faked skew. */
 h1 em, h2 em, .display em { color: var(--accent-text); font-style: italic; }
 
-/* Pink links are for prose. Links in chrome (nav, footer, buttons,
-   a logo lockup) set `color: inherit` and take their color from
-   the component. */
-a            { color: var(--accent-text); text-decoration: none;
-               border-bottom: 1.5px solid transparent;
-               transition: border-color var(--dur-2) var(--ease-out); }
-a:hover      { border-bottom-color: var(--accent-text); }
+/* Pink, underlined links are for prose: pink and body grey share a luminance,
+   so the underline is what marks the link. Links in chrome (nav, footer,
+   buttons) set `color` and `text-decoration: none` on the component. */
+a            { color: var(--accent-text);
+               text-decoration: underline;
+               text-decoration-thickness: 1px;
+               text-underline-offset: 0.2em;
+               text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+               transition: text-decoration-color var(--dur-2) var(--ease-out); }
+a:hover      { text-decoration-color: currentColor; }
 
 /* Never ship without this. Pink ring, offset so it clears a pill.
    The outline traces the element's own corners, so no radius here: at
@@ -73,7 +78,8 @@ a:focus-visible, button:focus-visible,
 input:focus-visible, select:focus-visible, textarea:focus-visible,
 [role='switch']:focus-visible, [role='checkbox']:focus-visible,
 [role='radio']:focus-visible {
-  outline: 2px solid var(--accent);
+  /* --accent-text: the raw pink is only 3:1 on the light canvas. */
+  outline: 2px solid var(--accent-text);
   outline-offset: 4px;
   /* An animation, not a transition: at this specificity a transition
      shorthand would replace the component's own while focused. */
@@ -86,9 +92,11 @@ a:focus-visible { border-radius: var(--r-xs); }
 /* Controls ignore inherited type by default; a button-as-card would set Arial. */
 button, input, select, textarea { font: inherit; color: inherit; letter-spacing: inherit; }
 
-code, kbd, pre { font-family: var(--font-mono); font-size: var(--fs-mono); }
-code         { background: var(--accent-soft); color: var(--accent-fg);
-               padding: 2px 6px; border-radius: var(--r-xs); }
+code, kbd, pre { font-family: var(--font-mono); font-size: var(--fs-body); }
+/* Neutral: a file name is reference, and a pink tint reads as an alarm. */
+:not(pre) > code { background: var(--bg-raised); color: var(--fg1);
+               border: 1px solid var(--line);
+               padding: 0.05em 0.35em; border-radius: var(--r-xs); }
 
 hr           { border: 0; border-top: 1px solid var(--line); margin: var(--sp-8) 0; }
 
@@ -108,4 +116,4 @@ hr           { border: 0; border-top: 1px solid var(--line); margin: var(--sp-8)
 
 /* The light-theme token remap lives in vars.css, so the vars-alone
    import path carries both themes. This only applies the ground. */
-.theme-light { background: var(--bg); color: var(--fg2); }
+.theme-light { background: var(--bg); color: var(--fg2); color-scheme: light; }

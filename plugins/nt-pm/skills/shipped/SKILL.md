@@ -25,29 +25,30 @@ allowed-tools:
 
 # Deploy updates
 
-Draft the note. Never deploy. Follow [../../recap-format.md](../../recap-format.md).
+Draft the note and never deploy. Follow [../../recap-format.md](../../recap-format.md).
 
 ## Range
 
-- Pre-deploy (default): remote default branch to the first of `dev`, `staging`, `develop`,
-  `release`, else `HEAD`.
-- Retrospective: previous to current observed tip in the remote default branch's reflog.
-- An explicit range takes a reflog entry, SHA, tag, or date. A range named in the
-  invocation is final.
+- Pre-deploy, the default: from the remote default branch to the first of `dev`,
+  `staging`, `develop`, or `release` that exists, or to `HEAD`.
+- Retrospective: from the previous tip to the current tip in the remote default branch's
+  reflog.
+- Explicit: a reflog entry, SHA, tag, or date the user names. Use a named range as given.
 
-Fetch `origin`; stop if it fails. Resolve the endpoints, short SHAs, dates, and commit
-count, then write. Never ask the user to confirm the range.
+Fetch `origin` and stop if the fetch fails. Resolve the endpoints, short SHAs, dates, and
+commit count, then write. Never ask the user to confirm the range.
 
-- Zero commits: say nothing is pending or shipped.
-- Empty retrospective reflog: ask for a range.
-- No `origin`: ask for the deployment repo.
+- With zero commits, say that nothing is pending or shipped.
+- With an empty reflog on a retrospective, ask for a range.
+- With no `origin`, ask for the deployment repo.
 
 ## Read the work
 
-Read non-merge commits. Resolve each PR from its referenced number or SHA. Read the PR
-body first, then linked issues and the diff stat when the body falls short. Drop work
-already ancestral to the start. Word commits with no PR or issue behind them
-conservatively. Fold related work together and collapse routine dependency and CI noise.
+Read the non-merge commits. Find each one's PR from the number or SHA it references. Read
+the PR body first, then the linked issues and the diff stat if the body does not explain
+the change. Drop work that was already in the range's start. Claim little for a commit
+with no PR or issue behind it. Group related work, and fold routine dependency and CI
+changes into one line.
 
 ## Output
 
@@ -64,16 +65,16 @@ The release's one result, in one line.
 • *Label:* Outcome in one short sentence.
 ```
 
-The window uses the reader's terms: `Last N Days` for retrospective, `Pending` for
+Word the window for the reader: `Last N Days` for a retrospective, `Pending` for a
 pre-deploy.
 
-Keep labels and sentences neutral. Name the surface with a generic noun and state what it
-does now. Never imply the old behavior was wrong or that someone erred: no comparatives or
-corrective framing like `Smarter Search`, `Right Order`, `Finally`, or `No Longer Broken`.
-Write `Search`, `Sort Order`.
+Keep labels and sentences neutral. Name the surface with a generic noun and say what it
+does now. Never suggest that the old behavior was wrong or that someone made a mistake.
+That rules out comparatives and corrective wording such as `Smarter Search`,
+`Right Order`, `Finally`, or `No Longer Broken`. Write `Search` and `Sort Order`.
 
-Use these sections in this order, only the ones with bullets: ✨ Features, 🛠️ Fixes, ⚡
-Performance, 📈 SEO & Marketing, 🗂️ Admin & Internal, ⚙️ Behind the Scenes.
+Use these sections in this order, and only those that have bullets: ✨ Features, 🛠️ Fixes,
+⚡ Performance, 📈 SEO & Marketing, 🗂️ Admin & Internal, ⚙️ Behind the Scenes.
 
 When asked for a deck or PDF, also build one from
 [../../examples/shipped.deck.md](../../examples/shipped.deck.md) per

@@ -6,19 +6,16 @@
       "$value": "{light-neutrals.nt-canvas}"
     },
     "bg-card": {
-      "$value": "{light-neutrals.nt-white}"
+      "$value": "{light-neutrals.nt-paper}"
     },
     "bg-raised": {
-      "$value": "{light-neutrals.nt-white}"
+      "$value": "{light-neutrals.nt-paper-warm}"
     },
     "bg-input": {
-      "$value": "{light-neutrals.nt-white}"
-    },
-    "bg-inverse": {
-      "$value": "{dark-surfaces.nt-bg}"
+      "$value": "{light-neutrals.nt-line-soft}"
     },
     "fg1": {
-      "$value": "{brand.nt-ink}"
+      "$value": "{light-neutrals.nt-ink-rose}"
     },
     "fg2": {
       "$value": "{brand.nt-ink-70}"
@@ -26,7 +23,7 @@
     "fg3": {
       "$value": "{light-neutrals.nt-mid-deep}"
     },
-    "fg-mute": {
+    "fg-disabled": {
       "$value": "{light-neutrals.nt-mid}"
     },
     "line": {
@@ -35,8 +32,8 @@
     "line-soft": {
       "$value": "{light-neutrals.nt-line}"
     },
-    "line-strong": {
-      "$value": "{brand.nt-ink}"
+    "line-control": {
+      "$value": "{light-neutrals.nt-line-control}"
     },
     "accent-text": {
       "$value": "{brand.nt-pink-deep}"
@@ -47,11 +44,20 @@
     "support-fg": {
       "$value": "{brand.nt-mint-deep}"
     },
+    "danger": {
+      "$value": "{brand.nt-danger-deep}"
+    },
+    "danger-fg": {
+      "$value": "{brand.nt-danger-deep}"
+    },
     "accent-soft": {
       "$value": "{brand.nt-pink-soft}"
     },
     "support-soft": {
       "$value": "{brand.nt-mint-soft}"
+    },
+    "danger-soft": {
+      "$value": "{brand.nt-danger-soft}"
     },
     "bg-veil": {
       "$value": {

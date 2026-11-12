@@ -6,12 +6,12 @@
    and wants only vars.css.
    ========================================================= */
 
-/* Four faces, four jobs. Nunito is the wordmark only, so the
+/* Three faces, three jobs. Nunito is the wordmark only, so the
    lockup matches the rounded geometric sans in the raster logo.
-   Hanken Grotesk carries headings. Space Mono carries running
-   text: its round grotesque forms echo the wordmark. JetBrains
-   Mono carries labels, buttons, and code, where Space Mono's two
-   weights cannot reach a semibold. Monospace body is the
+   Hanken Grotesk carries headings. JetBrains Mono carries running
+   text, labels, buttons, and code: one mono, since two at 13px sit
+   too close to contrast and too far apart to match, and it has the
+   weight axis the labels need. Monospace body is the
    technical-practitioner signal and it outranks type-system
    uniformity.
 
@@ -21,9 +21,9 @@
    with it - copy the skill directory, not the two stylesheets.
    Inline this CSS into a <style> block instead and the paths
    resolve against the HTML, so `fonts/` goes beside the page.
-   Latin subset, SIL OFL 1.1 - see fonts/OFL.txt. Variable where
-   the family ships one; Space Mono is static 400 and 700. No
-   unicode-range: a glyph the subset lacks falls back on its own. */
+   Latin subset, SIL OFL 1.1 - see fonts/OFL.txt. Every face is
+   variable. No unicode-range: a glyph the subset lacks falls back
+   on its own. */
 @font-face {
   font-family: 'Nunito';
   font-style: normal;
@@ -65,32 +65,4 @@
   font-weight: 100 800;
   font-display: swap;
   src: url('./fonts/jetbrains-mono-latin-var-italic.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Space Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./fonts/space-mono-latin-400.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Space Mono';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./fonts/space-mono-latin-400-italic.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Space Mono';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./fonts/space-mono-latin-700.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Space Mono';
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./fonts/space-mono-latin-700-italic.woff2') format('woff2');
 }

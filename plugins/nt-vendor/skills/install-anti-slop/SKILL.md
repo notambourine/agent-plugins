@@ -7,36 +7,53 @@ disable-model-invocation: true
 
 # Install anti-slop
 
-Read instructions; preserve dirty work; detect package manager, Oxlint config, existing
-copy. Install:
+Copy the bundled Oxlint plugin into the current repository and add it to the existing
+lint setup.
 
-```bash
-node <skill-directory>/scripts/install.mjs [relative-destination]
-```
+1. Inspect the repository first. Read its agent instructions, check `git status` so you
+   preserve unrelated work, and find the package manager, the Oxlint config, and any
+   existing copy of anti-slop.
 
-Default: `tools/oxlint/anti-slop/`. Existing destination: compare first; `--force` only
-after backup/review.
+2. Copy the plugin. Run this from the target repository:
 
-Query current `oxlint` and `@oxlint/plugins`; install matching dev versions with existing
-package manager. Merge, never replace:
+   ```bash
+   node <skill-directory>/scripts/install.mjs [relative-destination]
+   ```
 
-```ts
-ignorePatterns: [
-  ".agent/**", ".agents/**", ".claude/**", ".codex/**", ".continue/**",
-  ".cursor/**", ".gemini/**", ".opencode/**", ".pi/**", ".roo/**",
-  ".windsurf/**", "tools/oxlint/anti-slop/**",
-],
-jsPlugins: [{ name: "anti-slop", specifier: "./tools/oxlint/anti-slop/index.ts" }],
-```
+   The default destination is `tools/oxlint/anti-slop/`. The script refuses to replace an
+   existing destination. Compare the two copies first, and pass `--force` only after
+   backing up and reviewing the existing files.
 
-Add other agent-tool directories; never ignore all dot-directories. Vite+: merge into
-`lint.ignorePatterns`, `lint.jsPlugins`, and `fmt.ignorePatterns`.
+3. Install the dependencies. Query the current versions of `oxlint` and
+   `@oxlint/plugins`, and install the same version of both as development dependencies
+   with the repository's package manager.
 
-Enable every bundled `anti-slop/*` rule at `error`.
+4. Register the plugin. Merge these fields into the existing config and keep every entry
+   already there:
 
-Run repo lint and typecheck; Vite+: full `vp check`. Report owned-source findings unless
-migration/cleanup was requested. Never weaken rules, suppress errors, add unsafe casts, or
-launder types. Report destination, versions, config, checks, remaining findings.
+   ```ts
+   ignorePatterns: [
+     ".agent/**", ".agents/**", ".claude/**", ".codex/**", ".continue/**",
+     ".cursor/**", ".gemini/**", ".opencode/**", ".pi/**", ".roo/**",
+     ".windsurf/**", "tools/oxlint/anti-slop/**",
+   ],
+   jsPlugins: [{ name: "anti-slop", specifier: "./tools/oxlint/anti-slop/index.ts" }],
+   ```
 
-Migration: compare old rules/diagnostics. Keep project rules separate. Prefer inference,
-`as const`, `satisfies`, named contracts, boundary parsing.
+   Add any other agent-tool directories the repository has. Never ignore every
+   dot-directory, because some hold owned source. For Vite+, merge into
+   `lint.ignorePatterns`, `lint.jsPlugins`, and `fmt.ignorePatterns`.
+
+   Enable every bundled `anti-slop/*` rule at `error`.
+
+5. Run the repository's lint and typecheck, or the full `vp check` for Vite+. Report
+   findings in owned source, and fix them only if the user asked for a migration or
+   cleanup. Never weaken a rule, suppress an error, add an unsafe cast, or rewrite types
+   only to make lint pass.
+
+6. Report the destination, the versions installed, the config changes, the checks run,
+   and any findings that remain.
+
+When replacing an older local copy, compare its rules and diagnostics before
+overwriting, and keep project-specific rules in their own plugin. To resolve findings,
+prefer inference, `as const`, `satisfies`, named contracts, and parsing at the boundary.
