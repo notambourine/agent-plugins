@@ -7,19 +7,46 @@ disable-model-invocation: true
 
 # Improve architecture
 
-Load `nt-vendor:codebase-design`; use its terms exactly. Read `CONTEXT.md` and relevant
-ADRs. Scope to user direction or git hot spots. Spawn one explorer. Seek shallow modules,
-scattered concepts, leaked seams, missing locality, and poor interface tests. Apply deletion
-test.
+Find refactors that turn shallow modules into deep ones. Load `nt-vendor:codebase-design`
+and use its terms exactly.
 
-Write unique `architecture-review-<timestamp>.html` in OS temp. Tailwind and Mermaid CDN.
-Open using platform command; report path. Follow [HTML-REPORT.md](HTML-REPORT.md).
+## 1. Explore
 
-Each candidate: files, problem, solution, locality/leverage/test wins, before/after visual,
-strength (`Strong`, `Worth exploring`, `Speculative`). Mark real ADR conflict. Finish with
-one top recommendation. Do not propose interfaces. Ask which candidate to explore.
+Decide where to look before looking. If the user named a module, subsystem, or pain
+point, start there. Otherwise read back through `git log --oneline` for the areas that
+change most often, because deepening pays off where change keeps happening.
 
-After selection, use grilling for constraints, dependencies, seam, tests. Update
-`CONTEXT.md` immediately for new or sharpened durable terms. Offer ADR only for a rejected
-candidate's load-bearing durable reason. For interface alternatives, use codebase-design's
-parallel design-it-twice pattern.
+Read `CONTEXT.md` and any ADRs for that area. Then spawn one agent to walk the code and
+note where it is hard to follow:
+
+- one concept spread across many small modules;
+- shallow modules;
+- functions extracted for testing while the bugs sit in how they are called;
+- coupled modules that leak across their seams;
+- code that is untested, or hard to test through its interface.
+
+Apply the deletion test to anything that looks shallow.
+
+## 2. Report
+
+Write a self-contained `architecture-review-<timestamp>.html` to the OS temp directory,
+so nothing is added to the repo. Open it with the platform's open command and tell the
+user the absolute path. Follow [HTML-REPORT.md](HTML-REPORT.md).
+
+Each candidate gets the files involved, the problem, the solution, the gain in locality,
+leverage, and tests, a before-and-after visual, and a strength of `Strong`,
+`Worth exploring`, or `Speculative`. Name domain concepts with the words in
+`CONTEXT.md`. Mention a conflict with an ADR only when the problem is serious enough to
+reopen that ADR. End with one top recommendation.
+
+Do not propose interfaces yet. Ask the user which candidate to explore.
+
+## 3. Work through the choice
+
+Question the user about the chosen candidate: its constraints, its dependencies, where
+the seam goes, and which tests survive. As decisions settle:
+
+- add a new or sharpened domain term to `CONTEXT.md` right away;
+- offer an ADR when the user rejects a candidate for a lasting reason that a later
+  review would need in order not to suggest it again;
+- for alternative interfaces, use the design-it-twice pattern in codebase-design.

@@ -21,9 +21,9 @@ this repo by topic before trying other repos.
 
 ## Read the conversation
 
-Default to the dialogue: the user's typed prompts and the model's prose, in order. Skip
+Read the dialogue first: the user's typed prompts and the model's prose, in order. Skip
 tool calls, tool results, file reads, and thinking unless the user asks for them or the
-dialogue misses an expected keyword.
+dialogue lacks a keyword you expected to find.
 
 ```sh
 jq -r '

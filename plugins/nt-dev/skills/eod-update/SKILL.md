@@ -15,10 +15,9 @@ allowed-tools:
 
 # End-of-day update
 
-Draft a note that tells a lead how far each epic or goal moved today and what stands in
-its way. The reader tracks goals, not the author's day: today's commits, reviews, and
-comments are the evidence behind the note, and they stay out of it. Draft only; the user
-posts it.
+Draft a note that tells a lead how far each epic or goal moved today and what is blocking
+it. The lead tracks goals. Today's commits, reviews, and comments are the evidence for the
+note and stay out of it. Draft only; the user posts it.
 
 ## Find the goals
 
@@ -39,26 +38,27 @@ answers.
 
 ## Write
 
-Give one entry per goal that moved today or is blocked, largest movement first. A goal
-with neither is left out.
+Write one entry for each goal that moved today or is blocked, largest movement first.
+Leave out the other goals.
 
 - **Standing:** what the tracker shows, such as `5 of 8 issues closed, due 14-11`. Call a
   goal on track, at risk, or a percentage complete only when the user said so; the tracker
   cannot show it.
-- **Progress:** what is true of the goal tonight that was not this morning, one bullet per
-  outcome. "Checkout accepts gift cards (#212)" is progress; "reviewed #212, pushed 4
-  commits" is activity. Cite PR and issue numbers, never URLs.
+- **Progress:** what is true of the goal tonight that was not true this morning, one
+  bullet per outcome and in the client's terms. "Checkout accepts gift cards (#212)" is
+  progress. "Reviewed #212, pushed 4 commits" is activity and does not belong. Cite PR and
+  issue numbers, never URLs.
 - **Next:** what remains before the goal closes, or the step planned for tomorrow.
 - **Blockers:** the blocker, the goal it holds up, and who can clear it.
 
 Work that serves no goal, such as maintenance or an unrelated review, shares one line
 under Other.
 
-The line under the header is the BLUF (bottom line up front), the one thing the reader
-keeps: the blocker that needs someone, else the goal that moved furthest.
+The line under the header is the BLUF (bottom line up front). Make it the blocker that
+needs someone, or failing that the goal that moved furthest.
 
-The note is white-labelled. Epic and milestone titles often carry a client's name, so
-restate those by sector and shape.
+White-label the note. Epic and milestone titles often carry a client's name, so restate
+them by sector and shape.
 
 Return only the note, as bare Slack mrkdwn text with no fence around it. Slack strips
 markdown on paste, so bold is `*one asterisk*` and bullets are a literal `•`.
@@ -81,4 +81,5 @@ markdown on paste, so bold is `*one asterisk*` and bullets are a literal `•`.
 [optional]
 ```
 
-Repeat the 🎯 block per goal. Blockers always appears; Other and Notes drop when empty.
+Repeat the 🎯 block for each goal. Always include Blockers. Drop Other and Notes when
+they are empty.

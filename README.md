@@ -13,8 +13,8 @@ claude plugin list --available --json |
   while read -r plugin; do claude plugin install "$plugin" --scope user; done
 ```
 
-Update with `claude plugin marketplace update notambourine`. Turn on auto-update under
-`/plugin` > Marketplaces > notambourine > Enable auto-update.
+Update with `claude plugin marketplace update notambourine`. To update automatically, open
+`/plugin`, choose Marketplaces, then notambourine, then Enable auto-update.
 
 ### Codex
 
@@ -25,57 +25,68 @@ codex plugin list --json --available -m notambourine |
   while read -r plugin; do codex plugin add "$plugin"; done
 ```
 
-Start a new Codex thread after install. Codex reads the portable Agent Plugins manifests
-and shared Agent Skills. Hooks run only in Claude Code.
-
-Portable: `nt-brand`, `nt-dev`, `nt-pm`, `nt-voice`. Claude-only until their MCP, hook, or
-vendored skill metadata is adapted: `nt-seo-spider`, `nt-shopify`, `nt-vendor`.
+Start a new Codex thread after installing. Codex gets `nt-brand`, `nt-dev`, `nt-pm`, and
+`nt-voice`, and it runs their skills but none of their hooks. `nt-seo-spider`,
+`nt-shopify`, and `nt-vendor` depend on a Claude Code MCP server, hook, or skill format
+and install only there.
 
 ## Plugins
 
-| Plugin          | What it does                                                                                                                                           |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `nt-brand`      | Brand tokens (CSS, JSON, Tailwind theme), components, examples, fonts, logos, deck and document PDFs, voice, doctrine, and white-labelled case studies |
-| `nt-dev`        | Commits, PRs, issues, cleanup, recall, and daily development workflow                                                                                  |
-| `nt-pm`         | Deploy notes, weekly recaps, client call agendas and follow-ups, Drive share links, and a deduped calendar loop; client configs stay outside this repo |
-| `nt-seo-spider` | Screaming Frog MCP and a `crawl` skill; site facts in `.claude/refs/nt-seo-spider.md`. Needs SEO Spider 24+                                            |
-| `nt-shopify`    | Blocks writes to a live store                                                                                                                          |
-| `nt-voice`      | Surgical prose edits and structural rewrites                                                                                                           |
-| `nt-vendor`     | `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5`                                                      |
-| `wormhook`      | Blocks npm and PyPI supply-chain malware                                                                                                               |
+| Plugin          | What it does                                                                                                         |
+| --------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `nt-brand`      | The brand kit: tokens, components, fonts, logos, deck and document PDF export, voice, doctrine, and case studies     |
+| `nt-dev`        | Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in house conventions              |
+| `nt-pm`         | Client call agendas and follow-ups, deploy notes, weekly recaps, and Drive share links. Client facts stay out of it  |
+| `nt-seo-spider` | Screaming Frog's MCP server and a `crawl` skill. Needs SEO Spider 24 or later                                        |
+| `nt-shopify`    | Blocks writes to a live Shopify store                                                                                |
+| `nt-voice`      | Edits prose so it reads as written by a person                                                                       |
+| `nt-vendor`     | Third-party skills: `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5` |
+| `wormhook`      | Blocks npm and PyPI supply-chain malware before it runs                                                              |
 
-Turn on the repo-local plugins:
+## Turn plugins on per repo
+
+`nt-seo-spider` and `nt-shopify` are off until a repo enables them:
 
 ```bash
 claude plugin enable nt-seo-spider@notambourine -s local
 claude plugin enable nt-shopify@notambourine -s local
 ```
 
-Set switches in `.claude/settings.json` `env`:
-
-| Variable             | Values                                                                                    |
-| -------------------- | ----------------------------------------------------------------------------------------- |
-| `NT_DEV_SKILL_NUDGE` | unset: block once; `strict`: block until the skill is read; `off`                         |
-| `NT_DEV_DASH_GUARD`  | unset: block a commit that adds Unicode dashes; `strict`: block the write too; `off`      |
-| `NT_SHOPIFY_GUARD`   | unset: block live writes; `off`                                                           |
-| `NT_PM_CLIENT_DIR`   | Synced folder holding `<client>/client-context.md`; set in user settings, never committed |
-
-`nt-shopify` allows reads, local app work, theme development, and
-`theme push --development`. It blocks live targeting, mutations, deploys, releases,
-environment writes, and unknown verbs. Run a blocked command yourself when you mean it.
-
-Per machine:
+To keep any other plugin off by default, install it at user scope and disable it:
 
 ```bash
 claude plugin install wormhook@notambourine --scope user
 claude plugin disable wormhook@notambourine
 ```
 
-Per repo, committed:
+Then enable it in each repo that wants it, in the committed `.claude/settings.json`:
 
 ```json
-{ "enabledPlugins": { "nt-brand@notambourine": true } }
+{ "enabledPlugins": { "wormhook@notambourine": true } }
 ```
 
-Contributing: [CONTRIBUTING.md](CONTRIBUTING.md). License: [MIT](LICENSE). Third-party
-notices: [vendor/NOTICE.md](vendor/NOTICE.md).
+## Settings
+
+Set these under `env` in `.claude/settings.json`:
+
+| Variable             | Values                                                                                                   |
+| -------------------- | -------------------------------------------------------------------------------------------------------- |
+| `NT_DEV_SKILL_NUDGE` | Unset blocks a PR or issue write once to name the skill. `strict` blocks until the skill is read. `off`  |
+| `NT_DEV_DASH_GUARD`  | Unset blocks a commit that adds a Unicode dash. `strict` also blocks the file write. `off`               |
+| `NT_DEV_BRIEF`       | Unset lists the `nt-dev` skills at session start. `off`                                                  |
+| `NT_SHOPIFY_GUARD`   | Unset blocks live writes. `off`                                                                          |
+| `NT_PM_CLIENT_DIR`   | The synced folder that holds `<client>/client-context.md`. Set it in user settings and never commit it   |
+
+`nt-shopify` allows reads, local app work, theme development, and
+`theme push --development`. It blocks commands that target a live theme, mutations,
+deploys, releases, environment writes, and any verb it does not recognize. To run a
+blocked command on purpose, run it yourself outside the agent.
+
+`nt-seo-spider` keeps what it learns about a site in that repo's
+`.claude/refs/nt-seo-spider.md`.
+
+## More
+
+- [CONTRIBUTING.md](CONTRIBUTING.md) covers naming, layout, hooks, and the two mirrors.
+- The license is [MIT](LICENSE). Third-party notices are in
+  [vendor/NOTICE.md](vendor/NOTICE.md).

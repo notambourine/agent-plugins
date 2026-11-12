@@ -8,17 +8,17 @@ description: Turn a finished client call into a documented follow-up with decisi
 Draft a follow-up that records what the call decided, who owns each next step, and when
 the team meets next.
 
-Run `intake` for phase `follow-up`. Resolve the event: the one named, else the client's
-most recent ended call. Check the ledger per [../../ledger.md](../../ledger.md); a hit
-ends the run.
+Run `intake` for phase `follow-up`. Use the event the user named, or the client's most
+recent call that has ended. Check the ledger per [../../ledger.md](../../ledger.md), and
+stop if the key is already written.
 
-Source the call from Granola notes, else from notes the user pastes. No notes: stop and
-say so. Never rebuild a call from its agenda.
+Take the call from its Granola notes, or from notes the user pastes. With no notes, stop
+and say so. Never reconstruct a call from its agenda.
 
 Extract only what the notes support:
 
 - Decisions, each with an owner.
-- Action items, each with an owner and the due date when one was stated; mark the rest "no
+- Action items, each with an owner and its due date if one was stated. Mark the others "no
   date".
 - Open questions.
 - The next meeting, when one was agreed or implied.
@@ -42,8 +42,8 @@ The decision or next step that matters most, in one line.
 
 Write to every target per [../../outputs.md](../../outputs.md). For `deck`, start from
 [../../examples/follow-up.deck.md](../../examples/follow-up.deck.md). For `github`, open
-one issue per NoTambourine-owned action item; client-owned items stay in the message.
+one issue per action item NoTambourine owns. Items the client owns stay in the message.
 
-When the next meeting is "to schedule", propose two or three slots from the user's
-free/busy in working hours, inside the follow-up. With `calendar: hold`, also hold the
+When the next meeting is still to schedule, propose two or three slots in the follow-up,
+taken from the user's free time in working hours. With `calendar: hold`, also hold the
 first slot under ledger phase `schedule`.

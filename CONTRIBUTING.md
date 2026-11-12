@@ -11,7 +11,7 @@
 
 - A domain plugin lives in its domain repo.
 - A practice-wide plugin lives in `plugins/`.
-- Promote a plugin to its own repo once its build, tests, or hooks earn one.
+- Move a plugin to its own repo once it needs its own build, tests, or hooks.
 - Give each plugin audience one hook.
 - Merge two skills when one has to load the other.
 
@@ -26,8 +26,8 @@ plugins/nt-<name>/
 ```
 
 Write root `plugin.json` to the Agent Plugins schema. Add each local-source row to both
-marketplaces. Put host-specific metadata and hook policy under that host's extension. Bump
-the portable manifest version whenever distributed behavior changes.
+marketplaces. Put host-specific metadata and hook policy under that host's extension.
+Leave `version` out of every manifest, so an install tracks the commit.
 
 External source:
 
@@ -55,13 +55,16 @@ Use HTTPS. Never use a `github` source form.
 ## Brand mirror
 
 `plugins/nt-brand/skills/system/` holds the exact bytes of the pinned
-`@notambourine/brand-kit`.
+`@notambourine/brand-kit`. To take a new release:
 
 ```bash
-npm ci
-npm run brand
+npm install --save-exact @notambourine/brand-kit@<version>
 npm run brand:sync
+npm run brand
 ```
+
+Then read the kit's diff for rules that reach other plugins, such as file naming in
+`nt-pm`.
 
 Rules: [.claude/rules/brand-mirror.md](.claude/rules/brand-mirror.md).
 

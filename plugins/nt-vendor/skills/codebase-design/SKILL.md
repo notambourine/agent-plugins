@@ -7,36 +7,45 @@ disable-model-invocation: true
 
 # Codebase design
 
-Design deep modules: much behavior behind a small interface at a clean seam, tested through
-that interface.
+Design deep modules: a lot of behavior behind a small interface, placed at a clean seam
+and tested through that interface.
 
 ## Terms
 
-- **Module**: interface plus implementation. Avoid component, service, unit.
-- **Interface**: everything callers must know: types, invariants, order, errors, config,
-  performance. Avoid API/signature.
-- **Implementation**: hidden code.
-- **Depth**: behavior per interface concept. Deep: small surface, much behavior. Shallow:
-  surface nearly matches implementation.
-- **Seam**: location where behavior can change without editing callers. Avoid boundary.
-- **Adapter**: concrete interface implementation at a seam.
-- **Leverage**: capability gained per interface concept.
-- **Locality**: change, bugs, knowledge, tests concentrated.
+Use these terms exactly, and do not swap in the words each entry rules out.
 
-## Rules
+- **Module**: anything with an interface and an implementation, at any scale: a function,
+  a class, a package. Do not say component, service, or unit.
+- **Interface**: everything a caller must know to use the module correctly. That includes
+  types, invariants, ordering, error modes, required configuration, and performance. Do
+  not say API or signature, which cover only the types.
+- **Implementation**: the code inside the module.
+- **Depth**: how much behavior a caller gets for each thing they must learn about the
+  interface. A deep module puts a lot of behavior behind a small interface. A shallow
+  module's interface is nearly as complex as its implementation.
+- **Seam**: the place where a module's interface sits, and where behavior can change
+  without editing callers. Do not say boundary.
+- **Adapter**: a concrete thing that satisfies an interface at a seam.
+- **Leverage**: what callers gain from depth. One implementation serves many call sites
+  and tests.
+- **Locality**: what maintainers gain from depth. Changes, bugs, knowledge, and tests
+  concentrate in one place.
 
-- Reduce methods and parameters; hide complexity.
-- Depth belongs to interface, not implementation.
-- Internal seams stay private.
-- Deletion test: valuable module deletion redistributes complexity to callers.
-- Interface is caller and test surface.
-- One adapter: hypothetical seam. Two: real seam.
-- Inject dependencies.
-- Return results over hidden side effects.
-- Tests observe interface outcomes, never internals.
+## Principles
 
-Relationships: module owns one interface; depth measures module/interface; seam locates the
-interface; adapter satisfies it; depth yields leverage and locality.
+- When designing an interface, try to reduce the methods, simplify the parameters, and
+  hide more complexity inside.
+- Depth is a property of the interface. A deep module can be built from small swappable
+  parts, as long as those parts and their internal seams stay private.
+- The deletion test: imagine deleting the module. If the complexity disappears, the
+  module only passed calls through. If it reappears in every caller, keep the module.
+- Callers and tests cross the same interface. Tests assert on outcomes seen through it
+  and never on internals. A test that needs to reach past the interface means the module
+  has the wrong shape.
+- One adapter makes a seam hypothetical, and two make it real. Add a seam only when
+  something varies across it.
+- Accept dependencies as arguments instead of creating them inside.
+- Return results instead of producing side effects.
 
-Dependencies/testing: [DEEPENING.md](DEEPENING.md). Alternative interfaces:
-[DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md).
+To deepen a group of modules given its dependencies, read [DEEPENING.md](DEEPENING.md).
+To compare alternative interfaces, read [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md).

@@ -7,35 +7,68 @@ disable-model-invocation: true
 
 # Codebase audit
 
-Read-only. No edits, tests, commits, pushes.
+Audit the whole codebase for simplifications that matter. This is read-only: do not edit
+files, run tests, commit, or push. You are the coordinator, and you continue until every
+subsystem is reviewed and the final audit is validated.
 
-Inventory every subsystem: stable ID, exact boundary, implementation, public interfaces,
-callers, tests, status (`queued`, `review`, `recommend`, `skip`). Include product,
-infrastructure, bridges, generated-contract ownership, tests, tooling. Keep one canonical
-scratchpad for coverage, findings, skips, patterns, duplicates, priorities, dependencies,
-log.
+## 1. Inventory every subsystem
 
-Assign fresh read-only agents non-overlapping subsystems. At most two material
-simplifications each. Inspect implementation, interface, callers, tests. Seek invalid state,
-repeated shape assumptions, duplicated branching, unclear ownership, repeated scans, and
-contradictory lifecycle/async state. Prefer clear local code. Reject style-only,
-hypothetical, tiny, or complexity-moving abstractions.
+Give each subsystem a stable ID, an exact ownership boundary, its key implementation
+files, its public interfaces, major callers, and tests, and a status of `queued`,
+`review`, `recommend`, or `skip`. Include product code, shared infrastructure, platform
+bridges, ownership of generated contracts, and test and tooling infrastructure.
 
-Each result:
+Keep one scratchpad that holds the inventory, confirmed findings, skip decisions,
+cross-cutting patterns, duplicates, final priorities and dependencies, and a log. The
+inventory is the coverage contract. A broad catch-all row does not prove coverage.
 
-1. recommend/skip;
-2. exact file/line evidence;
-3. current complexity or invalid states;
-4. simpler representation;
-5. smallest scope and interfaces;
-6. regression/migration risk;
-7. validation;
-8. confidence.
+## 2. Review each subsystem in a fresh agent
 
-Coordinator verifies every result. Narrow, demote, deduplicate, or reject weak findings.
-Record skips. Continue until every row closes.
+Give each read-only agent one subsystem with a boundary that overlaps no other. Run only
+as many at once as you can coordinate. Each agent inspects the implementation, public
+interfaces, major callers, and tests, and returns at most two simplifications, or `skip`.
 
-Final independent audits: coverage, overlap, materiality, schema, priority/dependencies.
-Rank by impact, confidence, effort, blast radius, prerequisites. Name first slices. Finish
-only with full coverage, complete evidence, explicit skips, coherent priorities, unchanged
-repo.
+Look for:
+
+- booleans or nullable fields that allow invalid combinations and should be a state
+  machine or a discriminated union;
+- assumptions about an object's shape repeated in several places;
+- branching duplicated where a small map, registry, or reducer would remove it;
+- state or behavior with no clear owner;
+- repeated scans or lookups that a better collection or index would remove;
+- lifecycle or async state that can go stale or contradict itself.
+
+Prefer plain local code that is already clear. Reject a change whose only benefit is
+style, hypothetical extensibility, a few fewer lines, or the same branching moved behind
+a new type.
+
+Each recommendation gives:
+
+1. the verdict, recommend or skip;
+2. evidence with exact file and line references;
+3. the current complexity or invalid states;
+4. the proposed representation and why it is simpler;
+5. the smallest credible scope, with affected files and interfaces;
+6. regression and migration risks;
+7. the validation that exists and what more is needed;
+8. confidence: high, medium, or low.
+
+## 3. Verify and combine
+
+Check every finding against the repository yourself before accepting it. Narrow, demote,
+or reject one that is vague, duplicates another, misreads intended behavior, or only
+moves complexity. Record each skip as completed coverage. Assign each accepted finding to
+one subsystem. Keep opening review batches until every inventory row is closed.
+
+## 4. Audit the audit
+
+Run fresh independent passes for coverage, overlap between findings, materiality, missing
+fields, and priority order. If the coverage pass finds an omission, add a row for it and
+audit it. Do not widen a finished row to absorb it.
+
+Rank the recommendations by impact, confidence, effort, blast radius, and prerequisites,
+and name the best first slices to implement.
+
+The audit is complete when every subsystem has a recommendation or an explicit skip,
+every finding has all eight fields, the priorities are consistent, and the repository is
+unchanged.

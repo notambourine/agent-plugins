@@ -14,8 +14,8 @@ allowed-tools:
 
 Recap the whole team's work. Follow [../../recap-format.md](../../recap-format.md).
 
-Use the window the user named. Without one, ask for 1 to 4 weeks. Compute inclusive dates
-with whichever BSD or GNU `date` syntax is available.
+Use the window the user named, or ask for one of 1 to 4 weeks. Compute inclusive dates
+with whichever `date` syntax the machine has, BSD or GNU.
 
 When the repo has a client context per [../../client-config.md](../../client-config.md),
 run `intake` first and follow its conventions.
@@ -24,11 +24,11 @@ Collect merged PRs since the start, all open PRs, recent non-merge commits, and 
 touched branches.
 
 - Shipped: PRs merged to the production branch. Work merged only to an integration branch
-  like `dev` or `staging` goes under In Progress, marked as waiting on release.
-- In Review: open, merge-ready core PRs.
-- In Progress: active unmerged branches.
+  such as `dev` or `staging` goes under In Progress, marked as waiting on release.
+- In Review: open PRs on core work that are ready to merge.
+- In Progress: active branches that have not merged.
 
-Cover every merged contributor's work, then strip the names. Skip empty PRs.
+Cover every contributor's merged work, then remove the names. Skip empty PRs.
 
 Return only:
 

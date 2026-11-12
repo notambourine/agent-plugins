@@ -7,18 +7,18 @@ argument-hint: "[<file> | pasted text] [--surgical | --rewrite]"
 
 # Human voice
 
-Pick one method and read only that one.
+Choose one method and read only that one.
 
-| Method | Choose for | Read |
+| Method | Choose it when | Read |
 | --- | --- | --- |
-| Surgical | Authored draft, settled structure, review, uncertain touch, PR/commit/technical artifact | [surgical/METHOD.md](surgical/METHOD.md) |
-| Rewrite | Machine draft, disposable structure, formulaic architecture, explicit redo/slop request | [rewrite/METHOD.md](rewrite/METHOD.md) |
+| Surgical | A person wrote the draft, its structure is settled, it is a PR, commit, or technical document, or you are unsure how much to change | [surgical/METHOD.md](surgical/METHOD.md) |
+| Rewrite | A model wrote the draft, its structure is formulaic or can be discarded, or the user asked for a redo | [rewrite/METHOD.md](rewrite/METHOD.md) |
 
-Flags win. Default to surgical. State the choice in one line, then read the method. Never load both
-in one pass. To restore an author's voice after a machine rewrite, run the rewrite, then a separate
-surgical pass.
+A flag decides the method. Without one, default to surgical. State your choice in one line, then
+read the method. Never load both in one pass. To restore an author's voice after a rewrite, run a
+separate surgical pass afterward.
 
-Your choice line and rationale meet the same bar as the draft.
+Hold your own choice line and any rationale to the same standard as the draft.
 
 ## NoTambourine copy
 
@@ -28,6 +28,7 @@ golden set. Check claims against `doctrine/SOUL.md` and `doctrine/CULTURE.md`. C
 
 ## Always
 
-User requirements win. Keep claims, identifiers, commands, and paths intact. Hold terms stable. Use
-ASCII hyphens unless told otherwise. Delete before adding. Keep the BLUF (bottom line up front):
-the outcome stays in the first sentence, and an edit that buries it moves it back.
+The user's requirements override both methods. Keep claims, identifiers, commands, and paths
+intact, and keep each term the same throughout. Use ASCII hyphens unless told otherwise. Prefer
+deleting words to adding them. Keep the BLUF (bottom line up front): the outcome stays in the
+first sentence, and if an edit pushes it down, move it back.

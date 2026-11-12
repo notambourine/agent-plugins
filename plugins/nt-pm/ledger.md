@@ -1,7 +1,7 @@
 # Ledger contract
 
-`agenda`, `follow-up`, and `tick` record each write under a key, so a 15-minute loop never
-repeats work.
+`agenda`, `follow-up`, and `tick` record every write under a key, so a loop that runs
+every 15 minutes never writes the same output twice.
 
 ## Key
 
@@ -9,29 +9,33 @@ repeats work.
 nt:<eventId>:<instanceStartUTC>:<phase>
 ```
 
-`instanceStartUTC` is the occurrence's start as `YYYYMMDDTHHMMZ`. It tells recurring
-instances apart and re-arms an agenda when a call moves. `phase` is `agenda`, `follow-up`,
-or `schedule`. A run with no calendar event uses `nt:manual:<client>:<YYYYMMDD>:<phase>`.
+`instanceStartUTC` is the occurrence's start time as `YYYYMMDDTHHMMZ`. It separates the
+instances of a recurring event, and it changes when a call moves, so a moved call gets a
+new agenda. `phase` is `agenda`, `follow-up`, or `schedule`. A run with no calendar event
+uses `nt:manual:<client>:<YYYYMMDD>:<phase>`.
 
-## The destination is the ledger
+## Where the key goes
 
-Write the key in the same write as the output, never as a second step:
+The key lives in the output itself. Write it in the same call as the output, never as a
+second step:
 
-- Slack: the final context line, in the draft DM or the channel.
+- Slack: the final context line of the draft DM or channel message.
 - Google Doc: the end of the title.
-- GitHub issue: `<!-- nt:... -->` in the body.
+- GitHub issue: an `<!-- nt:... -->` comment in the body.
 - Calendar hold: the event description.
 
-Before any write, search the first target for the key. Found: skip. Search unavailable or
-failed: skip and report. A missed run costs less than a duplicate client message.
+Before any write, search the first target for the key. If the key is there, skip the
+write. If the search is unavailable or fails, also skip, and report it: missing one run
+costs less than sending a client the same message twice.
 
 ## Local cache
 
 `${XDG_STATE_HOME:-$HOME/.local/state}/nt-pm/ledger.jsonl` holds one
-`{"key":"...","at":"..."}` per line, appended after a confirmed write. A hit skips the
-destination search. A miss proves nothing; search the destination. Cloud runs have no
-cache.
+`{"key":"...","at":"..."}` line per confirmed write. A key found there skips the
+destination search. A key missing there settles nothing, so search the destination. Cloud
+runs have no cache.
 
 ## Manual runs
 
-A key already present means the work exists. Link it and ask before writing another.
+When a manual run finds its key already written, link the existing output and ask before
+writing another.
