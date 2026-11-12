@@ -115,7 +115,6 @@
    pink against body grey is about 2:1. */
 .nt-prose a {
   color: var(--accent-text);
-  border-bottom: 0;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
@@ -147,14 +146,12 @@
 }
 .nt-prose pre code { font-size: 1em; background: none; color: var(--fg2); padding: 0; }
 
-/* A quote is a pull quote: the voice of someone other than the author. A
-   closing italic line under it is the attribution, so a quote's own last
-   paragraph keeps its size. */
+/* A quote is a pull quote: the voice of someone other than the author. Rules
+   above and below, not a box: the box is for code and stats. A closing italic
+   line is the attribution, so a quote's own last paragraph keeps its size. */
 .nt-prose blockquote {
-  padding: 1.1em 1.4em;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
+  padding: 1em 0;
+  border-block: 1px solid var(--line);
   font-family: var(--font-display);
   font-size: 1.15em;
   line-height: 1.45;

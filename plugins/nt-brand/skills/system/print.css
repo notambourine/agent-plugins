@@ -17,12 +17,12 @@
   background: var(--bg, #faf8f9);
   @bottom-right {
     content: counter(page) " / " counter(pages);
-    font: 7pt var(--font-body, "Space Mono", monospace);
+    font: 7pt var(--font-body, "JetBrains Mono", monospace);
     color: var(--fg3, #5e555a);
   }
   /* doc-template.html fills in the document ID; a CSS file cannot read it. */
   @bottom-left {
-    font: 7pt var(--font-body, "Space Mono", monospace);
+    font: 7pt var(--font-body, "JetBrains Mono", monospace);
     color: var(--fg3, #5e555a);
   }
 }

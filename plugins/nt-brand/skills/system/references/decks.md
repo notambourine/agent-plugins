@@ -19,13 +19,15 @@ Export a PDF, standalone HTML, or PPTX with marp-cli and the self-contained
 theme:
 
 ```bash
-npx @marp-team/marp-cli@4.5.1 deck.md --pdf --html --allow-local-files \
-  --theme-set node_modules/@notambourine/brand-kit/deck-standalone.css
+npx @marp-team/marp-cli@4.5.1 <slug>.md --pdf --html --allow-local-files \
+  --theme-set node_modules/@notambourine/brand-kit/deck-standalone.css \
+  -o "NoTambourine · Client (Topic).pdf"
 ```
 
 - `deck-standalone.css` carries the faces, every token, and the lockup as data
   URIs, so the file renders with nothing beside it. It is built from `deck.css`;
   correct the source, never the build.
+- Keep decks flat beside their siblings, sharing one `images/` folder.
 - `--html` lets the `.eyebrow` paragraphs through. `--allow-local-files` loads
   images by relative path.
 - marp-cli drives Chrome. A sandboxed agent shell may refuse to launch it; rerun

@@ -10,14 +10,12 @@ where each one lives.
 
 - `NoTambourine · a boutique AI-native engineering agency`, or under the
   wordmark the eyebrow `Boutique AI-native engineering agency`
-- `Engineering measured in results, not hours.`
-- `We earn continued work with results, not dependency.`
-- `Improve the systems that run your business.`
-- `Senior engineers inside your team to lead delivery.`
+- `We want you to keep hiring us because the last project paid off.`
+- `A skunkworks team that moves your numbers.`
+- `Senior engineers who join your team and lead delivery.`
 - `Platform migrations, redesigns, site speed, and ongoing engineering.`
 - `Launch a product, automate routine work, or connect systems and data.`
 - `We plan each project around the business result it should produce.`
-- `After our most recent redesign launched, mobile add-to-cart rose 38% and conversion 17%.`
 - `Start a conversation`, linked to https://notambourine.com/tom
 - The headings in `doctrine/SOUL.md`
 

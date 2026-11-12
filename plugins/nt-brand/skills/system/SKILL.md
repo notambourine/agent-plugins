@@ -30,6 +30,21 @@ Apply the brand without padding.
 - For installation, asset selection, logo regeneration, or consumer integration,
   read the relevant section of [README.md](README.md).
 
+## Name shared files
+
+Name every PDF a client may receive as its title; it travels without its folder.
+
+- Write `NoTambourine · Client (Topic).pdf`, parties joined with `·` as in a
+  document H1. Internal work drops the client: `NoTambourine (Topic).pdf`.
+- Name the topic by what the reader gets, never the tool: `(SEO Crawl)`, not
+  `(Screaming Frog)`.
+- Add the month to a point-in-time report: `(SEO Crawl, Oct 2026)`. Never add a
+  version suffix or `final`.
+- Append a signed document's ref so the file, footer, and DocuSign envelope
+  match: `NoTambourine · Client (SOW 2) NTB-CLI-SOW2.pdf`.
+- Keep the source a lowercase slug beside its export, dated runs as
+  `seo-crawl-2026-10.md`. Never ship `deck.pdf` or `doc.pdf`.
+
 ## Source of truth
 
 Treat `notambourine/brand-kit` as canonical. Read values from its CSS and

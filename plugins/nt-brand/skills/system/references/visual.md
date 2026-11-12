@@ -4,8 +4,15 @@ Read exact values and component behavior from the CSS.
 
 - Default to dark. Use light surfaces deliberately and rarely, such as print,
   press pages, or a one-off email. Never use pure white as a surface.
-- Use pink as the only accent, with one pink CTA per screen. Mint supports
-  structure, status, and supporting icons; never use it for a CTA.
+- Use pink as the only accent, with one pink CTA per screen. Pink marks the CTA,
+  a link, and one emphasized word; it never marks a selected state or an error.
+  Mint supports structure, status, and supporting icons; never use it for a CTA.
+- Show selection in neutral: a pressed chip, a checked box, and the current nav
+  link all invert to `--fg1`.
+- Show an error in `--danger` with an icon beside the text. Danger is status,
+  never decoration.
+- Underline every link in running text. Pink and body grey share a luminance, so
+  hue alone does not mark a link.
 - Do not use gradients. One radial halo behind a hero lockup is the sole
   exception; it must read as lighting.
 - Use flat, geometric, two-color imagery. No stock photography, AI imagery, or
@@ -23,13 +30,19 @@ Read exact values and component behavior from the CSS.
 - Use existing logo artwork; never redraw it. Follow README for asset selection
   and regeneration. Reserve `--font-wordmark` for the lockup, never headings.
   Monospace body is the practitioner signal; preserve it, and keep it small. Set
-  running text in `--font-body` and labels, buttons, and code in
-  `--font-accent`.
+  running text in `--font-body` and labels and buttons in `--font-accent`; both
+  are JetBrains Mono, so never add a second monospace.
 - Emphasize one word per headline with `<em>`; preserve the supplied drawn
   italic.
-- Keep body copy in one column, at most about 640px wide. Use two or three
-  columns for card grids, one on mobile, never four. Leave generous space
-  between blocks.
+- Keep body copy in one column of at most about 68 characters (`.nt-measure`).
+  Use two or three columns for card grids, one on mobile, never four. Leave
+  generous space between blocks.
+- Align the header, every section, and the footer to one container: `--page-max`
+  wide with a `--gutter` each side.
+- Never use pure white or pure black on a light surface: cards are paper and
+  headlines are rose-black.
+- Build toggles, checkboxes, and radios on native inputs inside a `<label>`. Put
+  a hover state only on a link or a button.
 - Wrap long-form documents in `.nt-prose` from `prose.css`. In a document, pink
   marks links and one `*word*` per H1 or H2; links carry an underline. A
   document PDF also turns its H2s and bullets pink. Structure comes from plain

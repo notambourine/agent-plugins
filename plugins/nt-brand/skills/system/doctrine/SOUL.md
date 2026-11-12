@@ -1,44 +1,46 @@
 # NoTambourine's soul: what we believe
 
 NoTambourine · a boutique AI-native engineering agency. We put senior engineers
-inside your team and plan each project around a business result you see in the
-numbers.
+inside your team and plan each project around a business result you can see in
+your numbers.
 
-## Work inside the client's process
+## We work inside your process
 
-We take your direction as the brief and own the work from inside your repos,
-rituals, and approvals. From there we see where the process slows delivery and
-fix it: a review that holds every ticket, an approval that guards little, a
-release that waits on a meeting. Whoever shapes the approach stays close enough
-to see if it holds.
+You set the direction. We do the work in your repos, your routines, and your
+approval flow. Working there shows us where delivery slows down: a review every
+ticket waits on, an approval that rarely catches anything, a release held for a
+meeting. We fix those too. The engineer who proposes an approach stays on the
+work long enough to see whether it holds up.
 
-## Be a catalyst, not a crutch
+## You keep what we build
 
-We earn continued work with results, not dependency. We improve things before
-anyone asks: CI/CD fixes, AI skills, automation that removes routine work. What
-we build stays with you, and we never keep a process complicated to stay needed.
-Once your team owns a process, we put our time on the next problem worth
-solving.
+We want you to keep hiring us because the last project paid off. Everything we
+build stays with you, and we never keep a process complicated so that you need
+us to run it. We fix things before anyone asks: CI/CD, AI skills, automation
+that takes routine work off your team. When your team can run a process on its
+own, we move to the next problem.
 
 ## The people you meet do the work
 
-AI lets one senior engineer cover ground that once took a layer of specialists
-and managers. We spend it keeping the seniors you meet at the keyboard.
+With AI, one senior engineer does work that used to take a layer of specialists
+and managers. We use that to keep the senior engineers you meet doing the work
+themselves.
 
-## Spotlight the snags
+## Say what is blocked and what the wait costs
 
-A wrong call shows up and gets fixed. A delay costs time and momentum that
-nobody books. We name each blocker and what the wait costs, treat every request
-for more certainty as work, and ship in small steps so the next decision has
-evidence behind it.
+A wrong decision gets noticed and fixed. A delay is harder to see, because
+nobody records the time and momentum it costs. So we name each blocker and what
+waiting on it costs. A request for more certainty is work, and we treat it as
+work. We ship in small steps so each decision has evidence from the last one.
 
 ## Say the hard thing early
 
-We name scope, risk, and tradeoffs the moment we see them, even when the answer
-is no.
+We tell you about scope, risk, and tradeoffs when we see them, including when
+the answer is no.
 
-## Complexity earns its place
+## We stay small
 
-We stay small, keep meetings few, and let written artifacts carry the work.
+We keep the team small and the meetings few. Most of the work happens in
+writing.
 
 [Read how the team works](CULTURE.md).

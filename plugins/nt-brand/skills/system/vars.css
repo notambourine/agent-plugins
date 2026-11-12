@@ -8,89 +8,82 @@
 
 :root {
   --nt-pink: #e75a7c; /* Accent Primary: CTAs, highlights, logo */
-  --nt-pink-press: #c9446a;
   --nt-pink-soft: #fbe3ea;
-  --nt-pink-tint: #fef3f6;
   --nt-pink-deep: #a83758; /* text-grade pink: 5:1 on paper and the pink tints */
   --nt-mint: #58c9b9; /* Complementary: borders, subtle icons */
-  --nt-mint-press: #3fa897;
   --nt-mint-soft: #dcf3ef;
-  --nt-mint-tint: #ecf9f6;
   --nt-mint-deep: #1b6f62; /* text-grade mint: 5:1 on paper and the mint tints */
+  --nt-danger: #f2803d; /* Status, not accent: errors only. Orange, so it never reads as the pink. */
+  --nt-danger-soft: #fbe6da;
+  --nt-danger-deep: #a8440f; /* text-grade danger: 5:1 on canvas, paper, and its tint */
   --nt-ink: #000000; /* Neutral Primary: headlines, rules */
-  --nt-ink-85: #1a1a1a;
   --nt-ink-70: #404040;
   --nt-mid: #776c72; /* Neutral Mid-tone: secondary text */
-  --nt-mid-soft: #b3aaaf;
   --nt-line: #e2dbdf; /* subtle hairlines */
-  --nt-line-soft: #f3eef1;
-  --nt-paper: #faf8f9; /* Background Light: main bg */
-  --nt-paper-warm: #fdfcfa;
-  --nt-white: #ffffff;
+  --nt-line-control: #8a7f85; /* control boundary: 3:1 on canvas and paper */
+  --nt-line-soft: #f3eef1; /* pressed or hovered fill on light */
+  --nt-paper: #faf8f9; /* light card surface, and the page itself on paper */
+  --nt-paper-warm: #fdfcfa; /* raised light surface: the lightest step, never pure white */
   --nt-mid-deep: #5e555a; /* text-grade mid: secondary text at 6:1 on the canvas */
-  --nt-canvas: #f3eff1; /* light page canvas: a step under the white cards so they read as surfaces */
+  --nt-ink-rose: #1a1517; /* light-theme headlines: rose-black, softer than pure ink on paper */
+  --nt-canvas: #f3eff1; /* light page canvas: a step under the paper cards so they read as surfaces */
   --nt-bg: #0b0b0c; /* page canvas: just-off-black */
   --nt-surface-1: #141416; /* default card */
   --nt-surface-2: #1c1c1f; /* raised card, popovers */
-  --nt-surface-3: #26262a; /* hover, input fill */
+  --nt-surface-3: #26262a; /* hover fill, switch track */
   --nt-border: #2a2a2e; /* hairline on dark */
+  --nt-border-control: #6b6b73; /* control boundary: 3:1 on the page, card, and raised surfaces */
   --nt-border-soft: #1f1f22;
   --nt-fg1-dark: #f5f5f7; /* headlines */
   --nt-fg2-dark: #c9c9ce; /* body */
   --nt-fg3-dark: #8a8a92; /* secondary, captions */
-  --nt-fg-mute: #5a5a62; /* disabled */
+  --nt-fg-mute: #77777f; /* disabled */
   --bg: var(--nt-bg);
   --bg-card: var(--nt-surface-1);
   --bg-raised: var(--nt-surface-2);
   --bg-input: var(--nt-surface-3);
-  --bg-inverse: var(--nt-paper);
   --fg1: var(--nt-fg1-dark); /* headlines */
   --fg2: var(--nt-fg2-dark); /* body */
   --fg3: var(--nt-fg3-dark); /* secondary */
-  --fg-mute: var(--nt-fg-mute); /* placeholder, disabled */
-  --fg-on-pink: var(--nt-ink); /* Ink, not white: white sits at 3.4:1 under 14px button text; ink clears 6:1 on both themes. */
-  --fg-on-mint: var(--nt-ink);
-  --fg-on-dark: var(--nt-fg1-dark);
-  --fg-on-light: var(--nt-ink);
+  --fg-disabled: var(--nt-fg-mute); /* disabled */
+  --fg-on-pink: var(--nt-ink); /* Ink, not white: white sits at 3.4:1 under button text; ink clears 6:1. */
   --accent: var(--nt-pink);
-  --accent-press: var(--nt-pink-press);
   --accent-soft: rgba(231, 90, 124, 0.16); /* on dark: tinted pink, not pastel */
   --accent-text: var(--nt-pink); /* accent as prose: links, eyebrow, headline em */
-  --accent-fg: #f5a6bb; /* pink text on a pink tint: badge, inline code, error. Raw pink fails contrast there. */
+  --accent-fg: #f5a6bb; /* pink text on a pink tint: badge. Raw pink fails contrast there. */
   --support: var(--nt-mint);
   --support-soft: rgba(88, 201, 185, 0.16);
   --support-fg: #8fdcd0; /* mint text on a mint tint: badge */
+  --danger: var(--nt-danger); /* error border and icon; status, never decoration */
+  --danger-soft: rgba(242, 128, 61, 0.16);
+  --danger-fg: #ffb38a; /* error text, on the page or on the danger tint */
   --line: var(--nt-border);
   --line-soft: var(--nt-border-soft);
-  --line-strong: var(--nt-fg1-dark);
+  --line-control: var(--nt-border-control); /* input, switch, checkbox, radio boundary */
   --ring-accent: 0px 0px 0px 4px rgba(231, 90, 124, 0.22);
-  --bg-veil: rgba(11, 11, 12, 0.7); /* frosted surface over dark */
+  --bg-veil: rgba(11, 11, 12, 0.7); /* dialog backdrop */
   --nt-font-nunito: Nunito, system-ui, sans-serif;
   --nt-font-hanken: 'Hanken Grotesk', system-ui, sans-serif;
   --nt-font-jetbrains: 'JetBrains Mono', ui-monospace, 'SF Mono', Monaco, monospace;
-  --nt-font-space: 'Space Mono', ui-monospace, 'SF Mono', Monaco, monospace;
   --font-wordmark: var(--nt-font-nunito); /* the lockup, nothing else */
   --font-display: var(--nt-font-hanken); /* headings */
-  --font-accent: var(--nt-font-jetbrains); /* eyebrows, labels, buttons */
-  --font-body: var(--nt-font-space); /* running text */
+  --font-accent: var(--nt-font-jetbrains); /* eyebrows, labels, buttons: the body face, heavier */
+  --font-body: var(--nt-font-jetbrains); /* running text */
   --font-mono: var(--nt-font-jetbrains); /* code: same face */
-  --fs-display: clamp(2.5rem, 1.75rem + 3.75vw, 4rem); /* fluid: 40px floor holds "tambourine." at 375px, 64px from 960px up */
-  --fs-h1: 2.75rem; /* 44px */
+  --fs-display: clamp(2.5rem, 1.82rem + 2.9vw, 3.5625rem); /* fluid: 40px floor holds "tambourine." at 375px, 57px from 960px up */
+  --fs-h1: 2.6875rem; /* 43px */
   --fs-h2: 2rem; /* 32px */
   --fs-h3: 1.5rem; /* 24px */
   --fs-h4: 1.125rem; /* 18px */
   --fs-lede: 1rem; /* 16px, the intro paragraph */
-  --fs-body: 0.8125rem; /* 13px: mono reads technical small and typewriter large */
-  --fs-small: 0.875rem; /* 14px */
-  --fs-caption: 0.75rem; /* 12px */
-  --fs-mono: 0.8125rem; /* 13px */
-  --fs-label: 0.8125rem; /* 13px: chip, field label, nav link */
-  --fs-badge: 0.6875rem; /* 11px: badge only */
+  --fs-body: 0.8125rem; /* 13px: running text, labels, code. Mono reads technical small. */
+  --fs-small: 0.875rem; /* 14px: the large button */
+  --fs-caption: 0.75rem; /* 12px: captions, badges, footer */
   --lh-display: 1.05;
   --lh-h: 1.15;
   --lh-lede: 1.5;
   --lh-body: 1.7;
-  --lh-tight: 1.3;
+  --lh-tight: 1.3; /* h3, h4, and labels that wrap */
   --ls-display: -0.03em;
   --ls-tight: -0.02em;
   --ls-body: 0em;
@@ -112,6 +105,9 @@
   --sp-16: 4rem; /* 64px */
   --sp-20: 5rem; /* 80px */
   --sp-24: 6rem; /* 96px */
+  --page-max: 1100px;
+  --gutter: clamp(1rem, 5vw, 2rem); /* fluid: 16px on a phone, 32px from 640px up */
+  --control-h: 40px; /* button and input share it, so an inline form lines up */
   --r-xs: 6px;
   --r-sm: 10px;
   --r-md: 14px;
@@ -121,14 +117,9 @@
   --shadow-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
   --shadow-2: 0px 6px 18px 0px rgba(0, 0, 0, 0.35), 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
   --shadow-3: 0px 20px 50px 0px rgba(0, 0, 0, 0.5), 0px 6px 14px 0px rgba(0, 0, 0, 0.3);
-  --shadow-pink: 0px 8px 26px 0px rgba(231, 90, 124, 0.35); /* lifted: hero button at rest, any primary on hover */
-  --shadow-mint: 0px 8px 26px 0px rgba(88, 201, 185, 0.3);
-  --shadow-accent: 0px 8px 22px 0px rgba(231, 90, 124, 0.28); /* ordinary primary button */
   --shadow-edge: inset 0 1px 0 rgba(255, 255, 255, 0.06); /* lit top edge: what lifts a surface off near-black, where a drop shadow vanishes */
   --nt-ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
-  --nt-ease-bounce: cubic-bezier(0.34, 1.5, 0.64, 1);
   --ease-out: var(--nt-ease-out); /* default */
-  --ease-bounce: var(--nt-ease-bounce); /* playful, but subtle */
   --ease-spring: linear(0, 0.18 7%, 0.6 17%, 0.94 28%, 1.06 38%, 1.03 50%, 0.99 66%, 1); /* one overshoot and settle: press release, toggles, focus ring */
   --dur-1: 120ms;
   --dur-2: 200ms;
@@ -137,22 +128,24 @@
 
 .theme-light {
   --bg: var(--nt-canvas);
-  --bg-card: var(--nt-white);
-  --bg-raised: var(--nt-white);
-  --bg-input: var(--nt-white);
-  --bg-inverse: var(--nt-bg);
-  --fg1: var(--nt-ink);
+  --bg-card: var(--nt-paper);
+  --bg-raised: var(--nt-paper-warm);
+  --bg-input: var(--nt-line-soft);
+  --fg1: var(--nt-ink-rose);
   --fg2: var(--nt-ink-70);
   --fg3: var(--nt-mid-deep);
-  --fg-mute: var(--nt-mid);
+  --fg-disabled: var(--nt-mid);
   --line: var(--nt-line);
   --line-soft: var(--nt-line);
-  --line-strong: var(--nt-ink);
+  --line-control: var(--nt-line-control);
   --accent-text: var(--nt-pink-deep);
   --accent-fg: var(--nt-pink-deep);
   --support-fg: var(--nt-mint-deep);
+  --danger: var(--nt-danger-deep);
+  --danger-fg: var(--nt-danger-deep);
   --accent-soft: var(--nt-pink-soft);
   --support-soft: var(--nt-mint-soft);
+  --danger-soft: var(--nt-danger-soft);
   --bg-veil: rgba(250, 248, 249, 0.7);
   --shadow-1: 0px 1px 2px 0px rgba(26, 21, 23, 0.08), 0px 1px 1px 0px rgba(26, 21, 23, 0.05); /* Alphas tuned for paper; the dark set reads as smudges here. The rose-black tint keeps the neutrals' hue bias. */
   --shadow-2: 0px 6px 18px 0px rgba(26, 21, 23, 0.1), 0px 2px 6px 0px rgba(26, 21, 23, 0.07);

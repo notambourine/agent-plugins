@@ -5,7 +5,7 @@
     "bg": {
       "$value": "{dark-surfaces.nt-bg}",
       "$extensions": {
-        "com.notambourine.tailwind": "color-ink"
+        "com.notambourine.tailwind": "color-page"
       }
     },
     "bg-card": {
@@ -25,9 +25,6 @@
       "$extensions": {
         "com.notambourine.tailwind": "color-input"
       }
-    },
-    "bg-inverse": {
-      "$value": "{light-neutrals.nt-paper}"
     },
     "fg1": {
       "$value": "{dark-surfaces.nt-fg1-dark}",
@@ -50,36 +47,21 @@
         "com.notambourine.tailwind": "color-fg-subtle"
       }
     },
-    "fg-mute": {
+    "fg-disabled": {
       "$value": "{dark-surfaces.nt-fg-mute}",
-      "$description": "placeholder, disabled",
+      "$description": "disabled",
       "$extensions": {
         "com.notambourine.tailwind": "color-fg-disabled"
       }
     },
     "fg-on-pink": {
       "$value": "{brand.nt-ink}",
-      "$description": "Ink, not white: white sits at 3.4:1 under 14px button text; ink clears 6:1 on both themes."
-    },
-    "fg-on-mint": {
-      "$value": "{brand.nt-ink}"
-    },
-    "fg-on-dark": {
-      "$value": "{dark-surfaces.nt-fg1-dark}"
-    },
-    "fg-on-light": {
-      "$value": "{brand.nt-ink}"
+      "$description": "Ink, not white: white sits at 3.4:1 under button text; ink clears 6:1."
     },
     "accent": {
       "$value": "{brand.nt-pink}",
       "$extensions": {
         "com.notambourine.tailwind": "color-accent"
-      }
-    },
-    "accent-press": {
-      "$value": "{brand.nt-pink-press}",
-      "$extensions": {
-        "com.notambourine.tailwind": "color-accent-press"
       }
     },
     "accent-soft": {
@@ -104,7 +86,7 @@
         "components": [0.9608, 0.651, 0.7333],
         "hex": "#F5A6BB"
       },
-      "$description": "pink text on a pink tint: badge, inline code, error. Raw pink fails contrast there."
+      "$description": "pink text on a pink tint: badge. Raw pink fails contrast there."
     },
     "support": {
       "$value": "{brand.nt-mint}",
@@ -131,6 +113,32 @@
       },
       "$description": "mint text on a mint tint: badge"
     },
+    "danger": {
+      "$value": "{brand.nt-danger}",
+      "$description": "error border and icon; status, never decoration",
+      "$extensions": {
+        "com.notambourine.tailwind": "color-danger"
+      }
+    },
+    "danger-soft": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.949, 0.502, 0.2392],
+        "alpha": 0.16,
+        "hex": "#F2803D"
+      },
+      "$extensions": {
+        "com.notambourine.tailwind": "color-danger-soft"
+      }
+    },
+    "danger-fg": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [1, 0.702, 0.5412],
+        "hex": "#FFB38A"
+      },
+      "$description": "error text, on the page or on the danger tint"
+    },
     "line": {
       "$value": "{dark-surfaces.nt-border}",
       "$extensions": {
@@ -143,8 +151,12 @@
         "com.notambourine.tailwind": "color-border-subtle"
       }
     },
-    "line-strong": {
-      "$value": "{dark-surfaces.nt-fg1-dark}"
+    "line-control": {
+      "$value": "{dark-surfaces.nt-border-control}",
+      "$description": "input, switch, checkbox, radio boundary",
+      "$extensions": {
+        "com.notambourine.tailwind": "color-border-control"
+      }
     },
     "ring-accent": {
       "$value": {
@@ -180,11 +192,11 @@
         "alpha": 0.7,
         "hex": "#0B0B0C"
       },
-      "$description": "frosted surface over dark"
+      "$description": "dialog backdrop"
     }
   },
   "font": {
-    "$description": "Hanken Grotesk headings over a Space Mono body, JetBrains Mono for labels and code, and Nunito reserved for the wordmark. The --nt-* primitive carries the stack and the alias names the job: Tailwind claims --font-*, so a Tailwind surface reads the primitive.",
+    "$description": "Three faces: Hanken Grotesk headings, JetBrains Mono for running text, labels, and code, and Nunito reserved for the wordmark. The --nt-* primitive carries the stack and the alias names the job: Tailwind claims --font-*, so a Tailwind surface reads the primitive.",
     "$type": "fontFamily",
     "nt-font-nunito": {
       "$value": ["Nunito", "system-ui", "sans-serif"]
@@ -200,9 +212,6 @@
         "Monaco",
         "monospace"
       ]
-    },
-    "nt-font-space": {
-      "$value": ["Space Mono", "ui-monospace", "SF Mono", "Monaco", "monospace"]
     },
     "font-wordmark": {
       "$value": "{font.nt-font-nunito}",
@@ -220,13 +229,13 @@
     },
     "font-accent": {
       "$value": "{font.nt-font-jetbrains}",
-      "$description": "eyebrows, labels, buttons",
+      "$description": "eyebrows, labels, buttons: the body face, heavier",
       "$extensions": {
         "com.notambourine.tailwind": "font-accent"
       }
     },
     "font-body": {
-      "$value": "{font.nt-font-space}",
+      "$value": "{font.nt-font-jetbrains}",
       "$description": "running text",
       "$extensions": {
         "com.notambourine.tailwind": "font-body"
@@ -241,25 +250,25 @@
     }
   },
   "size": {
-    "$description": "A 1.25 modular scale in rem, so a raised browser default scales the page. Comments give px at a 16px root.",
+    "$description": "Headings step by 1.333 from 18px, in rem, so a raised browser default scales the page. Small text has two sizes: 13px body and 12px caption. Comments give px at a 16px root.",
     "$type": "dimension",
     "fs-display": {
       "$value": {
-        "value": 4,
+        "value": 3.5625,
         "unit": "rem"
       },
-      "$description": "fluid: 40px floor holds \"tambourine.\" at 375px, 64px from 960px up",
+      "$description": "fluid: 40px floor holds \"tambourine.\" at 375px, 57px from 960px up",
       "$extensions": {
-        "com.notambourine.css": "clamp(2.5rem, 1.75rem + 3.75vw, 4rem)",
+        "com.notambourine.css": "clamp(2.5rem, 1.82rem + 2.9vw, 3.5625rem)",
         "com.notambourine.tailwind": "text-display"
       }
     },
     "fs-h1": {
       "$value": {
-        "value": 2.75,
+        "value": 2.6875,
         "unit": "rem"
       },
-      "$description": "44px",
+      "$description": "43px",
       "$extensions": {
         "com.notambourine.tailwind": "text-h1"
       }
@@ -309,14 +318,14 @@
         "value": 0.8125,
         "unit": "rem"
       },
-      "$description": "13px: mono reads technical small and typewriter large"
+      "$description": "13px: running text, labels, code. Mono reads technical small."
     },
     "fs-small": {
       "$value": {
         "value": 0.875,
         "unit": "rem"
       },
-      "$description": "14px",
+      "$description": "14px: the large button",
       "$extensions": {
         "com.notambourine.tailwind": "text-small"
       }
@@ -326,31 +335,10 @@
         "value": 0.75,
         "unit": "rem"
       },
-      "$description": "12px",
+      "$description": "12px: captions, badges, footer",
       "$extensions": {
         "com.notambourine.tailwind": "text-caption"
       }
-    },
-    "fs-mono": {
-      "$value": {
-        "value": 0.8125,
-        "unit": "rem"
-      },
-      "$description": "13px"
-    },
-    "fs-label": {
-      "$value": {
-        "value": 0.8125,
-        "unit": "rem"
-      },
-      "$description": "13px: chip, field label, nav link"
-    },
-    "fs-badge": {
-      "$value": {
-        "value": 0.6875,
-        "unit": "rem"
-      },
-      "$description": "11px: badge only"
     }
   },
   "leading": {
@@ -382,7 +370,8 @@
       "$value": 1.7
     },
     "lh-tight": {
-      "$value": 1.3
+      "$value": 1.3,
+      "$description": "h3, h4, and labels that wrap"
     }
   },
   "tracking": {
@@ -518,6 +507,33 @@
         "unit": "rem"
       },
       "$description": "96px"
+    }
+  },
+  "layout": {
+    "$description": "One container for header, sections, and footer, so their edges line up at every width.",
+    "$type": "dimension",
+    "page-max": {
+      "$value": {
+        "value": 1100,
+        "unit": "px"
+      }
+    },
+    "gutter": {
+      "$value": {
+        "value": 2,
+        "unit": "rem"
+      },
+      "$description": "fluid: 16px on a phone, 32px from 640px up",
+      "$extensions": {
+        "com.notambourine.css": "clamp(1rem, 5vw, 2rem)"
+      }
+    },
+    "control-h": {
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "button and input share it, so an inline form lines up"
     }
   },
   "radius": {
@@ -743,86 +759,6 @@
         "com.notambourine.tailwind": "shadow-lg"
       }
     },
-    "shadow-pink": {
-      "$value": {
-        "color": {
-          "colorSpace": "srgb",
-          "components": [0.9059, 0.3529, 0.4863],
-          "alpha": 0.35,
-          "hex": "#E75A7C"
-        },
-        "offsetX": {
-          "value": 0,
-          "unit": "px"
-        },
-        "offsetY": {
-          "value": 8,
-          "unit": "px"
-        },
-        "blur": {
-          "value": 26,
-          "unit": "px"
-        },
-        "spread": {
-          "value": 0,
-          "unit": "px"
-        }
-      },
-      "$description": "lifted: hero button at rest, any primary on hover"
-    },
-    "shadow-mint": {
-      "$value": {
-        "color": {
-          "colorSpace": "srgb",
-          "components": [0.3451, 0.7882, 0.7255],
-          "alpha": 0.3,
-          "hex": "#58C9B9"
-        },
-        "offsetX": {
-          "value": 0,
-          "unit": "px"
-        },
-        "offsetY": {
-          "value": 8,
-          "unit": "px"
-        },
-        "blur": {
-          "value": 26,
-          "unit": "px"
-        },
-        "spread": {
-          "value": 0,
-          "unit": "px"
-        }
-      }
-    },
-    "shadow-accent": {
-      "$value": {
-        "color": {
-          "colorSpace": "srgb",
-          "components": [0.9059, 0.3529, 0.4863],
-          "alpha": 0.28,
-          "hex": "#E75A7C"
-        },
-        "offsetX": {
-          "value": 0,
-          "unit": "px"
-        },
-        "offsetY": {
-          "value": 8,
-          "unit": "px"
-        },
-        "blur": {
-          "value": 22,
-          "unit": "px"
-        },
-        "spread": {
-          "value": 0,
-          "unit": "px"
-        }
-      },
-      "$description": "ordinary primary button"
-    },
     "shadow-edge": {
       "$value": {
         "color": {
@@ -831,10 +767,22 @@
           "alpha": 0.06,
           "hex": "#FFFFFF"
         },
-        "offsetX": { "value": 0, "unit": "px" },
-        "offsetY": { "value": 1, "unit": "px" },
-        "blur": { "value": 0, "unit": "px" },
-        "spread": { "value": 0, "unit": "px" },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 1,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 0,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        },
         "inset": true
       },
       "$description": "lit top edge: what lifts a surface off near-black, where a drop shadow vanishes",
@@ -849,24 +797,12 @@
       "$value": [0.2, 0.7, 0.2, 1],
       "$type": "cubicBezier"
     },
-    "nt-ease-bounce": {
-      "$value": [0.34, 1.5, 0.64, 1],
-      "$type": "cubicBezier"
-    },
     "ease-out": {
       "$value": "{motion.nt-ease-out}",
       "$type": "cubicBezier",
       "$description": "default",
       "$extensions": {
         "com.notambourine.tailwind": "ease-out"
-      }
-    },
-    "ease-bounce": {
-      "$value": "{motion.nt-ease-bounce}",
-      "$type": "cubicBezier",
-      "$description": "playful, but subtle",
-      "$extensions": {
-        "com.notambourine.tailwind": "ease-bounce"
       }
     },
     "ease-spring": {

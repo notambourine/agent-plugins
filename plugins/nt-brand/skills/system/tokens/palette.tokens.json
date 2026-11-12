@@ -10,25 +10,11 @@
       },
       "$description": "Accent Primary: CTAs, highlights, logo"
     },
-    "nt-pink-press": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [0.7882, 0.2667, 0.4157],
-        "hex": "#C9446A"
-      }
-    },
     "nt-pink-soft": {
       "$value": {
         "colorSpace": "srgb",
         "components": [0.9843, 0.8902, 0.9176],
         "hex": "#FBE3EA"
-      }
-    },
-    "nt-pink-tint": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [0.9961, 0.9529, 0.9647],
-        "hex": "#FEF3F6"
       }
     },
     "nt-pink-deep": {
@@ -47,25 +33,11 @@
       },
       "$description": "Complementary: borders, subtle icons"
     },
-    "nt-mint-press": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [0.2471, 0.6588, 0.5922],
-        "hex": "#3FA897"
-      }
-    },
     "nt-mint-soft": {
       "$value": {
         "colorSpace": "srgb",
         "components": [0.8627, 0.9529, 0.9373],
         "hex": "#DCF3EF"
-      }
-    },
-    "nt-mint-tint": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [0.9255, 0.9765, 0.9647],
-        "hex": "#ECF9F6"
       }
     },
     "nt-mint-deep": {
@@ -76,6 +48,29 @@
       },
       "$description": "text-grade mint: 5:1 on paper and the mint tints"
     },
+    "nt-danger": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.949, 0.502, 0.2392],
+        "hex": "#F2803D"
+      },
+      "$description": "Status, not accent: errors only. Orange, so it never reads as the pink."
+    },
+    "nt-danger-soft": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.9843, 0.902, 0.8549],
+        "hex": "#FBE6DA"
+      }
+    },
+    "nt-danger-deep": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.6588, 0.2667, 0.0588],
+        "hex": "#A8440F"
+      },
+      "$description": "text-grade danger: 5:1 on canvas, paper, and its tint"
+    },
     "nt-ink": {
       "$value": {
         "colorSpace": "srgb",
@@ -83,13 +78,6 @@
         "hex": "#000000"
       },
       "$description": "Neutral Primary: headlines, rules"
-    },
-    "nt-ink-85": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [0.102, 0.102, 0.102],
-        "hex": "#1A1A1A"
-      }
     },
     "nt-ink-70": {
       "$value": {
@@ -110,13 +98,6 @@
       },
       "$description": "Neutral Mid-tone: secondary text"
     },
-    "nt-mid-soft": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [0.702, 0.6667, 0.6863],
-        "hex": "#B3AAAF"
-      }
-    },
     "nt-line": {
       "$value": {
         "colorSpace": "srgb",
@@ -125,12 +106,21 @@
       },
       "$description": "subtle hairlines"
     },
+    "nt-line-control": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.5412, 0.498, 0.5216],
+        "hex": "#8A7F85"
+      },
+      "$description": "control boundary: 3:1 on canvas and paper"
+    },
     "nt-line-soft": {
       "$value": {
         "colorSpace": "srgb",
         "components": [0.9529, 0.9333, 0.9451],
         "hex": "#F3EEF1"
-      }
+      },
+      "$description": "pressed or hovered fill on light"
     },
     "nt-paper": {
       "$value": {
@@ -138,7 +128,7 @@
         "components": [0.9804, 0.9725, 0.9765],
         "hex": "#FAF8F9"
       },
-      "$description": "Background Light: main bg",
+      "$description": "light card surface, and the page itself on paper",
       "$extensions": {
         "com.notambourine.tailwind": "color-paper"
       }
@@ -148,14 +138,8 @@
         "colorSpace": "srgb",
         "components": [0.9922, 0.9882, 0.9804],
         "hex": "#FDFCFA"
-      }
-    },
-    "nt-white": {
-      "$value": {
-        "colorSpace": "srgb",
-        "components": [1, 1, 1],
-        "hex": "#FFFFFF"
-      }
+      },
+      "$description": "raised light surface: the lightest step, never pure white"
     },
     "nt-mid-deep": {
       "$value": {
@@ -165,13 +149,21 @@
       },
       "$description": "text-grade mid: secondary text at 6:1 on the canvas"
     },
+    "nt-ink-rose": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.102, 0.0824, 0.0902],
+        "hex": "#1A1517"
+      },
+      "$description": "light-theme headlines: rose-black, softer than pure ink on paper"
+    },
     "nt-canvas": {
       "$value": {
         "colorSpace": "srgb",
         "components": [0.9529, 0.9373, 0.9451],
         "hex": "#F3EFF1"
       },
-      "$description": "light page canvas: a step under the white cards so they read as surfaces"
+      "$description": "light page canvas: a step under the paper cards so they read as surfaces"
     }
   },
   "dark-surfaces": {
@@ -207,7 +199,7 @@
         "components": [0.149, 0.149, 0.1647],
         "hex": "#26262A"
       },
-      "$description": "hover, input fill"
+      "$description": "hover fill, switch track"
     },
     "nt-border": {
       "$value": {
@@ -216,6 +208,14 @@
         "hex": "#2A2A2E"
       },
       "$description": "hairline on dark"
+    },
+    "nt-border-control": {
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [0.4196, 0.4196, 0.451],
+        "hex": "#6B6B73"
+      },
+      "$description": "control boundary: 3:1 on the page, card, and raised surfaces"
     },
     "nt-border-soft": {
       "$value": {
@@ -251,8 +251,8 @@
     "nt-fg-mute": {
       "$value": {
         "colorSpace": "srgb",
-        "components": [0.3529, 0.3529, 0.3843],
-        "hex": "#5A5A62"
+        "components": [0.4667, 0.4667, 0.498],
+        "hex": "#77777F"
       },
       "$description": "disabled"
     }

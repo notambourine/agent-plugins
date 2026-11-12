@@ -101,7 +101,7 @@ faces.
 ### With Tailwind or StyleX
 
 A Tailwind v4 surface imports `tailwind.css`. It carries `vars.css` and maps it
-onto Tailwind's theme names (`bg-ink`, `text-fg-subtle`, `rounded-md`), so the
+onto Tailwind's theme names (`bg-page`, `text-fg-subtle`, `rounded-md`), so the
 surface writes no `@theme` of its own and `.theme-light` flips its utilities.
 
 ```css
@@ -147,7 +147,6 @@ A `var(--x)` that reads a token this repo stopped declaring falls through to its
 fallback and the page still renders, so a bump can go wrong quietly. Check three
 things in the consumer's CI: the font bytes hash against `fonts/`, every color
 is one this kit defines, and every `var()` reads a property it still declares.
-`notambourine/share`'s `npm run brand` is the reference implementation.
 
 ## Release
 

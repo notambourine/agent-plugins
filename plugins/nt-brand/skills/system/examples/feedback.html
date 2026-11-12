@@ -1,0 +1,56 @@
+<!-- Alert: a full border and an icon, never a colored left stripe. -->
+<div class="nt-stack nt-measure" style="margin-inline: 0">
+  <div class="nt-alert nt-alert--danger" role="alert">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 8v4M12 16h.01" />
+    </svg>
+    <p>The import stopped at row 412. Nothing after it was saved.</p>
+  </div>
+  <div class="nt-alert nt-alert--support" role="status">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+    <p>Synced 1,204 products.</p>
+  </div>
+
+  <!-- Dialog: a native <dialog>, opened with showModal(). -->
+  <button
+    class="nt-btn nt-btn--secondary"
+    type="button"
+    style="align-self: start"
+    onclick="this.nextElementSibling.showModal()"
+  >
+    Open dialog
+  </button>
+  <dialog class="nt-dialog" aria-labelledby="ex-dialog-title">
+    <form method="dialog" class="nt-stack" style="--gap: var(--sp-4)">
+      <h3 id="ex-dialog-title">Pause the migration?</h3>
+      <p>Orders keep flowing on the current platform until you resume.</p>
+      <div class="nt-cluster" style="justify-content: flex-end">
+        <button class="nt-btn nt-btn--ghost" value="cancel">Keep going</button>
+        <button class="nt-btn nt-btn--secondary" value="pause">Pause</button>
+      </div>
+    </form>
+  </dialog>
+</div>
