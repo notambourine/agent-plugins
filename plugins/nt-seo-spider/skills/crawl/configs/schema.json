@@ -1,0 +1,23 @@
+{
+  "crawlConfig": {
+    "crawlImages": false,
+    "storeImages": false,
+    "crawlCSS": false,
+    "storeCSS": false,
+    "crawlJavaScript": false,
+    "storeJavaScript": false,
+    "crawlSWF": false,
+    "storeSWF": false,
+    "crawlExternalLinks": false,
+    "storeExternalLinks": false,
+    "crawlSitemaps": true
+  },
+  "internalUrlConfig": {
+    "searchAllSubdomains": true
+  },
+  "spiderStructuredDataConfig": {
+    "extractJsonLd": true,
+    "googleValidation": true,
+    "schemaDotOrgValidation": true
+  }
+}

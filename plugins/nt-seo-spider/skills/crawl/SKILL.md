@@ -32,9 +32,12 @@ to answer a one-minute question. Never pass `--use-pagespeed`. Answer performanc
 the chrome-devtools MCP on specific pages.
 
 Before launching, grep `~/.ScreamingFrogSEOSpider/spider.config` for `PSI.auto_connect`. When it is
-`true`, every run queues Lighthouse regardless of flags, and no `.seospiderconfig` overrides it. In
-that case stop, and ask the user to disconnect PageSpeed under Configuration -> API Access and
-untick connect-on-start.
+`true`, every run queues Lighthouse regardless of flags, and no config file overrides it. In that
+case stop, and ask the user to disconnect PageSpeed under Configuration -> API Access and untick
+connect-on-start.
+
+Before an MCP crawl, check `pagespeed` in `sf_list_api_connections` and call
+`sf_disconnect_api` when it is connected.
 
 ## Size the crawl to the task
 
@@ -44,9 +47,9 @@ and costs nothing.
 
 | Task | Seed | Mode | Cost |
 | --- | --- | --- | --- |
-| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | `links.seospiderconfig` | ~1 min |
-| Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `schema.seospiderconfig` | ~1 min |
-| Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render.seospiderconfig` | ~5-10 min |
+| Redirects, 404s, status codes, canonicals, titles, meta, robots, sitemap hygiene | `--crawl-sitemap` or a `--crawl` spider | `links.json` | ~1 min |
+| Structured data, rich-result eligibility | `--crawl-sitemap` of the section | `schema.json` | ~1 min |
+| Scope audit, client-rendered listings, "is it in the hydrated DOM" | `--crawl` | `render.json` | ~5-10 min |
 
 Before a render run of more than 200 URLs, state the URL count and the estimated time and wait
 for a go-ahead.
@@ -66,7 +69,7 @@ and `ScreamingFrogSEOSpiderCli` in the install directory on Windows and Linux.
 ```sh
 OUT=~/screaming-frog/<task>-<yyyymmdd>
 mkdir -p "$OUT"
-"$SF_LAUNCHER" --headless [--config <mode>.seospiderconfig] \
+"$SF_LAUNCHER" --headless --config <mode>.json \
   --crawl-sitemap $SITE/<section-sitemap>.xml \
   --project-name <site> --task-name <task>-<yyyymmdd> --save-crawl \
   --output-folder "$OUT" --overwrite --export-format csv \
@@ -78,16 +81,16 @@ Saved crawls land in DB storage. Open them from File -> Crawls..., not "Open Rec
 
 ### Pass a mode config
 
-`sf_crawl` takes only url, name, project, and config_path. With no config, a run uses the user's
-saved default, whose settings are unknown. Never edit that default. Always pass a mode config, via
-`--config` or `config_path`, from `${CLAUDE_PLUGIN_ROOT}/skills/crawl/configs/` or the directory the
-site supplement names.
+With no config, a run uses the user's saved default, whose settings are unknown. Never edit that
+default. Always pass a mode config, via `--config` or `config_path`, from
+`${CLAUDE_PLUGIN_ROOT}/skills/crawl/configs/` or the directory the site supplement names.
 
-A `.seospiderconfig` is Java-serialized binary. Never write or patch one by hand. To read one, run it
-headless against `$SITE/robots.txt` and grep the config dump in the log.
+A mode config is a JSON file holding only the settings that differ from factory defaults, so
+reading it tells you what the run changes. When a task needs a setting no mode config has, write a
+new JSON file per [references/configs.md](references/configs.md) and pass that.
 
-When a mode config is missing, ask the user to build it per
-[references/configs.md](references/configs.md).
+Never shape a crawl with `sf_set_config_spider`. It edits whatever config the app has loaded, so
+the result depends on state you did not set and the user's session keeps the change.
 
 Two runs on different configs measure different things, so never compare their numbers.
 
@@ -102,7 +105,7 @@ skips them, because it visits every URL in the sitemap.
 
 | Tool | What it is | Use it when |
 | --- | --- | --- |
-| `sf_generate_report` | 61 pre-baked cross-cutting analyses | The question spans URLs: chains, reciprocity, rich-result eligibility, totals |
+| `sf_generate_report` | 64 pre-baked cross-cutting analyses | The question spans URLs: chains, reciprocity, rich-result eligibility, totals |
 | `sf_export_seo_element_urls` | The UI's tab and filter grid | "Give me the URLs where X", where X is a filter in a tab |
 | `sf_generate_bulk_export` | Edges and raw content | "What links to the broken thing", or "dump the rendered HTML" |
 
@@ -124,11 +127,15 @@ For the report or export that answers a specific question, read
   `IllegalStateException: Tool cannot be called currently`. That error reports the app's state and
   says nothing about your arguments. The headless CLI runs beside the GUI.
 - Load a crawl before any report: `sf_list_crawls`, then `sf_load_crawl <id>`.
-- Output dirs aren't created for you. `file_path` is relative to `sf_list_allowed_base_directory`.
+- Output dirs aren't created for you. `file_path` is relative to `sf_allowed_base_directory`.
   Run `sf_create_directory` first or get `NoSuchFileException`.
-- During a crawl only `sf_crawl_progress` responds. Crawl, poll, then export.
-- Pass `export_type: "CSV"`. The default NDJSON arrives as one giant line.
-- `sf_list_available_bulk_exports` overflows the token limit. Call it once and keep the list.
+- During a crawl only `sf_crawl_progress` responds. Poll until `crawlRunning` is false and
+  `postCrawlAnalysisProgress` reaches 100, then export.
+- Loads, reports, and exports return as soon as they start. Poll `sf_task_status` until the task
+  succeeds before reading the file.
+- Pass `export_type: "CSV"` to reports and bulk exports. `sf_export_seo_element_urls` writes NDJSON
+  only; read it line by line.
+- `sf_list_bulk_exports` overflows the token limit. Call it once and keep the list.
 - Always write to `file_path`, then read the part you need with shell. Inline content fills the
   context window.
 

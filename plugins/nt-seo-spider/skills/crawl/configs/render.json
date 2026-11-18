@@ -1,0 +1,10 @@
+{
+  "crawlConfig": {
+    "crawlerMode": "RENDER",
+    "storeChromeConsoleLog": true,
+    "crawlSitemaps": true
+  },
+  "internalUrlConfig": {
+    "searchAllSubdomains": true
+  }
+}

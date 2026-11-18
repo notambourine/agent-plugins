@@ -37,7 +37,7 @@ and install only there.
 | `nt-brand`      | The brand kit: tokens, components, fonts, logos, deck and document PDF export, voice, doctrine, and case studies     |
 | `nt-dev`        | Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in house conventions              |
 | `nt-pm`         | Client call agendas and follow-ups, deploy notes, weekly recaps, and Drive share links. Client facts stay out of it  |
-| `nt-seo-spider` | Screaming Frog's MCP server and a `crawl` skill. Needs SEO Spider 24 or later                                        |
+| `nt-seo-spider` | Screaming Frog's MCP server and a `crawl` skill. Needs SEO Spider 25 or later                                        |
 | `nt-shopify`    | Blocks writes to a live Shopify store                                                                                |
 | `nt-voice`      | Edits prose so it reads as written by a person                                                                       |
 | `nt-vendor`     | Third-party skills: `codebase-design`, `audit-codebase`, `improve-codebase-architecture`, `install-anti-slop`, `eli5` |
