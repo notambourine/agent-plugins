@@ -1,0 +1,18 @@
+{
+  "crawlConfig": {
+    "crawlImages": false,
+    "storeImages": false,
+    "crawlCSS": false,
+    "storeCSS": false,
+    "crawlJavaScript": false,
+    "storeJavaScript": false,
+    "crawlSWF": false,
+    "storeSWF": false,
+    "crawlExternalLinks": false,
+    "storeExternalLinks": false,
+    "crawlSitemaps": true
+  },
+  "internalUrlConfig": {
+    "searchAllSubdomains": true
+  }
+}

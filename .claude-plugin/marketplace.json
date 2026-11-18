@@ -34,7 +34,7 @@
     {
       "name": "nt-seo-spider",
       "source": "./plugins/nt-seo-spider",
-      "description": "Screaming Frog SEO Spider MCP plus a crawl skill that sizes each run to its task. Requires SEO Spider 24+ with MCP running; disabled by default because it provides 29 tools."
+      "description": "Screaming Frog SEO Spider MCP plus a crawl skill that sizes each run to its task. Requires SEO Spider 25+ with MCP running; disabled by default because it provides 44 tools."
     },
     {
       "name": "nt-shopify",
