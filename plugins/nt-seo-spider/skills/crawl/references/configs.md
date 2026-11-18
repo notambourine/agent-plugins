@@ -41,9 +41,3 @@ edited config, grep `run.log`:
 A config stores custom JavaScript snippets, custom HTTP headers, and AI prompts verbatim. Read a
 config for API keys and client facts before committing it. Site-specific configs belong in the
 site's repo, in the directory its supplement names.
-
-## Convert a legacy config
-
-A binary `.seospiderconfig` still loads. To replace one, run it headless once, decode the
-`configfile` dump, and keep only the settings the mode needs. Drop `configVersion` and the
-`lastModCustomDate` fields, which record when the file was saved.
