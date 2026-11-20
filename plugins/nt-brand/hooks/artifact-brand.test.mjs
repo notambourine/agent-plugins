@@ -1,7 +1,7 @@
 /* Decision table for the artifact-brand PreToolUse hook. Run: npm test
 
    Session ids carry the pid, so a second run never inherits the first one's markers. */
-import { match, ok, strictEqual } from 'node:assert/strict';
+import { doesNotMatch, match, ok, strictEqual } from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { readdirSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -37,10 +37,12 @@ const denial = (r) => r?.hookSpecificOutput?.permissionDecision === 'deny'
   && r.hookSpecificOutput.permissionDecisionReason;
 
 describe('what it nudges', () => {
-  it('a publish with no action, at the brand skill and the design system', () => {
+  it('a publish with no action, at the brand skill and its deck and document paths', () => {
     const reason = denial(run('Artifact', { file_path: 'page.html' }));
     match(reason, /\/nt-brand:system/);
-    match(reason, /claude\.ai\/artifact\//);
+    match(reason, /references\/decks\.md/);
+    match(reason, /references\/documents\.md/);
+    doesNotMatch(reason, /claude\.ai\/artifact\//);
   });
 
   it('an explicit publish and a quickstart', () => {

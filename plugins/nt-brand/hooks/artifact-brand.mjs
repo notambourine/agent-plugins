@@ -17,8 +17,6 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const DESIGN_SYSTEM = 'https://claude.ai/artifact/63ojiQvBut4LYKcuSjNWSM';
-
 if ((process.env.NT_BRAND_ARTIFACT_NUDGE ?? '').trim().toLowerCase() === 'off') pass();
 
 const payload = readPayload();
@@ -43,7 +41,7 @@ mark('nudged');
 
 deny(`🟡 [artifact-brand] Load /nt-brand:system before you make this artifact, then carry on.
 
-Every NoTambourine artifact uses the brand kit: tokens, type, components, and voice. For a Slides or Design type, use the NoTambourine design system artifact: ${DESIGN_SYSTEM}. Invoke the skill and this stops asking for the rest of the session. Silence a repo with NT_BRAND_ARTIFACT_NUDGE=off under \`env\` in .claude/settings.json.`);
+Every NoTambourine artifact uses the brand kit: tokens, type, components, and voice. Publish it as a plain HTML page, not from a Slides or Design type, whose design systems are not the brand kit. For a deck, follow references/decks.md (Marp with deck-standalone.css); for a document, follow references/documents.md (doc-template.html with doc-standalone.css). Both build one self-contained HTML file to publish, and the theme files sit beside the skill's SKILL.md. Invoke the skill and this stops asking for the rest of the session. Silence a repo with NT_BRAND_ARTIFACT_NUDGE=off under \`env\` in .claude/settings.json.`);
 
 /* --- helpers --------------------------------------------------------------- */
 
