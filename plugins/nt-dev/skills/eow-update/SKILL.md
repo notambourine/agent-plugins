@@ -1,6 +1,6 @@
 ---
 name: eow-update
-description: Draft the end-of-week update a client reads. Sweeps the user's week in GitHub and Slack, writes what was solved, made easier and changed in plain words, gathers screenshots and videos as before/after pairs, and leaves one Slack draft with the files attached. Use on Friday or for a weekly, end-of-week, or client update with pictures. For the whole team's text recap use nt-pm:weekly-recap.
+description: Draft the end-of-week update in one fixed format - what is new, what was fixed, what is waiting - with screenshots and videos of the changes attached. Sweeps the user's week in GitHub and Slack and leaves one Slack draft, written so the PM can pass it on or build the client's final update from it. Use on Friday or for a weekly, end-of-week, or client update with pictures. For the whole team's text recap use nt-pm:weekly-recap.
 argument-hint: "[last] [from=YYYY-MM-DD to=YYYY-MM-DD] [team] [channel=#name|me] [dry]"
 allowed-tools:
   - Bash(gh pr list:*)
@@ -14,9 +14,11 @@ allowed-tools:
 
 # End-of-week update
 
-Turn one week of work into one message a client enjoys reading: what got better for their
-customers and their team, shown with pictures, in plain words. It ends as **one Slack
-draft** with the files attached. The user reads it once and sends it.
+Turn one week of work into one message in a fixed format: what is new, what was fixed,
+what is waiting and what comes next, shown with pictures, in plain words. Write it so a
+client can read it as it stands. Its first reader is usually the PM, who passes it on or
+builds the client's final update from it, so it has to be clear without the PRs open. It
+ends as **one Slack draft** with the files attached. The user reads it once and sends it.
 
 - **Draft only.** Never send or schedule the update. Never pass `channel_id` to
   `slack_complete_file_upload`, which posts the file on the spot.
@@ -147,7 +149,7 @@ Before/after, in order of preference:
 
 ```bash
 python3 $S/media.py pair BEFORE.png AFTER.png -o $OUT/attach/01-<outcome>-before-after.png \
-  --title '<the outcome, in the client's words>' [--labels 'Today' 'In preview'] [--note '<one grey line>']
+  --title '<the outcome in plain words>' [--labels 'Today' 'In preview'] [--note '<one grey line>']
 python3 $S/media.py row A.png B.png C.png -o $OUT/attach/04-<outcome>.png \
   --labels 'A - today' 'B - one upgrade' 'C - shown at $19.95' --title '<what they are looking at>'
 python3 $S/media.py crop IN -o OUT --top 90   # a browser's tab bar, or an internal caption
