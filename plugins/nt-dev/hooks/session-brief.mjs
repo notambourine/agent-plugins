@@ -18,5 +18,6 @@ brief(
     'subjects instead of Conventional Commits. /nt-dev:pr and /nt-dev:issue use the repo ' +
     'template, default to drafts, and never publish without a request. /nt-dev:recall ' +
     'recovers prior-session context. /nt-dev:cleanup audits checked-in context and Claude ' +
-    'config. /nt-dev:eod-update drafts the Slack end-of-day note.',
+    'config. /nt-dev:eod-update drafts the Slack end-of-day note. /nt-dev:eow-update drafts ' +
+    'the end-of-week client update with its pictures.',
 );

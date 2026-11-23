@@ -35,7 +35,7 @@ and install only there.
 | Plugin          | What it does                                                                                                         |
 | --------------- | -------------------------------------------------------------------------------------------------------------------- |
 | `nt-brand`      | The brand kit: tokens, components, fonts, logos, deck and document PDF export, voice, doctrine, and case studies     |
-| `nt-dev`        | Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in house conventions              |
+| `nt-dev`        | Commits, pull requests, issues, end-of-day and end-of-week updates, session recall, and repo cleanup in house style  |
 | `nt-pm`         | Client call agendas and follow-ups, deploy notes, weekly recaps, and Drive share links. Client facts stay out of it  |
 | `nt-seo-spider` | Screaming Frog's MCP server and a `crawl` skill. Needs SEO Spider 25 or later                                        |
 | `nt-shopify`    | Blocks writes to a live Shopify store                                                                                |

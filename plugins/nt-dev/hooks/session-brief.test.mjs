@@ -31,7 +31,7 @@ describe('session-brief', () => {
   it('names every skill in the set inside a repo', () => {
     const text = briefOf(run());
     match(text, /^Use nt-dev skills/);
-    for (const name of ['commit', 'pr', 'issue', 'recall', 'cleanup', 'eod-update']) {
+    for (const name of ['commit', 'pr', 'issue', 'recall', 'cleanup', 'eod-update', 'eow-update']) {
       match(text, new RegExp(`/nt-dev:${name}\\b`));
     }
   });
