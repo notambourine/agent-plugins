@@ -16,7 +16,7 @@
     {
       "name": "nt-dev",
       "source": "./plugins/nt-dev",
-      "description": "Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in NoTambourine conventions. Drafts only; hooks point PR and issue writes at their skills and block Unicode dashes in commits.",
+      "description": "Commits, pull requests, issues, end-of-day notes, end-of-week client updates, session recall, and repo cleanup in NoTambourine conventions. Drafts only; hooks point PR and issue writes at their skills and block Unicode dashes in commits.",
       "strict": false
     },
     {

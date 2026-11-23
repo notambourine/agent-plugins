@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "nt-dev",
-  "description": "Commits, pull requests, issues, end-of-day notes, session recall, and repo cleanup in NoTambourine conventions.",
+  "description": "Commits, pull requests, issues, end-of-day notes, end-of-week client updates, session recall, and repo cleanup in NoTambourine conventions.",
   "author": {
     "name": "NoTambourine LLC",
     "url": "https://notambourine.com"
@@ -15,7 +15,7 @@
       "interface": {
         "displayName": "NoTambourine Development",
         "shortDescription": "Development skills in NoTambourine conventions.",
-        "longDescription": "Writes commits, draft pull requests, issues, and end-of-day notes, recalls earlier sessions, and audits checked-in agent context, all in NoTambourine conventions.",
+        "longDescription": "Writes commits, draft pull requests, issues, end-of-day notes, and end-of-week client updates with before/after pictures, recalls earlier sessions, and audits checked-in agent context, all in NoTambourine conventions.",
         "developerName": "NoTambourine LLC",
         "category": "Developer Tools",
         "capabilities": ["Write"],
