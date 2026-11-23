@@ -261,6 +261,113 @@ section p:has(> img:only-child) + p:has(> em:only-child) {
 }
 
 /* ---------------------------------------------------------
+   Data shapes, for a deck a program writes. Everything here is
+   reachable from Markdown plus a `_class`, because generated
+   slides cannot carry a `<style>` any more than authored ones.
+   --------------------------------------------------------- */
+
+/* A `---:` column arrives as an inline `text-align`, which already beats the
+   left default above; the figures only need to line up digit under digit. */
+section :is(th, td)[style*="right"] { font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* A URL path has no space to break at, so without this it sets the column's
+   width and pushes the table off the slide. */
+section :is(th, td):first-child { overflow-wrap: anywhere; }
+
+/* `<!-- _class: dense -->` - ten to twelve rows on one slide. Fixed layout, so
+   a long first cell truncates instead of renegotiating every column, and one
+   line a row, because a wrapped row is what breaks the count. */
+section.dense { gap: 0.5em; }
+section.dense h2 { font-size: 1.5em; }
+section.dense table { table-layout: fixed; font-size: 0.66em; line-height: 1.35; }
+section.dense :is(th, td) {
+  padding: 0.24em 0.7em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+section.dense th:first-child { width: 36%; }
+
+/* `<span class="up">+29.8%</span>` - a change value. The glyph is drawn from
+   borders, not typed: direction must survive greyscale print and a renderer
+   whose fonts lack the arrows. `good` and `bad` recolor a metric where lower
+   is better; the glyph keeps telling the direction. */
+section :is(.up, .down, .flat) { font-variant-numeric: tabular-nums; white-space: nowrap; }
+section .up, section .down.good { color: var(--support-fg, #8FDCD0); }
+section .down, section .up.bad { color: var(--danger-fg, #FFB38A); }
+section .flat { color: var(--fg3, #8A8A92); }
+section :is(.up, .down, .flat)::before { content: ''; display: inline-block; margin-right: 0.4em; }
+section :is(.up, .down)::before { border-inline: 0.3em solid transparent; vertical-align: 0.08em; }
+section .up::before { border-bottom: 0.52em solid currentColor; }
+section .down::before { border-top: 0.52em solid currentColor; }
+section .flat::before { width: 0.6em; border-top: 0.14em solid currentColor; vertical-align: 0.3em; }
+
+/* `<span class="pass">Pass</span>` - a status in a table cell. The word is the
+   status; the tint only groups it. No border and no vertical padding, so a
+   badge never makes its row taller than a row without one. */
+section :is(.pass, .warn, .fail) {
+  display: inline-block;
+  font-family: var(--font-accent, ui-monospace, monospace);
+  font-weight: var(--fw-semibold, 600);
+  font-size: 0.86em;
+  letter-spacing: 0.04em;
+  padding: 0 0.7em;
+  border-radius: var(--r-pill, 999px);
+  white-space: nowrap;
+}
+section .pass { background: var(--support-soft, rgba(88, 201, 185, 0.16)); color: var(--support-fg, #8FDCD0); }
+section .fail { background: var(--danger-soft, rgba(242, 128, 61, 0.16)); color: var(--danger-fg, #FFB38A); }
+section .warn { box-shadow: inset 0 0 0 1px var(--line-control, #6B6B73); color: var(--fg2, #C9C9CE); }
+
+/* Five or six stats wrap to two rows of three, with a smaller number so both
+   rows clear the sublabel. */
+section.stats ul:has(> li:nth-child(5)) { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); gap: 0.6em; }
+section.stats ul:has(> li:nth-child(5)) li { padding: 0.7em 1em; }
+section.stats ul:has(> li:nth-child(5)) li > strong:first-child { font-size: 2.2em; }
+
+/* `<!-- _class: shot -->` - one screenshot takes whatever the headline and
+   caption leave. Both maxima and no fixed side: the box keeps the image's own
+   ratio, so nothing crops and the hairline hugs the picture. */
+section.shot > p:has(> img:only-child) { flex: 1 1 0; min-height: 0; display: flex; align-items: flex-start; }
+section.shot > p > img:only-child, section.compare li > img {
+  max-width: 100%;
+  max-height: 100%;
+  border: 1px solid var(--line, #2A2A2E);
+  box-sizing: border-box;
+}
+section.shot > p > img:only-child { flex: none; }
+
+/* `<!-- _class: compare -->` - two screenshots side by side. Each bullet is an
+   image, a newline, then its label; the label is lifted above the image so two
+   pictures of different heights still share a top edge. */
+section.compare ul {
+  list-style: none;
+  padding: 0;
+  flex: 1 1 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: 1.2em;
+}
+section.compare li {
+  margin: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  justify-items: start;
+  gap: 0.6em;
+  font-family: var(--font-accent, ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: var(--fw-semibold, 600);
+  line-height: var(--lh-tight, 1.3);
+  letter-spacing: var(--ls-allcaps, 0.08em);
+  text-transform: uppercase;
+  color: var(--fg3, #8A8A92);
+}
+section.compare li > br { display: none; }
+section.compare li > img { order: 1; }
+
+/* ---------------------------------------------------------
    Corner furniture: pagination, the running mark, and the two
    Marpit directives. All absolute, so none of it is a flex or
    grid item and none of it can move the content box. Marpit's
