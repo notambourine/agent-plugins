@@ -2,12 +2,12 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Artifact|Skill",
+        "matcher": "Artifact",
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/artifact-brand.mjs\"",
-            "timeout": 30
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/hooks/artifact-brand.json\"",
+            "timeout": 5
           }
         ]
       }

@@ -10,7 +10,7 @@
     {
       "name": "nt-brand",
       "source": "./plugins/nt-brand",
-      "description": "NoTambourine's brand kit: tokens, components, fonts, logos, deck and document export, voice, and doctrine. A hook loads the kit before the first artifact of a session. Copy audits use nt-voice.",
+      "description": "NoTambourine's brand kit: tokens, components, fonts, logos, deck and document export, voice, and doctrine. Copy audits use nt-voice.",
       "strict": false
     },
     {
