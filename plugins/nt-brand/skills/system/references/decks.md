@@ -47,19 +47,35 @@ Front matter sets `marp: true`, `theme: nt`, `paginate: true`, and a `footer:`
 naming the client by sector and the deck's subject. Separate slides with `---`.
 Select a shape with `<!-- _class: name -->`.
 
-| Shape  | Class     | Source                                                     |
-| ------ | --------- | ---------------------------------------------------------- |
-| Cover  | `lead`    | Eyebrow, H1, one-line purpose, date sublabel. Once a deck. |
-| Agenda | none      | H2 plus an ordered list of three to five decisions.        |
-| Break  | `divider` | Numbered eyebrow and an H1 naming the section.             |
-| Point  | none      | Eyebrow, H2, at most two sentences or five bullets.        |
-| Stats  | `stats`   | Two to four bullets, each `**figure**` then the label.     |
-| List   | `split`   | Five to six short bullets in two columns.                  |
-| Table  | none      | A comparison of at most five rows, sourced in a sublabel.  |
-| Quote  | `quote`   | One blockquote; an italic last line is the attribution.    |
-| Visual | none      | `![bg right:40% contain](path)` beside an eyebrow and H2.  |
-| Figure | none      | An image alone in its paragraph; an italic line captions.  |
-| Close  | none      | The decisions or asks, then one link.                      |
+| Shape   | Class     | Source                                                                                                                                    |
+| ------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Cover   | `lead`    | Eyebrow, H1, one-line purpose, date sublabel. Once a deck.                                                                                |
+| Agenda  | none      | H2 plus an ordered list of three to five decisions.                                                                                       |
+| Break   | `divider` | Numbered eyebrow and an H1 naming the section.                                                                                            |
+| Point   | none      | Eyebrow, H2, at most two sentences or five bullets.                                                                                       |
+| Stats   | `stats`   | Two to six bullets, each `**figure**` then the label. Five or six wrap to two rows of three.                                              |
+| List    | `split`   | Five to six short bullets in two columns.                                                                                                 |
+| Table   | none      | A comparison of at most five rows, sourced in a sublabel.                                                                                 |
+| Data    | `dense`   | A table of at most twelve rows and five columns under a one-line H2. Every cell stays on one line; a long first cell ends in an ellipsis. |
+| Quote   | `quote`   | One blockquote; an italic last line is the attribution.                                                                                   |
+| Visual  | none      | `![bg right:40% contain](path)` beside an eyebrow and H2.                                                                                 |
+| Figure  | none      | An image alone in its paragraph; an italic line captions.                                                                                 |
+| Shot    | `shot`    | One screenshot alone in its paragraph, scaled to fill the slide uncropped; an italic line captions.                                       |
+| Compare | `compare` | Two bullets, each an image then its label on the next line.                                                                               |
+| Close   | none      | The decisions or asks, then one link.                                                                                                     |
+
+In any table, a `---:` column right-aligns its figures, and a long first cell
+wraps unless the slide is `dense`. Two sets of inline marks work in a cell or a
+stat label:
+
+- Change: `<span class="up">+29.8%</span>`, `down`, or `flat`. Up is good and
+  down is bad; add `good` or `bad` where the metric runs the other way
+  (`class="down good"` for a faster load time).
+- Status: `<span class="pass">Pass</span>`, `warn`, or `fail`. Write the status
+  as the word; the tint only groups it.
+
+Capture a screenshot at the viewport, not the full page: a tall capture scales
+down to a sliver.
 
 Never add a deck-local `<style>` block or hand-picked brand values. Shared decks
 are immutable artifacts, so embedded overrides cannot receive later brand

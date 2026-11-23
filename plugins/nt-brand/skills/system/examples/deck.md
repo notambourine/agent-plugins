@@ -81,6 +81,54 @@ Cart LCP fell from 9.2 s to 6.2 s on mobile. It still trails every other page by
 
 ---
 
+<!-- _class: dense -->
+
+<p class="eyebrow">02 / Load time</p>
+
+## ten of twelve pages got _faster_
+
+| Page                                                                          | LCP before | LCP after |                                Change | Budget                               |
+| ----------------------------------------------------------------------------- | ---------: | --------: | ------------------------------------: | ------------------------------------ |
+| /                                                                             |      7.9 s |     4.6 s | <span class="down good">-41.8%</span> | <span class="pass">Pass</span>       |
+| /products/merino-crew-neck-sweater                                            |      8.4 s |     5.0 s | <span class="down good">-40.5%</span> | <span class="pass">Pass</span>       |
+| /cart                                                                         |      9.2 s |     6.2 s | <span class="down good">-32.6%</span> | <span class="fail">Fail</span>       |
+| /collections/womens-outerwear/waterproof-jackets-and-shells?sort=best-selling |      8.8 s |     5.4 s | <span class="down good">-38.6%</span> | <span class="warn">Needs work</span> |
+| /collections/mens                                                             |      8.1 s |     4.9 s | <span class="down good">-39.5%</span> | <span class="pass">Pass</span>       |
+| /collections/sale                                                             |      8.6 s |     5.2 s | <span class="down good">-39.5%</span> | <span class="warn">Needs work</span> |
+| /search                                                                       |      6.4 s |     4.4 s | <span class="down good">-31.3%</span> | <span class="pass">Pass</span>       |
+| /account/login                                                                |      5.1 s |     3.9 s | <span class="down good">-23.5%</span> | <span class="pass">Pass</span>       |
+| /pages/size-guide                                                             |      4.8 s |     4.8 s |        <span class="flat">0.0%</span> | <span class="pass">Pass</span>       |
+| /pages/store-locator                                                          |      5.8 s |     6.0 s |     <span class="up bad">+3.4%</span> | <span class="warn">Needs work</span> |
+| /blog/how-to-layer                                                            |      5.6 s |     4.1 s | <span class="down good">-26.8%</span> | <span class="pass">Pass</span>       |
+| /checkout                                                                     |      7.2 s |     5.0 s | <span class="down good">-30.6%</span> | <span class="pass">Pass</span>       |
+
+<p class="eyebrow">Lighthouse mobile LCP, before and after 30 September 2026, against a 5.0 s budget</p>
+
+---
+
+<!-- _class: stats -->
+
+<p class="eyebrow">02 / Load time</p>
+
+## the release in _six_ numbers
+
+- **4x**
+  lighter mobile pages, 206 MB to 48 MB
+- **5.0 s**
+  product LCP, <span class="down good">-40.5%</span> from 8.4 s
+- **0**
+  layout shift on every audited page
+- **10**
+  of 12 audited pages got faster
+- **8**
+  pages inside the 5.0 s budget
+- **1**
+  page still fails: the cart at 6.2 s
+
+<p class="eyebrow">Lighthouse mobile, before and after 30 September 2026</p>
+
+---
+
 <!-- _class: split -->
 
 <p class="eyebrow">03 / Next quarter</p>
@@ -121,6 +169,33 @@ CI fails a pull request that adds page weight past the budget. The number stays 
 ![w:420](../logo/export/lockup-1024.png)
 
 _A failing check on a pull request that adds 400 KB._
+
+---
+
+<!-- _class: shot -->
+
+<p class="eyebrow">03 / Next quarter</p>
+
+## the check, _full_ width
+
+![The budget check](../logo/export/lockup-2048.png)
+
+_The same check, as the reviewer sees it._
+
+---
+
+<!-- _class: compare -->
+
+<p class="eyebrow">03 / Next quarter</p>
+
+## the check on _both_ screens
+
+- ![The budget check on desktop](../logo/export/lockup-1024.png)
+  Desktop
+- ![The budget check on a phone](../logo/export/monogram-1024.png)
+  Phone
+
+<p class="eyebrow">Captured 15 October 2026</p>
 
 ---
 
