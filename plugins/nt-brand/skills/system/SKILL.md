@@ -1,9 +1,10 @@
 ---
 name: system
 description:
-  Build or review NoTambourine-branded surfaces, slide decks, and copy. Use for
-  brand styling, color questions, positioning, deck and document PDF export, and
-  copy audits before shipping.
+  Build or review NoTambourine-branded surfaces, slide decks, and copy. Use
+  whenever you make an artifact, page, deck, or document, and for brand styling,
+  color questions, positioning, deck and document PDF export, and copy audits
+  before shipping.
 ---
 
 # NoTambourine brand
